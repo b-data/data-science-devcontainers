@@ -1,0 +1,42 @@
+{
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"BUILD_ON_IMAGE": "glcr.b-data.ch/python/base",
+			"USE_ZSH_FOR_ROOT": "unset-to-use-bash",
+			"SET_LANG": "en_US.UTF-8",
+			"SET_TZ": "Etc/UTC"
+		}
+	},
+
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"configureZshAsDefaultShell": true,
+			"upgradePackages": false,
+			"username": "vscode",
+			"userUid": "automatic",
+			"userGid": "automatic"
+		},
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"moby": false
+		}
+	},
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"editorconfig.editorconfig",
+				"ms-python.python",
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"ms-python.black-formatter",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	},
+
+	// Set 'remoteUser' to 'root' to connect as root instead.
+	"remoteUser": "vscode"
+
+	// "remoteUser": "root"
+}
