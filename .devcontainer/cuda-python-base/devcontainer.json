@@ -7,7 +7,7 @@
 			"BUILD_ON_IMAGE": "glcr.b-data.ch/cuda/python/base",
 			"PYTHON_VERSION": "3.11.4",
 			// "UNMINIMIZE": "unset-to-keep-minimized",
-			"JUPYTERLAB_VERSION": "3.6.4",
+			"JUPYTERLAB_VERSION": "3.6.5",
 			// "INSTALL_DEVTOOLS": "unset-to-not-install",
 			"NODE_VERSION": "16.20.1",
 			"USE_ZSH_FOR_ROOT": "unset-to-use-bash",
