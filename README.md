@@ -64,8 +64,6 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * **Zsh**: A shell designed for interactive use, although it is also a powerful
   scripting language.
 
-[^1]: Depending on which Dev Container is selected.
-
 </p>
 </details>
 
@@ -90,7 +88,7 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * [GitLab Workflow](https://marketplace.visualstudio.com/items?itemName=GitLab.gitlab-workflow)
 * [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
 * [Excel Viewer](https://marketplace.visualstudio.com/items?itemName=GrapeCity.gc-excelviewer)
-* [Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia)
+* [Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia)[^1]
 * [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 * [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)  
   :information_source: Julia pubtools, Python scipy, R verse+
@@ -101,9 +99,11 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
 * [Quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)  
   :information_source: Julia pubtools, Python scipy, R verse+
-* [R](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)
+* [R](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)[^1]
 * [Resource Monitor](https://marketplace.visualstudio.com/items?itemName=mutantdino.resourcemonitor)
 * [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
+
+[^1]: Depending on which Dev Container configuration is selected.
 
 </p>
 </details>
