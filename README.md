@@ -92,7 +92,6 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 * [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)  
   :information_source: Julia pubtools, Python scipy, R verse+
-* [Lua](https://marketplace.visualstudio.com/items?itemName=sumneko.lua)
 * [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
 * [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 * [Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager)
