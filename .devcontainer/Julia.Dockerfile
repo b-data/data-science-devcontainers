@@ -86,7 +86,7 @@ RUN pip install \
   && mkdir -p /etc/skel/.julia/config \
   && cp /var/backups/skel/.julia/config/startup.jl /etc/skel/.julia/config/
 
-## Devtools
+## Devtools, Docker
 FROM glcr.b-data.ch/nodejs/nsi${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye} as nsi
 
 FROM julia
@@ -94,6 +94,7 @@ FROM julia
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG NV
+ARG INSTALL_DOCKER
 
 ENV NODE_VERSION=${NV}
 
@@ -137,6 +138,26 @@ RUN if [ ! -z "$NODE_VERSION" ]; then \
     rm -rf /var/lib/apt/lists/* \
       /root/.config \
       /root/.local; \
+  fi \
+  && if [ ! -z "$INSTALL_DOCKER" ]; then \
+    dpkgArch="$(dpkg --print-architecture)"; \
+    . /etc/os-release; \
+    mkdir -m 0755 -p /etc/apt/keyrings; \
+    curl -fsSL https://download.docker.com/linux/$ID/gpg | \
+      gpg --dearmor -o /etc/apt/keyrings/docker.gpg; \
+    echo "deb [arch=$dpkgArch signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/$ID $VERSION_CODENAME stable" | \
+      tee /etc/apt/sources.list.d/docker.list > /dev/null; \
+    apt-get update; \
+    apt-get -y install \
+      docker-ce-cli \
+      docker-buildx-plugin \
+      docker-compose-plugin \
+      $(test $dpkgArch = "amd64" && echo docker-scan-plugin); \
+    ln -s /usr/libexec/docker/cli-plugins/docker-compose \
+      /usr/local/bin/docker-compose; \
+    ## Clean up
+    rm -rf /var/lib/apt/lists/* \
+      /root/.config; \
   fi
 
 ## Update environment
