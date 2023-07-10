@@ -55,6 +55,16 @@ RUN pip install \
     notebook \
     nbconvert \
     python-lsp-server[all] \
+  && if $(! echo ${BUILD_ON_IMAGE} | grep -q "python/base"); then \
+    pip install \
+      ipympl \
+      ipywidgets \
+      widgetsnbextension; \
+      ## Install facets
+      cd /tmp; \
+      git clone https://github.com/PAIR-code/facets.git; \
+      jupyter nbextension install facets/facets-dist/ --sys-prefix; \
+  fi \
   ## Clean up
   && rm -rf /tmp/* \
     /root/.cache \

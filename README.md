@@ -1,4 +1,4 @@
-# \[CUDA-enabled\] Data Science Development Containers
+# \[CUDA-enabled\] Data Science Dev Containers
 
 \[GPU accelerated\] Multi-arch (`linux/amd64`, `linux/arm64/v8`) Data Science
 Dev Containers:
