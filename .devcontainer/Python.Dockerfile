@@ -84,7 +84,7 @@ FROM python
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG NV
-ARG INSTALL_DOCKER
+ARG INSTALL_DOCKER_CLI
 
 ENV NODE_VERSION=${NV}
 
@@ -129,7 +129,8 @@ RUN if [ ! -z "$NODE_VERSION" ]; then \
       /root/.config \
       /root/.local; \
   fi \
-  && if [ ! -z "$INSTALL_DOCKER" ]; then \
+  && if [ ! -z "$INSTALL_DOCKER_CLI" ]; then \
+    ## Install Docker CLI and plugins
     dpkgArch="$(dpkg --print-architecture)"; \
     . /etc/os-release; \
     mkdir -m 0755 -p /etc/apt/keyrings; \
