@@ -4,6 +4,7 @@
 
 set -e
 
+mkdir -p "${HOME}/.julia/config"
 mkdir -p "${HOME}/.local/bin"
 mkdir -p "${HOME}/projects"
 
@@ -13,6 +14,16 @@ if [ ! -f "${HOME}/.local/bin/dockerSystemPrune.sh" ]; then
 fi
 if [ ! -f "${HOME}/.local/bin/checkForUpdates.sh" ]; then
   cp /etc/skel/.local/bin/checkForUpdates.sh "${HOME}/.local/bin";
+fi
+
+# Copy user-specific startup files if home directory is bind mounted
+if [ ! -f ".julia/config/startup_ijulia.jl" ]; then
+  cp -a /etc/skel/.julia/config/startup_ijulia.jl \
+    "${HOME}/.julia/config"
+fi
+if [ ! -f ".julia/config/startup.jl" ]; then
+  cp -a /etc/skel/.julia/config/startup.jl \
+    "${HOME}/.julia/config"
 fi
 
 # Copy Bash-related files from root's backup directory
