@@ -13,7 +13,6 @@ RUN mkdir /files
 
 COPY conf/ipython /files
 COPY conf/jupyterlab /files
-COPY python-base/scripts /files
 COPY scripts /files
 
 ## Ensure file modes are correct when using CI

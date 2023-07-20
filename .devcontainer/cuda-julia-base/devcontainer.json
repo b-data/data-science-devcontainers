@@ -18,7 +18,10 @@
 	},
 
 	"onCreateCommand": "onCreateCommand.sh",
-	"postStartCommand": "${HOME}/.local/bin/dockerSystemPrune.sh",
+	"postStartCommand": {
+		"docker": "${HOME}/.local/bin/dockerSystemPrune.sh",
+		"julia": "postStartCommand.sh"
+	},
 	"postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh",
 
 	"features": {
