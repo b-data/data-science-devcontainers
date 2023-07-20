@@ -82,6 +82,8 @@ RUN pip install \
   ## Create folders in skeleton directory
   && mkdir -p /etc/skel/.local/bin \
   && mkdir -p /etc/skel/projects \
+  ## Create backup of root directory
+  && cp -a /root /var/backups \
   ## Copy user-specific startup file to skeleton directory
   && mkdir -p /etc/skel/.julia/config \
   && cp /var/backups/skel/.julia/config/startup.jl /etc/skel/.julia/config/

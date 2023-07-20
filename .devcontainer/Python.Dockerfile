@@ -74,7 +74,9 @@ RUN pip install \
   && mkdir -p /root/projects \
   ## Create folders in skeleton directory
   && mkdir -p /etc/skel/.local/bin \
-  && mkdir -p /etc/skel/projects
+  && mkdir -p /etc/skel/projects \
+  ## Create backup of root directory
+  && cp -a /root /var/backups
 
 ## Devtools, Docker
 FROM glcr.b-data.ch/nodejs/nsi${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye} as nsi
