@@ -4,8 +4,8 @@
 
 set -e
 
-mkdir -p "${HOME}/projects"
 mkdir -p "${HOME}/.local/bin"
+mkdir -p "${HOME}/projects"
 
 # Copy scripts from skeleton directory if home directory is bind mounted
 if [ ! -f "${HOME}/.local/bin/dockerSystemPrune.sh" ]; then
@@ -17,8 +17,8 @@ fi
 
 # Copy QGIS stuff from skeleton directory if home directory is bind mounted
 if [ "$(id -un)" == "root" ]; then
-  if [ ! -d "${HOME}/.local/share" ] && [ $(command -v qgis) ]; then
-    cp -R /etc/skel/.local/share "${HOME}/.local";
+  if [ ! -d /root/.local/share ] && [ $(command -v qgis) ]; then
+    cp -R /etc/skel/.local/share /root/.local;
   fi
 else
   if [ ! -d "${HOME}/.local/share" ] && [ $(command -v qgis) ]; then
@@ -27,13 +27,23 @@ else
   fi
 fi
 
+# Copy Bash-related files from root's backup directory
+if [ "$(id -un)" == "root" ]; then
+  if [ ! -f /root/.bashrc ]; then
+    cp /var/backups/root/.bashrc /root;
+  fi
+  if [ ! -f /root/.profile ]; then
+    cp /var/backups/root/.profile /root;
+  fi
+fi
+
 # Copy Zsh-related files and folders from the untouched home directory
 if [ "$(id -un)" == "root" ]; then
-  if [ ! -d "${HOME}/.oh-my-zsh" ]; then
-    cp -R /home/*/.oh-my-zsh "${HOME}";
+  if [ ! -d /root/.oh-my-zsh ]; then
+    cp -R /home/*/.oh-my-zsh /root;
   fi
-  if [ ! -f "${HOME}/.zshrc" ]; then
-    cp /home/*/.zshrc "${HOME}";
+  if [ ! -f /root/.zshrc ]; then
+    cp /home/*/.zshrc /root;
   fi
 else
   if [ ! -d "${HOME}/.oh-my-zsh" ]; then

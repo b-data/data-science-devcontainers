@@ -101,7 +101,9 @@ RUN pip install \
   fi \
   ## Create R user package library
   && RLU=$(Rscript -e "cat(Sys.getenv('R_LIBS_USER'))") \
-  && mkdir -p ${RLU}
+  && mkdir -p ${RLU} \
+  ## Create backup of root directory
+  && cp -a /root /var/backups
 
 ## Devtools, Docker
 FROM glcr.b-data.ch/nodejs/nsi${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye} as nsi
