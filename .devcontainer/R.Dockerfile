@@ -40,7 +40,7 @@ ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${R_VERSION} \
 SHELL ["/bin/sh", "-c"]
 
 ## Unminimise if the system has been minimised
-RUN if [ $(command -v unminimize) -a ! -z "$UNMINIMIZE" ]; then \
+RUN if [ $(command -v unminimize) ] && [ ! -z "$UNMINIMIZE" ]; then \
     yes | unminimize; \
   fi
 
