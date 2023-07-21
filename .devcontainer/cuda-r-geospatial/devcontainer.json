@@ -104,5 +104,9 @@
 	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/cuda-r-geospatial-root,target=/root,type=bind",
 	// "workspaceFolder": "/root",
 
+	"remoteEnv": {
+		// "CUDA_VISIBLE_DEVICES": "0"
+	},
+
 	"runArgs": [ "--gpus=all" ]
 }

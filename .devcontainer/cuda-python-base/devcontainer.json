@@ -92,5 +92,9 @@
 	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/cuda-python-base-root,target=/root,type=bind",
 	// "workspaceFolder": "/root",
 
+	"remoteEnv": {
+		// "CUDA_VISIBLE_DEVICES": "0"
+	},
+
 	"runArgs": [ "--gpus=all" ]
 }

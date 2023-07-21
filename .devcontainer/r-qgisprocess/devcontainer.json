@@ -97,10 +97,12 @@
 	"remoteUser": "vscode",
 	"workspaceMount": "source=r-qgisprocess-home-vscode,target=/home/vscode,type=volume",
 	// "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/r-qgisprocess-home-vscode,target=/home/vscode,type=bind",
-	"workspaceFolder": "/home/vscode"
+	"workspaceFolder": "/home/vscode",
 
 	// "remoteUser": "root",
 	// "workspaceMount": "source=r-qgisprocess-root,target=/root,type=volume",
 	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/r-qgisprocess-root,target=/root,type=bind",
-	// "workspaceFolder": "/root"
+	// "workspaceFolder": "/root",
+
+	"remoteEnv": {}
 }

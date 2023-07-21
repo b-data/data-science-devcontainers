@@ -89,10 +89,12 @@
 	"remoteUser": "vscode",
 	"workspaceMount": "source=julia-base-home-vscode,target=/home/vscode,type=volume",
 	// "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/julia-base-home-vscode,target=/home/vscode,type=bind",
-	"workspaceFolder": "/home/vscode"
+	"workspaceFolder": "/home/vscode",
 
 	// "remoteUser": "root",
 	// "workspaceMount": "source=julia-base-root,target=/root,type=volume",
 	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/julia-base-root,target=/root,type=bind",
-	// "workspaceFolder": "/root"
+	// "workspaceFolder": "/root",
+
+	"remoteEnv": {}
 }

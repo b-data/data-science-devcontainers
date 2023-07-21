@@ -85,10 +85,12 @@
 	"remoteUser": "vscode",
 	"workspaceMount": "source=python-base-home-vscode,target=/home/vscode,type=volume",
 	// "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/python-base-home-vscode,target=/home/vscode,type=bind",
-	"workspaceFolder": "/home/vscode"
+	"workspaceFolder": "/home/vscode",
 
 	// "remoteUser": "root",
 	// "workspaceMount": "source=python-base-root,target=/root,type=volume",
 	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/python-base-root,target=/root,type=bind",
-	// "workspaceFolder": "/root"
+	// "workspaceFolder": "/root",
+
+	"remoteEnv": {}
 }
