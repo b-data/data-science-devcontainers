@@ -108,5 +108,8 @@
 		// "CUDA_VISIBLE_DEVICES": "0"
 	},
 
-	"runArgs": [ "--gpus=all" ]
+	"runArgs": [
+		"--gpus=all",
+		"--shm-size=2g"
+	]
 }
