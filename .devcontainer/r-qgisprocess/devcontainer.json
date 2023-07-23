@@ -104,5 +104,9 @@
 	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/r-qgisprocess-root,target=/root,type=bind",
 	// "workspaceFolder": "/root",
 
-	"remoteEnv": {}
+	// By default, BLAS/OpenMP will use as many threads as possible.
+	// Set the following environment variable to control the exact number to use.
+	"remoteEnv": {
+		// "OMP_NUM_THREADS": "1"
+	}
 }

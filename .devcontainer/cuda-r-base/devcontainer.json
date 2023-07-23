@@ -102,8 +102,13 @@
 	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/cuda-r-base-root,target=/root,type=bind",
 	// "workspaceFolder": "/root",
 
+	// By default,
+	// - CUDA will use all available CUDA-capable devices. 
+	// - BLAS/OpenMP will use as many threads as possible.
+	// Set the following environment variables to control the exact device(s)/number to use.
 	"remoteEnv": {
-		// "CUDA_VISIBLE_DEVICES": "0"
+		// "CUDA_VISIBLE_DEVICES": "0",
+		// "OMP_NUM_THREADS": "1"
 	},
 
 	"runArgs": [
