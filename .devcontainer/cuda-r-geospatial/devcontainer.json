@@ -18,10 +18,7 @@
 	},
 
 	"onCreateCommand": "onCreateCommand.sh",
-	"postStartCommand": {
-		"docker": "${HOME}/.local/bin/dockerSystemPrune.sh",
-		"r": "postStartCommand.sh"
-	},
+	"postStartCommand": "postStartCommand.sh && ${HOME}/.local/bin/dockerSystemPrune.sh",
 	"postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh",
 
 	"features": {
