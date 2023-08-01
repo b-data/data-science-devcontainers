@@ -62,6 +62,7 @@
 				"ms-azuretools.vscode-docker"
 			],
 			"settings": {
+				"gitlab.aiAssistedCodeSuggestions.enabled": false,
 				"gitlens.graph.statusBar.enabled": false,
 				"gitlens.menus": {
 				  "scm": {
