@@ -1,6 +1,7 @@
 ARG BUILD_ON_IMAGE=glcr.b-data.ch/python/base
+ARG PYTHON_VERSION=latest
 
-FROM ${BUILD_ON_IMAGE}
+FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION}
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -32,6 +33,11 @@ RUN if [ ! -z "$USE_ZSH_FOR_ROOT" ]; then \
     echo "Setting LANG to $LANG"; \
     update-locale --reset LANG=$LANG; \
   fi
+
+## Pip: Install to the Python user install directory (1) or not (0)
+ARG PIP_USER=1
+
+ENV PIP_USER=${PIP_USER}
 
 ## Reset environment variable BUILD_DATE
 ARG BUILD_START

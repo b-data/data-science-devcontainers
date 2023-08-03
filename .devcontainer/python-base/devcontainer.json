@@ -59,6 +59,7 @@
 				"ms-azuretools.vscode-docker"
 			],
 			"settings": {
+				"gitlab.aiAssistedCodeSuggestions.enabled": false,
 				"gitlens.graph.statusBar.enabled": false,
 				"gitlens.menus": {
 				  "scm": {
@@ -83,10 +84,16 @@
 	"remoteUser": "vscode",
 	"workspaceMount": "source=python-base-home-vscode,target=/home/vscode,type=volume",
 	// "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/python-base-home-vscode,target=/home/vscode,type=bind",
-	"workspaceFolder": "/home/vscode"
+	"workspaceFolder": "/home/vscode",
 
 	// "remoteUser": "root",
 	// "workspaceMount": "source=python-base-root,target=/root,type=volume",
 	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/python-base-root,target=/root,type=bind",
-	// "workspaceFolder": "/root"
+	// "workspaceFolder": "/root",
+
+	// By default, BLAS/OpenMP will use as many threads as possible.
+	// Set the following environment variable to control the exact number to use.
+	"remoteEnv": {
+		// "OMP_NUM_THREADS": "1"
+	}
 }

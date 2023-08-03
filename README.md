@@ -178,9 +178,15 @@ a unique way:
     * uid: 1000 (auto-assigned)
     * gid: 1000 (auto-assigned)
 1. Lifecycle scripts:
-    * `onCreateCommand`: home directory setup
-    * [`postStartCommand`](.devcontainer/scripts/etc/skel/.local/bin/dockerSystemPrune.sh):
-      Codespace only: Silently remove all unused images and all build cache
+    * [`onCreateCommand`](.devcontainer/scripts/usr/local/bin/onCreateCommand.sh):
+      home directory setup
+    * `postStartCommand`s
+        * [docker](.devcontainer/scripts/etc/skel/.local/bin/dockerSystemPrune.sh):
+          Silently remove all unused images and all build cache (Codespace only)
+        * [julia](.devcontainer/julia-base/scripts/usr/local/bin/postStartCommand.sh):
+          Copy user-specific startup files
+        * [r](.devcontainer/r-base/scripts/usr/local/bin/postStartCommand.sh):
+          Copy QGIS stuff from skeleton directory; Create R user package library
     * [`postAttachCommand`](.devcontainer/scripts/etc/skel/.local/bin/checkForUpdates.sh):
       Codespace only: Check for Dev Container updates
 

@@ -61,6 +61,7 @@
 				"ms-azuretools.vscode-docker"
 			],
 			"settings": {
+				"gitlab.aiAssistedCodeSuggestions.enabled": false,
 				"gitlens.graph.statusBar.enabled": false,
 				"gitlens.menus": {
 				  "scm": {
@@ -92,5 +93,17 @@
 	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/cuda-python-scipy-root,target=/root,type=bind",
 	// "workspaceFolder": "/root",
 
-	"runArgs": [ "--gpus=all" ]
+	// By default,
+	// - CUDA will use all available CUDA-capable devices. 
+	// - BLAS/OpenMP will use as many threads as possible.
+	// Set the following environment variables to control the exact device(s)/number to use.
+	"remoteEnv": {
+		// "CUDA_VISIBLE_DEVICES": "0",
+		// "OMP_NUM_THREADS": "1"
+	},
+
+	"runArgs": [
+		"--gpus=all",
+		"--shm-size=2g"
+	]
 }

@@ -41,7 +41,7 @@ ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${JULIA_VERSION} \
 SHELL ["/bin/sh", "-c"]
 
 ## Unminimise if the system has been minimised
-RUN if [ $(command -v unminimize) -a ! -z "$UNMINIMIZE" ]; then \
+RUN if [ $(command -v unminimize) ] && [ ! -z "$UNMINIMIZE" ]; then \
     yes | unminimize; \
   fi
 
@@ -61,12 +61,7 @@ RUN pip install \
   ## Install the Julia kernel for Jupyter
   && julia -e 'using Pkg; Pkg.add(["IJulia", "LanguageServer"]); Pkg.precompile()' \
   && mv /root/.local/share/jupyter/kernels/julia* /usr/local/share/jupyter/kernels/ \
-  ## Install CUDA
-  && if [ ! -z "$CUDA_IMAGE" ]; then \
-    julia -e 'using Pkg; Pkg.add("CUDA")'; \
-    julia -e 'using CUDA; CUDA.set_runtime_version!("local")'; \
-    julia -e 'using CUDA; CUDA.precompile_runtime()'; \
-  fi \
+  ## Make installed packages available system-wide
   && julia -e 'using Pkg; Pkg.add(readdir("$(ENV["JULIA_DEPOT_PATH"])/packages"))' \
   && rm -rf ${JULIA_DEPOT_PATH}/registries/* \
   && chmod -R ugo+rx ${JULIA_DEPOT_PATH} \

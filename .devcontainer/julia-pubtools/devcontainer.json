@@ -18,7 +18,7 @@
 	},
 
 	"onCreateCommand": "onCreateCommand.sh",
-	"postStartCommand": "${HOME}/.local/bin/dockerSystemPrune.sh",
+	"postStartCommand": "postStartCommand.sh && ${HOME}/.local/bin/dockerSystemPrune.sh",
 	"postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh",
 
 	"features": {
@@ -62,6 +62,7 @@
 				"ms-azuretools.vscode-docker"
 			],
 			"settings": {
+				"gitlab.aiAssistedCodeSuggestions.enabled": false,
 				"gitlens.graph.statusBar.enabled": false,
 				"gitlens.menus": {
 				  "scm": {
@@ -88,10 +89,19 @@
 	"remoteUser": "vscode",
 	"workspaceMount": "source=julia-pubtools-home-vscode,target=/home/vscode,type=volume",
 	// "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/julia-pubtools-home-vscode,target=/home/vscode,type=bind",
-	"workspaceFolder": "/home/vscode"
+	"workspaceFolder": "/home/vscode",
 
 	// "remoteUser": "root",
 	// "workspaceMount": "source=julia-pubtools-root,target=/root,type=volume",
 	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/julia-pubtools-root,target=/root,type=bind",
-	// "workspaceFolder": "/root"
+	// "workspaceFolder": "/root",
+
+	// By default,
+	// - Julia starts up with a single thread of execution.
+	// - BLAS/OpenMP will use as many threads as possible.
+	// Set the following environment variables to control the exact number to use.
+	"remoteEnv": {
+		// "JULIA_NUM_THREADS": "1",
+		// "OMP_NUM_THREADS": "1"
+	}
 }
