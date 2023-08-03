@@ -12,7 +12,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN mkdir /files
 
 COPY conf/ipython /files
-COPY conf/jupyterlab /files
+COPY r-base/conf/jupyterlab /files
 COPY r-base/scripts /files
 COPY scripts /files
 
