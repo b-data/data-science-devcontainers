@@ -14,10 +14,8 @@ ENV LANG=${SET_LANG:-$LANG} \
     TZ=${SET_TZ:-$TZ} \
     PARENT_IMAGE_BUILD_DATE=${BUILD_DATE}
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
   ## Change root's shell to ZSH
-RUN if [ ! -z "$USE_ZSH_FOR_ROOT" ]; then \
+RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     chsh -s /bin/zsh; \
   fi \
   ## Update timezone if needed
