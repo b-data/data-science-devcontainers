@@ -17,5 +17,5 @@ else
 fi
 
 # Create R user package library
-RLU=$(Rscript -e "cat(Sys.getenv('R_LIBS_USER'))")
+RLU="$(Rscript -e "cat(Sys.getenv('R_LIBS_USER'))")"
 mkdir -p "$RLU"
