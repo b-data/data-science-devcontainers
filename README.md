@@ -265,7 +265,6 @@ What makes this project different:
    :information_source: CUDA-enabled images are Ubuntu-based.
 1. IDE: [JupyterLab](https://github.com/jupyterlab/jupyterlab) next to
    [VS Code](https://github.com/microsoft/vscode)  
-   :information_source: code-server = VS Code in the browser.
 1. Just Python – no [Conda](https://github.com/conda/conda) /
    [Mamba](https://github.com/mamba-org/mamba)
 
