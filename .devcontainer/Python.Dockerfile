@@ -5,9 +5,9 @@ ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
 ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-16.20.1}}
 
-FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION} as files
+ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION} as files
 
 RUN mkdir /files
 
@@ -36,26 +36,22 @@ ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${PYTHON_VERSION} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
     PARENT_IMAGE_BUILD_DATE=${BUILD_DATE}
 
-SHELL ["/bin/sh", "-c"]
-
 ## Unminimise if the system has been minimised
-RUN if [ $(command -v unminimize) ] && [ ! -z "$UNMINIMIZE" ]; then \
+RUN if [ "$(command -v unminimize)" ] && [ -n "$UNMINIMIZE" ]; then \
     yes | unminimize; \
   fi
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
 ## Install Python related stuff
   ## Install JupyterLab
-RUN pip install \
-    jupyterlab==${JUPYTERLAB_VERSION} \
+RUN pip install --no-cache-dir \
+    jupyterlab=="$JUPYTERLAB_VERSION" \
     jupyterlab-git \
     jupyterlab-lsp \
     notebook \
     nbconvert \
-    python-lsp-server[all] \
-  && if $(! echo ${BUILD_ON_IMAGE} | grep -q "python/base"); then \
-    pip install \
+    "python-lsp-server[all]" \
+  && if ! echo "$BUILD_ON_IMAGE" | grep -q "python/base"; then \
+    pip install --no-cache-dir \
       ipympl \
       ipywidgets \
       widgetsnbextension; \
@@ -78,7 +74,7 @@ RUN pip install \
   && cp -a /root /var/backups
 
 ## Devtools, Docker
-FROM glcr.b-data.ch/nodejs/nsi${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye} as nsi
+FROM glcr.b-data.ch/nodejs/nsi${NSI_SFX} as nsi
 
 FROM python
 
@@ -92,7 +88,7 @@ ENV NODE_VERSION=${NV}
   ## Install Node.js...
 COPY --from=nsi /usr/local /usr/local
 
-RUN if [ ! -z "$NODE_VERSION" ]; then \
+RUN if [ -n "$NV" ]; then \
     ## and other requirements
     apt-get update; \
     apt-get install -y --no-install-recommends \
@@ -103,7 +99,7 @@ RUN if [ ! -z "$NODE_VERSION" ]; then \
       libxt6 \
       quilt \
       rsync; \
-    if [ ! -z "$PYTHON_VERSION" ]; then \
+    if [ -n "$PYTHON_VERSION" ]; then \
       ## make some useful symlinks that are expected to exist
       ## ("/usr/bin/python" and friends)
       for src in pydoc3 python3; do \
@@ -130,21 +126,22 @@ RUN if [ ! -z "$NODE_VERSION" ]; then \
       /root/.config \
       /root/.local; \
   fi \
-  && if [ ! -z "$INSTALL_DOCKER_CLI" ]; then \
+  && if [ -n "$INSTALL_DOCKER_CLI" ]; then \
     ## Install Docker CLI and plugins
     dpkgArch="$(dpkg --print-architecture)"; \
     . /etc/os-release; \
-    mkdir -m 0755 -p /etc/apt/keyrings; \
-    curl -fsSL https://download.docker.com/linux/$ID/gpg | \
-      gpg --dearmor -o /etc/apt/keyrings/docker.gpg; \
+    mkdir -p /etc/apt/keyrings; \
+    chmod 0755 /etc/apt/keyrings; \
+    pgpKey="$(curl -fsSL "https://download.docker.com/linux/$ID/gpg")"; \
+    echo "$pgpKey" | gpg --dearmor -o /etc/apt/keyrings/docker.gpg; \
     echo "deb [arch=$dpkgArch signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/$ID $VERSION_CODENAME stable" | \
       tee /etc/apt/sources.list.d/docker.list > /dev/null; \
     apt-get update; \
-    apt-get -y install \
+    apt-get -y install --no-install-recommends \
       docker-ce-cli \
       docker-buildx-plugin \
       docker-compose-plugin \
-      $(test $dpkgArch = "amd64" && echo docker-scan-plugin); \
+      "$(test "$dpkgArch" = "amd64" && echo docker-scan-plugin)"; \
     ln -s /usr/libexec/docker/cli-plugins/docker-compose \
       /usr/local/bin/docker-compose; \
     ## Clean up
@@ -161,21 +158,21 @@ ENV LANG=${SET_LANG:-$LANG} \
     TZ=${SET_TZ:-$TZ}
 
   ## Change root's shell to ZSH
-RUN if [ ! -z "$USE_ZSH_FOR_ROOT" ]; then \
+RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     chsh -s /bin/zsh; \
   fi \
   ## Update timezone if needed
   && if [ "$TZ" != "Etc/UTC" ]; then \
     echo "Setting TZ to $TZ"; \
-    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
-      && echo $TZ > /etc/timezone; \
+    ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime \
+      && echo "$TZ" > /etc/timezone; \
   fi \
   ## Add/Update locale if needed
   && if [ "$LANG" != "en_US.UTF-8" ]; then \
     sed -i "s/# $LANG/$LANG/g" /etc/locale.gen; \
     locale-gen; \
     echo "Setting LANG to $LANG"; \
-    update-locale --reset LANG=$LANG; \
+    update-locale --reset LANG="$LANG"; \
   fi
 
 ## Pip: Install to the Python user install directory (1) or not (0)

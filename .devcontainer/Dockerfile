@@ -14,24 +14,22 @@ ENV LANG=${SET_LANG:-$LANG} \
     TZ=${SET_TZ:-$TZ} \
     PARENT_IMAGE_BUILD_DATE=${BUILD_DATE}
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
   ## Change root's shell to ZSH
-RUN if [ ! -z "$USE_ZSH_FOR_ROOT" ]; then \
+RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     chsh -s /bin/zsh; \
   fi \
   ## Update timezone if needed
   && if [ "$TZ" != "Etc/UTC" ]; then \
     echo "Setting TZ to $TZ"; \
-    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
-      && echo $TZ > /etc/timezone; \
+    ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime \
+      && echo "$TZ" > /etc/timezone; \
   fi \
   ## Add/Update locale if needed
   && if [ "$LANG" != "en_US.UTF-8" ]; then \
     sed -i "s/# $LANG/$LANG/g" /etc/locale.gen; \
     locale-gen; \
     echo "Setting LANG to $LANG"; \
-    update-locale --reset LANG=$LANG; \
+    update-locale --reset LANG="$LANG"; \
   fi
 
 ## Pip: Install to the Python user install directory (1) or not (0)

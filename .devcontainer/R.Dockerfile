@@ -5,14 +5,14 @@ ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
 ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-16.20.1}}
 
-FROM ${BUILD_ON_IMAGE}:${R_VERSION} as files
+ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+FROM ${BUILD_ON_IMAGE}:${R_VERSION} as files
 
 RUN mkdir /files
 
 COPY conf/ipython /files
-COPY conf/jupyterlab /files
+COPY r-base/conf/jupyterlab /files
 COPY r-base/scripts /files
 COPY scripts /files
 
@@ -37,53 +37,49 @@ ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${R_VERSION} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
     PARENT_IMAGE_BUILD_DATE=${BUILD_DATE}
 
-SHELL ["/bin/sh", "-c"]
-
 ## Unminimise if the system has been minimised
-RUN if [ $(command -v unminimize) ] && [ ! -z "$UNMINIMIZE" ]; then \
+RUN if [ "$(command -v unminimize)" ] && [ -n "$UNMINIMIZE" ]; then \
     yes | unminimize; \
   fi
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
 ## Install Python related stuff
   ## Install JupyterLab
-RUN pip install \
-    jupyterlab==${JUPYTERLAB_VERSION} \
+RUN pip install --no-cache-dir \
+    jupyterlab=="$JUPYTERLAB_VERSION" \
     jupyterlab-git \
     jupyterlab-lsp \
     notebook \
     nbconvert \
-    python-lsp-server[all] \
+    "python-lsp-server[all]" \
 ## Install R related stuff
   ## Install the R kernel for Jupyter and languageserver
-  && install2.r --error --deps TRUE --skipinstalled -n $((`nproc`+1)) \
+  && install2.r --error --deps TRUE --skipinstalled -n "$(($(nproc)+1))" \
     IRkernel \
     languageserver \
   && Rscript -e "IRkernel::installspec(user = FALSE, displayname = paste('R', Sys.getenv('R_VERSION')))" \
   ## IRkernel: Enable 'image/svg+xml' instead of 'image/png' for plot display
   ## IRkernel: Enable 'application/pdf' for PDF conversion
   && echo "options(jupyter.plot_mimetypes = c('text/plain', 'image/svg+xml', 'application/pdf'))" \
-    >> $(R RHOME)/etc/Rprofile.site \
+    >> "$(R RHOME)/etc/Rprofile.site" \
   ## IRkernel: Include user's private bin in PATH
   && echo "if (dir.exists(file.path(Sys.getenv('HOME'), 'bin')) &&" \
-    >> $(R RHOME)/etc/Rprofile.site \
+    >> "$(R RHOME)/etc/Rprofile.site" \
   && echo '  !grepl(file.path(Sys.getenv('\''HOME'\''), '\''bin'\''), Sys.getenv('\''PATH'\''))) {' \
-    >> $(R RHOME)/etc/Rprofile.site \
+    >> "$(R RHOME)/etc/Rprofile.site" \
   && echo "  Sys.setenv(PATH = paste(file.path(Sys.getenv('HOME'), 'bin'), Sys.getenv('PATH')," \
-    >> $(R RHOME)/etc/Rprofile.site \
+    >> "$(R RHOME)/etc/Rprofile.site" \
   && echo "    sep = .Platform\$path.sep))}" \
-    >> $(R RHOME)/etc/Rprofile.site \
+    >> "$(R RHOME)/etc/Rprofile.site" \
   && echo "if (dir.exists(file.path(Sys.getenv('HOME'), '.local', 'bin')) &&" \
-    >> $(R RHOME)/etc/Rprofile.site \
+    >> "$(R RHOME)/etc/Rprofile.site" \
   && echo '  !grepl(file.path(Sys.getenv('\''HOME'\''), '\''.local'\'', '\''bin'\''), Sys.getenv('\''PATH'\''))) {' \
-    >> $(R RHOME)/etc/Rprofile.site \
+    >> "$(R RHOME)/etc/Rprofile.site" \
   && echo "  Sys.setenv(PATH = paste(file.path(Sys.getenv('HOME'), '.local', 'bin'), Sys.getenv('PATH')," \
-    >> $(R RHOME)/etc/Rprofile.site \
+    >> "$(R RHOME)/etc/Rprofile.site" \
   && echo "    sep = .Platform\$path.sep))}" \
-    >> $(R RHOME)/etc/Rprofile.site \
+    >> "$(R RHOME)/etc/Rprofile.site" \
   ## REditorSupport.r: Disable help panel and revert to old behaviour
-  && echo "options(vsc.helpPanel = FALSE)" >> $(R RHOME)/etc/Rprofile.site \
+  && echo "options(vsc.helpPanel = FALSE)" >> "$(R RHOME)/etc/Rprofile.site" \
   ## Clean up
   && rm -rf /tmp/* \
     /root/.cache \
@@ -96,17 +92,17 @@ RUN pip install \
   ## Create folders in skeleton directory
   && mkdir -p /etc/skel/.local/bin \
   && mkdir -p /etc/skel/projects \
-  && if [ $(command -v qgis) ]; then \
+  && if [ "$(command -v qgis)" ]; then \
     cp -a /root/.local/share /etc/skel/.local; \
   fi \
   ## Create R user package library
-  && RLU=$(Rscript -e "cat(Sys.getenv('R_LIBS_USER'))") \
-  && mkdir -p ${RLU} \
+  && RLU="$(Rscript -e "cat(Sys.getenv('R_LIBS_USER'))")" \
+  && mkdir -p "$RLU" \
   ## Create backup of root directory
   && cp -a /root /var/backups
 
 ## Devtools, Docker
-FROM glcr.b-data.ch/nodejs/nsi${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye} as nsi
+FROM glcr.b-data.ch/nodejs/nsi${NSI_SFX} as nsi
 
 FROM r
 
@@ -120,7 +116,7 @@ ENV NODE_VERSION=${NV}
   ## Install Node.js...
 COPY --from=nsi /usr/local /usr/local
 
-RUN if [ ! -z "$NODE_VERSION" ]; then \
+RUN if [ -n "$NV" ]; then \
     ## and other requirements
     apt-get update; \
     apt-get install -y --no-install-recommends \
@@ -131,7 +127,7 @@ RUN if [ ! -z "$NODE_VERSION" ]; then \
       libxt6 \
       quilt \
       rsync; \
-    if [ ! -z "$PYTHON_VERSION" ]; then \
+    if [ -n "$PYTHON_VERSION" ]; then \
       ## make some useful symlinks that are expected to exist
       ## ("/usr/bin/python" and friends)
       for src in pydoc3 python3; do \
@@ -157,21 +153,22 @@ RUN if [ ! -z "$NODE_VERSION" ]; then \
     rm -rf /var/lib/apt/lists/* \
       /root/.config; \
   fi \
-  && if [ ! -z "$INSTALL_DOCKER_CLI" ]; then \
+  && if [ -n "$INSTALL_DOCKER_CLI" ]; then \
     ## Install Docker CLI and plugins
     dpkgArch="$(dpkg --print-architecture)"; \
     . /etc/os-release; \
-    mkdir -m 0755 -p /etc/apt/keyrings; \
-    curl -fsSL https://download.docker.com/linux/$ID/gpg | \
-      gpg --dearmor -o /etc/apt/keyrings/docker.gpg; \
+    mkdir -p /etc/apt/keyrings; \
+    chmod 0755 /etc/apt/keyrings; \
+    pgpKey="$(curl -fsSL "https://download.docker.com/linux/$ID/gpg")"; \
+    echo "$pgpKey" | gpg --dearmor -o /etc/apt/keyrings/docker.gpg; \
     echo "deb [arch=$dpkgArch signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/$ID $VERSION_CODENAME stable" | \
       tee /etc/apt/sources.list.d/docker.list > /dev/null; \
     apt-get update; \
-    apt-get -y install \
+    apt-get -y install --no-install-recommends \
       docker-ce-cli \
       docker-buildx-plugin \
       docker-compose-plugin \
-      $(test $dpkgArch = "amd64" && echo docker-scan-plugin); \
+      "$(test "$dpkgArch" = "amd64" && echo docker-scan-plugin)"; \
     ln -s /usr/libexec/docker/cli-plugins/docker-compose \
       /usr/local/bin/docker-compose; \
     ## Clean up
@@ -188,21 +185,21 @@ ENV LANG=${SET_LANG:-$LANG} \
     TZ=${SET_TZ:-$TZ}
 
   ## Change root's shell to ZSH
-RUN if [ ! -z "$USE_ZSH_FOR_ROOT" ]; then \
+RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     chsh -s /bin/zsh; \
   fi \
   ## Update timezone if needed
   && if [ "$TZ" != "Etc/UTC" ]; then \
     echo "Setting TZ to $TZ"; \
-    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
-      && echo $TZ > /etc/timezone; \
+    ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime \
+      && echo "$TZ" > /etc/timezone; \
   fi \
   ## Add/Update locale if needed
   && if [ "$LANG" != "en_US.UTF-8" ]; then \
     sed -i "s/# $LANG/$LANG/g" /etc/locale.gen; \
     locale-gen; \
     echo "Setting LANG to $LANG"; \
-    update-locale --reset LANG=$LANG; \
+    update-locale --reset LANG="$LANG"; \
   fi
 
 ## Pip: Install to the Python user install directory (1) or not (0)
