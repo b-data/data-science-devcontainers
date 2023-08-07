@@ -41,9 +41,9 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
   code.
 * **Git LFS**: A Git extension for versioning large files.
 * **GRASS GIS**: A free and open source Geographic Information System (GIS).  
-  :information_source: R qgisprocess
+  :information_source: R qgisprocess image
 * **Orfeo Toolbox**: An open-source project for state-of-the-art remote sensing.  
-  :information_source: R qgisprocess (amd64 only)
+  :information_source: R qgisprocess image (amd64 only)
 * **Julia**[^1]: A high-level, high-performance dynamic language for technical
   computing.
 * **Pandoc**: A universal markup converter.
@@ -51,16 +51,16 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
   with dynamic semantics.
 * **QGIS**: A free, open source, cross platform (lin/win/mac) geographical
   information system (GIS).  
-  :information_source: R qgisprocess
+  :information_source: R qgisprocess image
 * **Quarto**: A scientific and technical publishing system built on Pandoc.  
-  :information_source: Julia pubtools, Python scipy, R verse+
+  :information_source: Julia pubtools, Python scipy, R verse+ images
 * **R**[^1]: A language and environment for statistical computing and graphics.
 * **SAGA GIS**: A Geographic Information System (GIS) software with immense
   capabilities for geodata processing and analysis.  
-  :information_source: R qgisprocess
+  :information_source: R qgisprocess image
 * **TinyTeX**: A lightweight, cross-platform, portable, and easy-to-maintain
   LaTeX distribution based on TeX Live.  
-  :information_source: Julia pubtools, Python scipy, R verse+
+  :information_source: Julia pubtools, Python scipy, R verse+ images
 * **Zsh**: A shell designed for interactive use, although it is also a powerful
   scripting language.
 
@@ -91,13 +91,13 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * [Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia)[^1]
 * [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 * [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)  
-  :information_source: Julia pubtools, Python scipy, R verse+
+  :information_source: Julia pubtools, Python scipy, R verse+ images
 * [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
 * [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 * [Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager)
 * [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
 * [Quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)  
-  :information_source: Julia pubtools, Python scipy, R verse+
+  :information_source: Julia pubtools, Python scipy, R verse+ images
 * [R](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)[^1]
 * [Resource Monitor](https://marketplace.visualstudio.com/items?itemName=mutantdino.resourcemonitor)
 * [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
@@ -250,7 +250,7 @@ To start JupyterLab:
    ```shell
    jupyter-lab
    ```
-2. Ctrl+click on one of the URLs shown in the Terminal.
+2. `Ctrl+click` on one of the URLs shown in the Terminal.
 
 ## Similar project
 
@@ -258,18 +258,23 @@ To start JupyterLab:
 
 What makes this project different:
 
-1. Multi-arch: `linux/amd64`, `linux/arm64/v8`
+1. Multi-arch: `linux/amd64`, `linux/arm64/v8`  
+   :information_source: Runs on Apple M series using Docker Desktop.
 1. Base image: [Debian](https://hub.docker.com/_/debian) instead of
-   [Ubuntu](https://hub.docker.com/_/ubuntu)
+   [Ubuntu](https://hub.docker.com/_/ubuntu)  
+   :information_source: CUDA-enabled images are Ubuntu-based.
 1. IDE: [JupyterLab](https://github.com/jupyterlab/jupyterlab) next to
-   [VS Code](https://github.com/microsoft/vscode)
+   [VS Code](https://github.com/microsoft/vscode)  
+   :information_source: code-server = VS Code in the browser.
 1. Just Python – no [Conda](https://github.com/conda/conda) /
    [Mamba](https://github.com/mamba-org/mamba)
 
-CUDA-enabled versions:
+CUDA-enabled images:
 
 1. Derived from [`nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04`](https://hub.docker.com/r/nvidia/cuda/tags?page=1&name=11.8.0-cudnn8-runtime-ubuntu22.04)
 1. TensortRT and TensorRT plugin libraries
+
+See [Notes](NOTES.md) for tweaks, settings, etc.
 
 ## Contributing
 
