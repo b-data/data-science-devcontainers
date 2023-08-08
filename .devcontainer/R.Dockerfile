@@ -121,6 +121,7 @@ RUN if [ -n "$NV" ]; then \
     apt-get update; \
     apt-get install -y --no-install-recommends \
       bats \
+      libkrb5-dev \
       libsecret-1-dev \
       libx11-dev \
       libxkbfile-dev \

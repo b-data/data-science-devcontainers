@@ -264,7 +264,7 @@ What makes this project different:
    [Ubuntu](https://hub.docker.com/_/ubuntu)  
    :information_source: CUDA-enabled images are Ubuntu-based.
 1. IDE: [JupyterLab](https://github.com/jupyterlab/jupyterlab) next to
-   [VS Code](https://github.com/microsoft/vscode)  
+   [VS Code](https://github.com/microsoft/vscode)
 1. Just Python – no [Conda](https://github.com/conda/conda) /
    [Mamba](https://github.com/mamba-org/mamba)
 
