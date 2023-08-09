@@ -2,7 +2,7 @@
   "@jupyterlab/apputils-extension:themes": {
     "theme": "JupyterLab Dark"
   },
-  "@krassowski/jupyterlab-lsp:plugin": {
+  "@jupyter-lsp/jupyterlab-lsp:plugin": {
     "language_servers": {
       "pylsp": {
         "serverSettings": {
