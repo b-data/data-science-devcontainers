@@ -86,7 +86,8 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)  
 * [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
 * [GitLab Workflow](https://marketplace.visualstudio.com/items?itemName=GitLab.gitlab-workflow)
-* [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+* [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)  
+  :information_source: Pinned to version 11.7.0 due to unsolicited AI content
 * [Excel Viewer](https://marketplace.visualstudio.com/items?itemName=GrapeCity.gc-excelviewer)
 * [Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia)[^1]
 * [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
