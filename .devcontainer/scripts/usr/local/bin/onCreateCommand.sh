@@ -9,10 +9,14 @@ mkdir -p "$HOME/projects"
 
 # Copy scripts from skeleton directory if home directory is bind mounted
 if [ ! -f "$HOME/.local/bin/dockerSystemPrune.sh" ]; then
-  cp /etc/skel/.local/bin/dockerSystemPrune.sh "$HOME/.local/bin";
+  if [ -f /etc/skel/.local/bin/dockerSystemPrune.sh ]; then
+    cp /etc/skel/.local/bin/dockerSystemPrune.sh "$HOME/.local/bin";
+  fi
 fi
 if [ ! -f "$HOME/.local/bin/checkForUpdates.sh" ]; then
-  cp /etc/skel/.local/bin/checkForUpdates.sh "$HOME/.local/bin";
+  if [ -f /etc/skel/.local/bin/checkForUpdates.sh ]; then
+    cp /etc/skel/.local/bin/checkForUpdates.sh "$HOME/.local/bin";
+  fi
 fi
 
 # Copy Bash-related files from root's backup directory

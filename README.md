@@ -86,7 +86,8 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)  
 * [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
 * [GitLab Workflow](https://marketplace.visualstudio.com/items?itemName=GitLab.gitlab-workflow)
-* [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+* [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)  
+  :information_source: Pinned to version 11.7.0 due to unsolicited AI content
 * [Excel Viewer](https://marketplace.visualstudio.com/items?itemName=GrapeCity.gc-excelviewer)
 * [Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia)[^1]
 * [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
@@ -264,7 +265,7 @@ What makes this project different:
    [Ubuntu](https://hub.docker.com/_/ubuntu)  
    :information_source: CUDA-enabled images are Ubuntu-based.
 1. IDE: [JupyterLab](https://github.com/jupyterlab/jupyterlab) next to
-   [VS Code](https://github.com/microsoft/vscode)  
+   [VS Code](https://github.com/microsoft/vscode)
 1. Just Python – no [Conda](https://github.com/conda/conda) /
    [Mamba](https://github.com/mamba-org/mamba)
 

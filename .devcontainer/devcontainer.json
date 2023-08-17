@@ -9,6 +9,8 @@
 		}
 	},
 
+	"onCreateCommand": "onCreateCommand.sh",
+
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {
 			"configureZshAsDefaultShell": true,
@@ -45,7 +47,15 @@
 	},
 
 	// Set 'remoteUser' to 'root' to connect as root instead.
-	"remoteUser": "vscode"
+	"remoteUser": "vscode",
+	"mounts": [
+		"source=dsdc-main-home-vscode,target=/home/vscode,type=volume"
+		// "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-main-home-vscode,target=/home/vscode,type=bind"
+	]
 
-	// "remoteUser": "root"
+	// "remoteUser": "root",
+	// "mounts": [
+	// 	"source=dsdc-main-root,target=/root,type=volume"
+	// 	// "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-main-root,target=/root,type=bind"
+	// ]
 }

@@ -9,7 +9,7 @@
 			// "UNMINIMIZE": "unset-to-keep-minimized",
 			"JUPYTERLAB_VERSION": "3.6.5",
 			// "INSTALL_DEVTOOLS": "unset-to-not-install",
-			"NODE_VERSION": "16.20.1",
+			"NODE_VERSION": "16.20.2",
 			"USE_ZSH_FOR_ROOT": "unset-to-use-bash",
 			"SET_LANG": "en_US.UTF-8",
 			"SET_TZ": "Etc/UTC",
@@ -43,7 +43,7 @@
 			"extensions": [
 				"alefragnani.project-manager",
 				"christian-kohler.path-intellisense",
-				"eamodio.gitlens",
+				"eamodio.gitlens@11.7.0",
 				"editorconfig.editorconfig",
 				"GitLab.gitlab-workflow",
 				"grapecity.gc-excelviewer",
@@ -63,18 +63,6 @@
 			],
 			"settings": {
 				"gitlab.aiAssistedCodeSuggestions.enabled": false,
-				"gitlens.graph.statusBar.enabled": false,
-				"gitlens.menus": {
-				  "scm": {
-					"graph": false
-				  },
-				  "scmRepositoryInline": {
-					"graph": false
-				  },
-				  "scmRepository": {
-					"graph": false
-				  }
-				},
 				"gitlens.showWelcomeOnInstall": false,
 				"gitlens.showWhatsNewAfterUpgrades": false,
 				"r.bracketedPaste": true,
@@ -94,12 +82,12 @@
 	// Set 'remoteUser' to 'root' to connect as root instead.
 	"remoteUser": "vscode",
 	"workspaceMount": "source=r-geospatial-home-vscode,target=/home/vscode,type=volume",
-	// "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/r-geospatial-home-vscode,target=/home/vscode,type=bind",
+	// "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/r-geospatial-home-vscode,target=/home/vscode,type=bind",
 	"workspaceFolder": "/home/vscode",
 
 	// "remoteUser": "root",
 	// "workspaceMount": "source=r-geospatial-root,target=/root,type=volume",
-	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/r-geospatial-root,target=/root,type=bind",
+	// // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/r-geospatial-root,target=/root,type=bind",
 	// "workspaceFolder": "/root",
 
 	// By default, BLAS/OpenMP will use as many threads as possible.

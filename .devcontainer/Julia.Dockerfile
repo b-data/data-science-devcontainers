@@ -3,7 +3,7 @@ ARG JULIA_VERSION=1.9.2
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
-ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-16.20.1}}
+ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-16.20.2}}
 
 ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
@@ -99,6 +99,7 @@ RUN if [ -n "$NV" ]; then \
     apt-get update; \
     apt-get install -y --no-install-recommends \
       bats \
+      libkrb5-dev \
       libsecret-1-dev \
       libx11-dev \
       libxkbfile-dev \
@@ -186,10 +187,8 @@ ARG PIP_USER=1
 
 ENV PIP_USER=${PIP_USER}
 
+## Unset environment variable BUILD_DATE
+ENV BUILD_DATE=
+
 ## Copy files as late as possible to avoid cache busting
 COPY --from=files /files /
-
-## Reset environment variable BUILD_DATE
-ARG BUILD_START
-
-ENV BUILD_DATE=${BUILD_START}
