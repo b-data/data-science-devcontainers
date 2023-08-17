@@ -1,6 +1,18 @@
 ARG BUILD_ON_IMAGE=glcr.b-data.ch/python/base
 ARG PYTHON_VERSION=latest
 
+FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION} as files
+
+RUN mkdir -p /files/usr
+
+COPY scripts/usr /files/usr
+
+## Ensure file modes are correct when using CI
+## Otherwise set to 777 in the target image
+RUN find /files -type d -exec chmod 755 {} \; \
+  && find /files -type f -exec chmod 644 {} \; \
+  && find /files/usr/local/bin -type f -exec chmod 755 {} \;
+
 FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION}
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -36,6 +48,9 @@ RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
 ARG PIP_USER=1
 
 ENV PIP_USER=${PIP_USER}
+
+## Copy binaries as late as possible to avoid cache busting
+COPY --from=files /files /
 
 ## Reset environment variable BUILD_DATE
 ARG BUILD_START
