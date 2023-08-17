@@ -82,12 +82,12 @@
 	// Set 'remoteUser' to 'root' to connect as root instead.
 	"remoteUser": "vscode",
 	"workspaceMount": "source=r-verse-home-vscode,target=/home/vscode,type=volume",
-	// "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/r-verse-home-vscode,target=/home/vscode,type=bind",
+	// "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/r-verse-home-vscode,target=/home/vscode,type=bind",
 	"workspaceFolder": "/home/vscode",
 
 	// "remoteUser": "root",
 	// "workspaceMount": "source=r-verse-root,target=/root,type=volume",
-	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/r-verse-root,target=/root,type=bind",
+	// // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/r-verse-root,target=/root,type=bind",
 	// "workspaceFolder": "/root",
 
 	// By default, BLAS/OpenMP will use as many threads as possible.

@@ -80,12 +80,12 @@
 	// Set 'remoteUser' to 'root' to connect as root instead.
 	"remoteUser": "vscode",
 	"workspaceMount": "source=cuda-r-base-home-vscode,target=/home/vscode,type=volume",
-	// "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/cuda-r-base-home-vscode,target=/home/vscode,type=bind",
+	// "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/cuda-r-base-home-vscode,target=/home/vscode,type=bind",
 	"workspaceFolder": "/home/vscode",
 
 	// "remoteUser": "root",
 	// "workspaceMount": "source=cuda-r-base-root,target=/root,type=volume",
-	// // "workspaceMount": "source=${localWorkspaceFolder}/.bind-mounts/cuda-r-base-root,target=/root,type=bind",
+	// // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/cuda-r-base-root,target=/root,type=bind",
 	// "workspaceFolder": "/root",
 
 	// By default,
