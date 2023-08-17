@@ -17,6 +17,15 @@ FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION}
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+  ## Create folders in root directory
+RUN mkdir -p /root/.local/bin \
+  && mkdir -p /root/projects \
+  ## Create folders in skeleton directory
+  && mkdir -p /etc/skel/.local/bin \
+  && mkdir -p /etc/skel/projects \
+  ## Create backup of root directory
+  && cp -a /root /var/backups
+
 ## Update environment
 ARG USE_ZSH_FOR_ROOT
 ARG SET_LANG
