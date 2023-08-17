@@ -24,6 +24,8 @@ RUN find /files -type d -exec chmod 755 {} \; \
   && cp -r /files/etc/skel/. /files/root \
   && chmod 700 /files/root
 
+FROM koalaman/shellcheck:stable as sci
+
 FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION} as python
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -64,6 +66,19 @@ RUN pip install --no-cache-dir \
   && rm -rf /tmp/* \
     /root/.cache \
 ## Dev Container only
+  && dpkgArch="$(dpkg --print-architecture)" \
+  ## Install hadolint
+  && case "$dpkgArch" in \
+    amd64) tarArch="x86_64" ;; \
+    arm64) tarArch="arm64" ;; \
+    *) echo "error: Architecture $dpkgArch unsupported"; exit 1 ;; \
+  esac \
+  && apiResponse="$(curl -sSL \
+    https://api.github.com/repos/hadolint/hadolint/releases/latest)" \
+  && downloadUrl="$(echo "$apiResponse" | grep -e \
+    "browser_download_url.*Linux-$tarArch\"" | cut -d : -f 2,3 | tr -d \")" \
+  && echo "$downloadUrl" | xargs curl -sSLo /usr/local/bin/hadolint \
+  && chmod 755 /usr/local/bin/hadolint \
   ## Create folders in root directory
   && mkdir -p /root/.local/bin \
   && mkdir -p /root/projects \
@@ -186,3 +201,6 @@ ENV BUILD_DATE=
 
 ## Copy files as late as possible to avoid cache busting
 COPY --from=files /files /
+
+## Copy shellcheck as late as possible to avoid cache busting
+COPY --from=sci /bin/shellcheck /usr/local/bin/shellcheck

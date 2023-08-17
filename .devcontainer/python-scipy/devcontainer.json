@@ -45,6 +45,7 @@
 				"christian-kohler.path-intellisense",
 				"eamodio.gitlens@11.7.0",
 				"editorconfig.editorconfig",
+				"exiasr.hadolint",
 				"GitLab.gitlab-workflow",
 				"grapecity.gc-excelviewer",
 				"mhutchie.git-graph",
@@ -58,7 +59,8 @@
 				"dbaeumer.vscode-eslint",
 				"esbenp.prettier-vscode",
 				"ms-python.black-formatter",
-				"ms-azuretools.vscode-docker"
+				"ms-azuretools.vscode-docker",
+				"timonwong.shellcheck"
 			],
 			"settings": {
 				"gitlab.aiAssistedCodeSuggestions.enabled": false,
