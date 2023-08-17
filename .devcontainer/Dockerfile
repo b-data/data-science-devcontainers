@@ -49,10 +49,8 @@ ARG PIP_USER=1
 
 ENV PIP_USER=${PIP_USER}
 
+## Unset environment variable BUILD_DATE
+ENV BUILD_DATE=
+
 ## Copy binaries as late as possible to avoid cache busting
 COPY --from=files /files /
-
-## Reset environment variable BUILD_DATE
-ARG BUILD_START
-
-ENV BUILD_DATE=${BUILD_START}
