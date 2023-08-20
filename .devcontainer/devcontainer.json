@@ -31,8 +31,11 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"eamodio.gitlens@11.7.0",
 				"editorconfig.editorconfig",
 				"exiasr.hadolint",
+				"GitLab.gitlab-workflow",
+				"mhutchie.git-graph",
 				"ms-python.python",
 				"mutantdino.resourcemonitor",
 				"dbaeumer.vscode-eslint",
@@ -42,6 +45,9 @@
 				"timonwong.shellcheck"
 			],
 			"settings": {
+				"gitlab.aiAssistedCodeSuggestions.enabled": false,
+				"gitlens.showWelcomeOnInstall": false,
+				"gitlens.showWhatsNewAfterUpgrades": false,
 				"resmon.show.battery": false,
 				"resmon.show.cpufreq": false
 			}
