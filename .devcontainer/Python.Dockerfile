@@ -203,4 +203,4 @@ ENV BUILD_DATE=
 COPY --from=files /files /
 
 ## Copy shellcheck as late as possible to avoid cache busting
-COPY --from=sci /bin/shellcheck /usr/local/bin/shellcheck
+COPY --from=sci --chown=root:root /bin/shellcheck /usr/local/bin
