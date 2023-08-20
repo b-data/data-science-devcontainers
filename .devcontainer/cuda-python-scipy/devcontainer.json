@@ -51,6 +51,7 @@
 				"mhutchie.git-graph",
 				"ms-python.python",
 				"ms-toolsai.jupyter",
+				"ms-vscode.makefile-tools",
 				"mutantdino.resourcemonitor",
 				"piotrpalarz.vscode-gitignore-generator",
 				"redhat.vscode-yaml",
