@@ -197,7 +197,7 @@ RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     update-locale --reset LANG="$LANG"; \
   fi
 
-## Pip: Install to the Python user install directory (1) or not (0)
+## Pip: Install packages to the user site (1) or not (0)
 ARG PIP_USER=1
 
 ENV PIP_USER=${PIP_USER}

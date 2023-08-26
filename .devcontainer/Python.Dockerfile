@@ -1,5 +1,5 @@
 ARG BUILD_ON_IMAGE=glcr.b-data.ch/python/base
-ARG PYTHON_VERSION=3.11.4
+ARG PYTHON_VERSION=3.11.5
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
@@ -191,7 +191,7 @@ RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     update-locale --reset LANG="$LANG"; \
   fi
 
-## Pip: Install to the Python user install directory (1) or not (0)
+## Pip: Install packages to the user site (1) or not (0)
 ARG PIP_USER=1
 
 ENV PIP_USER=${PIP_USER}
