@@ -91,6 +91,7 @@
   // Set the following environment variables to control the exact number to use.
   "remoteEnv": {
     // "JULIA_NUM_THREADS": "1",
-    // "OMP_NUM_THREADS": "1"
+    // "OMP_NUM_THREADS": "1",
+    "PIP_USER": "1"
   }
 }

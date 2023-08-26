@@ -191,11 +191,6 @@ RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     update-locale --reset LANG="$LANG"; \
   fi
 
-## Pip: Install packages to the user site (1) or not (0)
-ARG PIP_USER=1
-
-ENV PIP_USER=${PIP_USER}
-
 ## Unset environment variable BUILD_DATE
 ENV BUILD_DATE=
 

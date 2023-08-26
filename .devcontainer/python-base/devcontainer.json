@@ -85,6 +85,7 @@
   // By default, BLAS/OpenMP will use as many threads as possible.
   // Set the following environment variable to control the exact number to use.
   "remoteEnv": {
-    // "OMP_NUM_THREADS": "1"
+    // "OMP_NUM_THREADS": "1",
+    "PIP_USER": "1"
   }
 }

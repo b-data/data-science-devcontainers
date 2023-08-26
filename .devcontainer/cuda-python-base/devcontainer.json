@@ -88,7 +88,8 @@
   // Set the following environment variables to control the exact device(s)/number to use.
   "remoteEnv": {
     // "CUDA_VISIBLE_DEVICES": "0",
-    // "OMP_NUM_THREADS": "1"
+    // "OMP_NUM_THREADS": "1",
+    "PIP_USER": "1"
   },
 
   "runArgs": [
