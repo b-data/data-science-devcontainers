@@ -34,6 +34,7 @@
         "eamodio.gitlens@11.7.0",
         "editorconfig.editorconfig",
         "exiasr.hadolint",
+        "GitHub.vscode-pull-request-github",
         "GitLab.gitlab-workflow",
         "mhutchie.git-graph",
         "ms-python.python",
