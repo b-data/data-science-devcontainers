@@ -237,9 +237,6 @@ To open your codespace in JupyterLab:
 sets the default path to `/workspaces/<repository-name>` that you can not
 escape.
 
-| **A 'Full Rebuild Container' resets the home directory!**<br>:information_source: This is never necessary unless you want exactly that. |
-|:----------------------------------------------------------------------------------------------------------------------------------------|
-
 ### Local/'Remote SSH'
 
 Use the **Dev Containers: Reopen in Container** command from the Command Palette
