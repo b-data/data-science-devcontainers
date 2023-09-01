@@ -74,8 +74,8 @@ The following startup scripts are put in place:
 * `TZ`: The timezone inside the container.  
   :point_right: User-settable at build time with `SET_TZ`.
 * `PIP_USER`: The Python package install directory.  
-  :point_right: User-settable at build time.
-    * `1`: user directory (`~/.local`, persistent)
+  :point_right: User-settable at runtime.
+    * `1`: user directory (`~/.local`, persistent (default))
     * `0`: system directory (`/usr/local`, not persistent)
 * `CTAN_REPO`: The CTAN mirror URL. (Julia pubtools, Python scipy, R verse+
   images)
@@ -111,8 +111,6 @@ are installed.
     * Extensions > GitLens — Git supercharged
         * General > Show Welcome On Install: false
         * General > Show Whats New After Upgrade: false
-        * Graph > Status Bar: Enabled: false
-            * Graph commands disabled where possible
     * Extensions > Resource Monitor Configuration
         * Show: Battery: false
         * Show: Cpufreq: false

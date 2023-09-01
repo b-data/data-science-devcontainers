@@ -12,8 +12,7 @@
       "NODE_VERSION": "16.20.2",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
       "SET_LANG": "en_US.UTF-8",
-      "SET_TZ": "Etc/UTC",
-      "PIP_USER": "1"
+      "SET_TZ": "Etc/UTC"
     }
   },
 
