@@ -24,7 +24,7 @@ RUN find /files -type d -exec chmod 755 {} \; \
   && cp -r /files/etc/skel/. /files/root \
   && chmod 700 /files/root
 
-FROM koalaman/shellcheck:stable as sci
+FROM docker.io/koalaman/shellcheck:stable as sci
 
 FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION} as python
 

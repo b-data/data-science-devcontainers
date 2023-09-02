@@ -13,7 +13,7 @@ RUN find /files -type d -exec chmod 755 {} \; \
   && find /files -type f -exec chmod 644 {} \; \
   && find /files/usr/local/bin -type f -exec chmod 755 {} \;
 
-FROM koalaman/shellcheck:stable as sci
+FROM docker.io/koalaman/shellcheck:stable as sci
 
 FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION}
 
