@@ -43,9 +43,15 @@ RUN if [ "$(command -v unminimize)" ] && [ -n "$UNMINIMIZE" ]; then \
     yes | unminimize; \
   fi
 
+## Ensure that common CA certificates
+## and OpenSSL libraries are up to date
+RUN apt-get update \
+  && apt-get -y install --no-install-recommends --only-upgrade \
+    ca-certificates \
+    openssl \
 ## Install Python related stuff
   ## Install JupyterLab
-RUN pip install --no-cache-dir \
+  && pip install --no-cache-dir \
     jupyterlab=="$JUPYTERLAB_VERSION" \
     jupyterlab-git \
     jupyterlab-lsp \
@@ -86,7 +92,9 @@ RUN pip install --no-cache-dir \
   && mkdir -p /etc/skel/.local/bin \
   && mkdir -p /etc/skel/projects \
   ## Create backup of root directory
-  && cp -a /root /var/backups
+  && cp -a /root /var/backups \
+  ## Clean up
+  && rm -rf /var/lib/apt/lists/*
 
 ## Devtools, Docker
 FROM glcr.b-data.ch/nodejs/nsi${NSI_SFX} as nsi

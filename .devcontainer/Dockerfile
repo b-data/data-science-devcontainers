@@ -20,6 +20,12 @@ FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION}
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN dpkgArch="$(dpkg --print-architecture)" \
+  ## Ensure that common CA certificates
+  ## and OpenSSL libraries are up to date
+  && apt-get update \
+  && apt-get -y install --only-upgrade \
+    ca-certificates \
+    openssl \
   ## Install hadolint
   && case "$dpkgArch" in \
     amd64) tarArch="x86_64" ;; \
@@ -39,7 +45,9 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   && mkdir -p /etc/skel/.local/bin \
   && mkdir -p /etc/skel/projects \
   ## Create backup of root directory
-  && cp -a /root /var/backups
+  && cp -a /root /var/backups \
+  ## Clean up
+  && rm -rf /var/lib/apt/lists/*
 
 ## Update environment
 ARG USE_ZSH_FOR_ROOT
