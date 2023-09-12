@@ -173,8 +173,8 @@ a unique way:
     * type: volume
 1. Codespace only mount:
     * source: root of this repository
-    * target: `/workspaces/<repository-name>`
-    * type: ?
+    * target: `/workspaces`
+    * type: misc
 1. Default path: `/home/vscode`
 1. Default user[^4]: `vscode`
     * uid: 1000 (auto-assigned)
@@ -250,6 +250,19 @@ To start JupyterLab:
    jupyter-lab
    ```
 2. `Ctrl+click` on one of the URLs shown in the Terminal.
+
+### Persistence
+
+Data in the following locations is persisted:
+
+1. The user's home directory (`/home/vscode`)[^5]
+2. The Dev Container's workspace (`/workspaces`)
+
+[^5]: Alternatively for the root user (`/root`). Use with Docker/Podman in
+*rootless mode*.
+
+This is accomplished either via a *volume* or *bind mount* (or *loop device* on
+Codespaces) and is preconfigured.
 
 ## Similar project
 
