@@ -85,12 +85,6 @@ RUN apt-get update \
     "browser_download_url.*Linux-$tarArch\"" | cut -d : -f 2,3 | tr -d \")" \
   && echo "$downloadUrl" | xargs curl -sSLo /usr/local/bin/hadolint \
   && chmod 755 /usr/local/bin/hadolint \
-  ## Create folders in root directory
-  && mkdir -p /root/.local/bin \
-  && mkdir -p /root/projects \
-  ## Create folders in skeleton directory
-  && mkdir -p /etc/skel/.local/bin \
-  && mkdir -p /etc/skel/projects \
   ## Create backup of root directory
   && cp -a /root /var/backups \
   ## Clean up
