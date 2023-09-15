@@ -54,5 +54,8 @@ if ! grep -q "user's private bin" "$HOME/.zshrc"; then
   echo -e "\n# set PATH so it includes user's private bin if it exists\nif [ -d \"\$HOME/.local/bin\" ] && [[ \"\$PATH\" != *\"\$HOME/.local/bin\"* ]] ; then\n    PATH=\"\$HOME/.local/bin:\$PATH\"\nfi" >> "$HOME/.zshrc";
 fi
 
+# Enable Oh My Zsh plugins
+sed -i "s/plugins=(git)/plugins=(docker docker-compose git git-lfs pip screen tmux vscode)/g" "$HOME/.zshrc"
+
 # Remove old .zcompdump files
 rm -f "$HOME"/.zcompdump*
