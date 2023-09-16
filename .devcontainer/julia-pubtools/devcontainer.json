@@ -78,13 +78,13 @@
 
   // Set 'remoteUser' to 'root' to connect as root instead.
   "remoteUser": "vscode",
-  "workspaceMount": "source=julia-pubtools-home-vscode,target=/home/vscode,type=volume",
-  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/julia-pubtools-home-vscode,target=/home/vscode,type=bind",
+  "workspaceMount": "source=dsdc-julia-pubtools-home-vscode,target=/home/vscode,type=volume",
+  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-julia-pubtools-home-vscode,target=/home/vscode,type=bind",
   "workspaceFolder": "/home/vscode",
 
   // "remoteUser": "root",
-  // "workspaceMount": "source=julia-pubtools-root,target=/root,type=volume",
-  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/julia-pubtools-root,target=/root,type=bind",
+  // "workspaceMount": "source=dsdc-julia-pubtools-root,target=/root,type=volume",
+  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-julia-pubtools-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
   // By default,
