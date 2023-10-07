@@ -97,6 +97,7 @@
   // Set the following environment variable to control the exact number to use.
   "remoteEnv": {
     // "OMP_NUM_THREADS": "1",
-    "PIP_USER": "1"
+    "PIP_USER": "1",
+    "QT_QPA_PLATFORM": ""
   }
 }

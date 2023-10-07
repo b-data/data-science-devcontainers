@@ -100,7 +100,8 @@
   "remoteEnv": {
     // "CUDA_VISIBLE_DEVICES": "0",
     // "OMP_NUM_THREADS": "1",
-    "PIP_USER": "1"
+    "PIP_USER": "1",
+    "QT_QPA_PLATFORM": ""
   },
 
   "runArgs": [
