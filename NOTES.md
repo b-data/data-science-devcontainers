@@ -53,6 +53,10 @@ The following startup scripts are put in place:
   way.
 * `RETICULATE_MINICONDA_ENABLED=0`: R (reticulate): Disable prompt to install
   miniconda.
+* `QT_QPA_PLATFORM` (R qgisprocess image): Qt Platform Plugin to use.  
+  :point_right: User-settable at runtime.
+    * `offscreen`: Renders to an offscreen buffer. (default)
+    * unset: Auto-detect Qt Platform Plugin.
 
 **Versions**
 

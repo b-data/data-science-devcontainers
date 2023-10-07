@@ -93,6 +93,13 @@
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-r-qgisprocess-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
+  // Set QT_QPA_PLATFORM to "" if you have an X Window System available,
+  // i.e. xorg-server (Linux), XQuartz (macOS), Xming (Windows).
+  // This allows QGIS to run from within the Dev Container.
+  "containerEnv": {
+    // "QT_QPA_PLATFORM": ""
+  },
+
   // By default,
   // - CUDA will use all available CUDA-capable devices.
   // - BLAS/OpenMP will use as many threads as possible.
@@ -100,8 +107,7 @@
   "remoteEnv": {
     // "CUDA_VISIBLE_DEVICES": "0",
     // "OMP_NUM_THREADS": "1",
-    "PIP_USER": "1",
-    "QT_QPA_PLATFORM": ""
+    "PIP_USER": "1"
   },
 
   "runArgs": [

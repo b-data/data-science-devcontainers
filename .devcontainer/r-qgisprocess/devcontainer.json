@@ -93,11 +93,17 @@
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-r-qgisprocess-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
+  // Set QT_QPA_PLATFORM to "" if you have an X Window System available,
+  // i.e. xorg-server (Linux), XQuartz (macOS), Xming (Windows).
+  // This allows QGIS to run from within the Dev Container.
+  "containerEnv": {
+    // "QT_QPA_PLATFORM": ""
+  },
+
   // By default, BLAS/OpenMP will use as many threads as possible.
   // Set the following environment variable to control the exact number to use.
   "remoteEnv": {
     // "OMP_NUM_THREADS": "1",
-    "PIP_USER": "1",
-    "QT_QPA_PLATFORM": ""
+    "PIP_USER": "1"
   }
 }
