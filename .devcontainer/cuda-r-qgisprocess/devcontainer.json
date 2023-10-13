@@ -93,20 +93,25 @@
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-r-qgisprocess-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
-  // Set QT_QPA_PLATFORM to "" if you have an X Window System available,
-  // i.e. xorg-server (Linux), XQuartz (macOS), Xming (Windows).
-  // This allows QGIS to run from within the Dev Container.
-  "containerEnv": {
-    // "QT_QPA_PLATFORM": ""
-  },
-
-  // By default,
-  // - CUDA will use all available CUDA-capable devices.
-  // - BLAS/OpenMP will use as many threads as possible.
-  // Set the following environment variables to control the exact device(s)/number to use.
   "remoteEnv": {
+    // By default, CUDA will use all available CUDA-capable devices.
+    // Set the following environment variable to control the exact devices to use.
     // "CUDA_VISIBLE_DEVICES": "0",
+    //
+    // By default, BLAS/OpenMP will use as many threads as possible.
+    // Set the following environment variable to control the exact number to use.
     // "OMP_NUM_THREADS": "1",
+    //
+    // Set QT_QPA_PLATFORM to "" if you have a local X Window Server available,
+    // i.e. xorg-server (Linux), XQuartz (macOS) or VcXsrv (Windows).
+    // This allows QGIS to run from within the Dev Container.
+    // "QT_QPA_PLATFORM": "",
+    //
+    // Additionaly, set LIBGL_ALWAYS_SOFTWARE to "1" so OpenGL rendering takes place
+    // in the Dev Container using the mesa software renderer (LLVMpipe driver).
+    // This ensures that Linux and Windows users share the same experience.
+    // "LIBGL_ALWAYS_SOFTWARE": "1",
+    //
     "PIP_USER": "1"
   },
 

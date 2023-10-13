@@ -57,6 +57,9 @@ The following startup scripts are put in place:
   :point_right: User-settable at runtime.
     * `offscreen`: Renders to an offscreen buffer. (default)
     * unset: Auto-detect Qt Platform Plugin.
+* `LIBGL_ALWAYS_SOFTWARE=1` (R qgisprocess image): Always use software
+  rendering.  
+  :point_right: User-settable at runtime.
 
 **Versions**
 
