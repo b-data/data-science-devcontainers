@@ -1,96 +1,100 @@
 {
-	"name": "R base",
-	"build": {
-		"dockerfile": "../R.Dockerfile",
-		"context": "..",
-		"args": {
-			"BUILD_ON_IMAGE": "glcr.b-data.ch/r/base",
-			"R_VERSION": "4.3.1",
-			// "UNMINIMIZE": "unset-to-keep-minimized",
-			"JUPYTERLAB_VERSION": "3.6.5",
-			// "INSTALL_DEVTOOLS": "unset-to-not-install",
-			"NODE_VERSION": "16.20.2",
-			"USE_ZSH_FOR_ROOT": "unset-to-use-bash",
-			"SET_LANG": "en_US.UTF-8",
-			"SET_TZ": "Etc/UTC",
-			"PIP_USER": "1"
-		}
-	},
+  "name": "R base",
+  "build": {
+    "dockerfile": "../R.Dockerfile",
+    "context": "..",
+    "args": {
+      "BUILD_ON_IMAGE": "glcr.b-data.ch/r/base",
+      "R_VERSION": "4.3.2",
+      // "UNMINIMIZE": "unset-to-keep-minimized",
+      "JUPYTERLAB_VERSION": "3.6.6",
+      // "INSTALL_DEVTOOLS": "unset-to-not-install",
+      "NODE_VERSION": "18.18.2",
+      "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
+      "SET_LANG": "en_US.UTF-8",
+      "SET_TZ": "Etc/UTC"
+    }
+  },
 
-	"onCreateCommand": "onCreateCommand.sh",
-	"postStartCommand": "postStartCommand.sh && ${HOME}/.local/bin/dockerSystemPrune.sh",
-	"postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh",
+  "onCreateCommand": "onCreateCommand.sh",
+  "postStartCommand": "postStartCommand.sh && ${HOME}/.local/bin/dockerSystemPrune.sh",
+  "postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh",
 
-	"features": {
-		"ghcr.io/devcontainers/features/common-utils:2": {
-			"configureZshAsDefaultShell": true,
-			"upgradePackages": false,
-			"username": "vscode",
-			"userUid": "automatic",
-			"userGid": "automatic"
-		},
-		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
-			"moby": false
-		},
-		// A comma separated list of packages to install
-		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
-			"packages": ""
-		}
-	},
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true,
+      "upgradePackages": false,
+      "username": "vscode",
+      "userUid": "automatic",
+      "userGid": "automatic"
+    },
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": false
+    },
+    // A comma separated list of packages to install
+    "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+      "packages": ""
+    }
+  },
 
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"alefragnani.project-manager",
-				"christian-kohler.path-intellisense",
-				"eamodio.gitlens@11.7.0",
-				"editorconfig.editorconfig",
-				"GitLab.gitlab-workflow",
-				"grapecity.gc-excelviewer",
-				"mhutchie.git-graph",
-				"ms-python.python",
-				"ms-toolsai.jupyter",
-				"mutantdino.resourcemonitor",
-				"piotrpalarz.vscode-gitignore-generator",
-				"redhat.vscode-yaml",
-				"REditorSupport.r",
-				"dbaeumer.vscode-eslint",
-				"esbenp.prettier-vscode",
-				"ms-python.black-formatter",
-				"ms-azuretools.vscode-docker"
-			],
-			"settings": {
-				"gitlab.aiAssistedCodeSuggestions.enabled": false,
-				"gitlens.showWelcomeOnInstall": false,
-				"gitlens.showWhatsNewAfterUpgrades": false,
-				"r.bracketedPaste": true,
-				"r.plot.useHttpgd": true,
-				"r.rterm.linux": "/usr/local/bin/radian",
-				"r.rterm.option": [
-				  "--no-save",
-				  "--no-restore"
-				],
-				"r.workspaceViewer.showObjectSize": true,
-				"resmon.show.battery": false,
-				"resmon.show.cpufreq": false
-			}
-		}
-	},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "alefragnani.project-manager",
+        "christian-kohler.path-intellisense",
+        "eamodio.gitlens@11.7.0",
+        "editorconfig.editorconfig",
+        "exiasr.hadolint",
+        "GitHub.vscode-pull-request-github",
+        "GitLab.gitlab-workflow",
+        "grapecity.gc-excelviewer",
+        "mhutchie.git-graph",
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-vscode.makefile-tools",
+        "mutantdino.resourcemonitor",
+        "piotrpalarz.vscode-gitignore-generator",
+        "redhat.vscode-yaml",
+        "REditorSupport.r",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-python.black-formatter",
+        "ms-azuretools.vscode-docker",
+        "timonwong.shellcheck"
+      ],
+      "settings": {
+        "gitlab.aiAssistedCodeSuggestions.enabled": false,
+        "gitlens.showWelcomeOnInstall": false,
+        "gitlens.showWhatsNewAfterUpgrades": false,
+        "r.bracketedPaste": true,
+        "r.plot.useHttpgd": true,
+        "r.rterm.linux": "/usr/local/bin/radian",
+        "r.rterm.option": [
+          "--no-save",
+          "--no-restore"
+        ],
+        "r.workspaceViewer.showObjectSize": true,
+        "resmon.show.battery": false,
+        "resmon.show.cpufreq": false
+      }
+    }
+  },
 
-	// Set 'remoteUser' to 'root' to connect as root instead.
-	"remoteUser": "vscode",
-	"workspaceMount": "source=r-base-home-vscode,target=/home/vscode,type=volume",
-	// "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/r-base-home-vscode,target=/home/vscode,type=bind",
-	"workspaceFolder": "/home/vscode",
+  // Set 'remoteUser' to 'root' to connect as root instead.
+  "remoteUser": "vscode",
+  "workspaceMount": "source=dsdc-r-base-home-vscode,target=/home/vscode,type=volume",
+  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-r-base-home-vscode,target=/home/vscode,type=bind",
+  "workspaceFolder": "/home/vscode",
 
-	// "remoteUser": "root",
-	// "workspaceMount": "source=r-base-root,target=/root,type=volume",
-	// // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/r-base-root,target=/root,type=bind",
-	// "workspaceFolder": "/root",
+  // "remoteUser": "root",
+  // "workspaceMount": "source=dsdc-r-base-root,target=/root,type=volume",
+  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-r-base-root,target=/root,type=bind",
+  // "workspaceFolder": "/root",
 
-	// By default, BLAS/OpenMP will use as many threads as possible.
-	// Set the following environment variable to control the exact number to use.
-	"remoteEnv": {
-		// "OMP_NUM_THREADS": "1"
-	}
+  // By default, BLAS/OpenMP will use as many threads as possible.
+  // Set the following environment variable to control the exact number to use.
+  "remoteEnv": {
+    // "OMP_NUM_THREADS": "1",
+    "PIP_USER": "1"
+  }
 }

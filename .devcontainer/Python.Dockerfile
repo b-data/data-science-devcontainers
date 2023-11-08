@@ -1,9 +1,9 @@
 ARG BUILD_ON_IMAGE=glcr.b-data.ch/python/base
-ARG PYTHON_VERSION=3.11.4
+ARG PYTHON_VERSION=3.11.6
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
-ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-16.20.2}}
+ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-18.18.2}}
 
 ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
@@ -24,13 +24,15 @@ RUN find /files -type d -exec chmod 755 {} \; \
   && cp -r /files/etc/skel/. /files/root \
   && chmod 700 /files/root
 
+FROM docker.io/koalaman/shellcheck:stable as sci
+
 FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION} as python
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG BUILD_ON_IMAGE
 ARG UNMINIMIZE
-ARG JUPYTERLAB_VERSION=3.6.5
+ARG JUPYTERLAB_VERSION=3.6.6
 
 ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${PYTHON_VERSION} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
@@ -41,9 +43,15 @@ RUN if [ "$(command -v unminimize)" ] && [ -n "$UNMINIMIZE" ]; then \
     yes | unminimize; \
   fi
 
+## Ensure that common CA certificates
+## and OpenSSL libraries are up to date
+RUN apt-get update \
+  && apt-get -y install --no-install-recommends --only-upgrade \
+    ca-certificates \
+    openssl \
 ## Install Python related stuff
   ## Install JupyterLab
-RUN pip install --no-cache-dir \
+  && pip install --no-cache-dir \
     jupyterlab=="$JUPYTERLAB_VERSION" \
     jupyterlab-git \
     jupyterlab-lsp \
@@ -64,14 +72,23 @@ RUN pip install --no-cache-dir \
   && rm -rf /tmp/* \
     /root/.cache \
 ## Dev Container only
-  ## Create folders in root directory
-  && mkdir -p /root/.local/bin \
-  && mkdir -p /root/projects \
-  ## Create folders in skeleton directory
-  && mkdir -p /etc/skel/.local/bin \
-  && mkdir -p /etc/skel/projects \
+  && dpkgArch="$(dpkg --print-architecture)" \
+  ## Install hadolint
+  && case "$dpkgArch" in \
+    amd64) tarArch="x86_64" ;; \
+    arm64) tarArch="arm64" ;; \
+    *) echo "error: Architecture $dpkgArch unsupported"; exit 1 ;; \
+  esac \
+  && apiResponse="$(curl -sSL \
+    https://api.github.com/repos/hadolint/hadolint/releases/latest)" \
+  && downloadUrl="$(echo "$apiResponse" | grep -e \
+    "browser_download_url.*Linux-$tarArch\"" | cut -d : -f 2,3 | tr -d \")" \
+  && echo "$downloadUrl" | xargs curl -sSLo /usr/local/bin/hadolint \
+  && chmod 755 /usr/local/bin/hadolint \
   ## Create backup of root directory
-  && cp -a /root /var/backups
+  && cp -a /root /var/backups \
+  ## Clean up
+  && rm -rf /var/lib/apt/lists/*
 
 ## Devtools, Docker
 FROM glcr.b-data.ch/nodejs/nsi${NSI_SFX} as nsi
@@ -176,13 +193,11 @@ RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     update-locale --reset LANG="$LANG"; \
   fi
 
-## Pip: Install to the Python user install directory (1) or not (0)
-ARG PIP_USER=1
-
-ENV PIP_USER=${PIP_USER}
-
 ## Unset environment variable BUILD_DATE
 ENV BUILD_DATE=
 
 ## Copy files as late as possible to avoid cache busting
 COPY --from=files /files /
+
+## Copy shellcheck as late as possible to avoid cache busting
+COPY --from=sci --chown=root:root /bin/shellcheck /usr/local/bin

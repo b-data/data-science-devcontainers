@@ -85,6 +85,7 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)  
 * [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
+* [GitHub Pull Requests and Issues](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github)
 * [GitLab Workflow](https://marketplace.visualstudio.com/items?itemName=GitLab.gitlab-workflow)
 * [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)  
   :information_source: Pinned to version 11.7.0 due to unsolicited AI content
@@ -172,8 +173,8 @@ a unique way:
     * type: volume
 1. Codespace only mount:
     * source: root of this repository
-    * target: `/workspaces/<repository-name>`
-    * type: ?
+    * target: `/workspaces`
+    * type: misc
 1. Default path: `/home/vscode`
 1. Default user[^4]: `vscode`
     * uid: 1000 (auto-assigned)
@@ -237,9 +238,6 @@ To open your codespace in JupyterLab:
 sets the default path to `/workspaces/<repository-name>` that you can not
 escape.
 
-| **A 'Full Rebuild Container' resets the home directory!**<br>:information_source: This is never necessary unless you want exactly that. |
-|:----------------------------------------------------------------------------------------------------------------------------------------|
-
 ### Local/'Remote SSH'
 
 Use the **Dev Containers: Reopen in Container** command from the Command Palette
@@ -252,6 +250,22 @@ To start JupyterLab:
    jupyter-lab
    ```
 2. `Ctrl+click` on one of the URLs shown in the Terminal.
+
+### Persistence
+
+Data in the following locations is persisted:
+
+1. The user's home directory (`/home/vscode`)[^5]
+2. The Dev Container's workspace (`/workspaces`)
+
+[^5]: Alternatively for the root user (`/root`). Use with Docker/Podman in
+*rootless mode*.
+
+This is accomplished either via a *volume* or *bind mount* (or *loop device* on
+Codespaces) and is preconfigured.
+
+| **Codespaces: A 'Full Rebuild Container' resets the home directory!**<br>:information_source: This is never necessary unless you want exactly that. |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------|
 
 ## Similar project
 
