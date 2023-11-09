@@ -69,11 +69,11 @@
 !/scripts/etc/skel/.local/bin/*.sh
 !/scripts/usr/local/bin/*.sh
 
+!/.gitignore
 !/devcontainer.json
 !/Dockerfile
 !/Julia.Dockerfile
 !/Python.Dockerfile
 !/R.Dockerfile
 
-!.gitignore
 !.keep
