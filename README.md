@@ -163,8 +163,7 @@ platform:
 
 ## Usage
 
-The 'Default project configuration'/'Main Dev Container' is meant to work on
-this repository.
+The default Dev Container is meant to work on this repository.
 
 Every other configuration is a custom Data Science Dev Container that behaves in
 a unique way:
