@@ -8,7 +8,7 @@
 !/.editorconfig
 !/.gitattributes
 !/.gitignore
-!/.hadolint.yaml
+!/.hadolint.yml
 !/CODE_OF_CONDUCT.md
 !/LICENSE
 !/NOTES.md
