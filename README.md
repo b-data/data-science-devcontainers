@@ -1,6 +1,6 @@
-[![minimal-readme compliant](https://img.shields.io/badge/readme%20style-minimal-brightgreen.svg)](https://github.com/RichardLitt/standard-readme/blob/main/example-readmes/minimal-readme.md) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <a href="https://liberapay.com/benz0li/donate"><img src="https://liberapay.com/assets/widgets/donate.svg" alt="Donate using Liberapay" height="20"></a> <a href='https://codespaces.new/b-data/data-science-devcontainers?hide_repo_select=true&ref=main'><img src='https://github.com/codespaces/badge.svg' alt='Open in GitHub Codespaces' height="20" style='max-width: 100%;'></a>
-
 # \[CUDA-enabled\] Data Science Dev Containers
+
+[![minimal-readme compliant](https://img.shields.io/badge/readme%20style-minimal-brightgreen.svg)](https://github.com/RichardLitt/standard-readme/blob/main/example-readmes/minimal-readme.md) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <a href="https://liberapay.com/benz0li/donate"><img src="https://liberapay.com/assets/widgets/donate.svg" alt="Donate using Liberapay" height="20"></a> <a href='https://codespaces.new/b-data/data-science-devcontainers?hide_repo_select=true&ref=main'><img src='https://github.com/codespaces/badge.svg' alt='Open in GitHub Codespaces' height="20" style='max-width: 100%;'></a>
 
 \[GPU accelerated\] Multi-arch (`linux/amd64`, `linux/arm64/v8`) Data Science
 Dev Containers:
@@ -44,7 +44,8 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * **Git LFS**: A Git extension for versioning large files.
 * **GRASS GIS**: A free and open source Geographic Information System (GIS).  
   :information_source: R qgisprocess image
-* **Orfeo Toolbox**: An open-source project for state-of-the-art remote sensing.  
+* **Orfeo Toolbox**: An open-source project for state-of-the-art remote
+  sensing.  
   :information_source: R qgisprocess image (amd64 only)
 * **Julia**[^1]: A high-level, high-performance dynamic language for technical
   computing.
@@ -96,6 +97,7 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 * [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)  
   :information_source: Julia pubtools, Python scipy, R verse+ images
+* [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
 * [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
 * [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 * [Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager)
@@ -224,14 +226,14 @@ To disable the `postStartCommand` or `postAttachCommand`, comment out line 8 in
 To open your codespace in JupyterLab:
 
 1. Execute  
-   ```shell
-   jupyter-lab \
-     --ServerApp.allow_origin='*' \
-     --ServerApp.cookie_options="{'Same Site': 'None', 'Secure': True}" \
-     --ServerApp.tornado_settings="{'headers':{'Content-Security-Policy':\"frame-ancestors 'self' https://*.github.dev\", 'Access-Control-Allow-Headers': 'accept, content-type, authorization, x-xsrftoken, x-github-token'}}" \
-     --notebook-dir=/home/vscode \
-     --no-browser
-    ```
+
+       jupyter-lab \
+         --ServerApp.allow_origin='*' \
+         --ServerApp.cookie_options="{'Same Site': 'None', 'Secure': True}" \
+         --ServerApp.tornado_settings="{'headers':{'Content-Security-Policy':\"frame-ancestors 'self' https://*.github.dev\", 'Access-Control-Allow-Headers': 'accept, content-type, authorization, x-xsrftoken, x-github-token'}}" \
+         --notebook-dir=/home/vscode \
+         --no-browser
+
 2. Ctrl+click on one of the URLs shown in the Terminal.
 
 :information_source: Opening your codespace in JupyterLab according to the
@@ -246,10 +248,10 @@ Use the **Dev Containers: Reopen in Container** command from the Command Palette
 
 To start JupyterLab:
 
-1. Execute  
-   ```shell
-   jupyter-lab
-   ```
+1. Execute
+
+       jupyter-lab
+
 2. `Ctrl+click` on one of the URLs shown in the Terminal.
 
 ### Persistence
@@ -289,7 +291,7 @@ CUDA-enabled images:
 1. Derived from [`nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04`](https://hub.docker.com/r/nvidia/cuda/tags?page=1&name=11.8.0-cudnn8-runtime-ubuntu22.04)
 1. TensortRT and TensorRT plugin libraries
 
-See [Notes](NOTES.md) for tweaks, settings, etc.
+See [Notes](NOTES.md) and [CUDA Notes](CUDA_NOTES.md) for tweaks, settings, etc.
 
 ## Contributing
 

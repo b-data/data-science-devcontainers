@@ -6,7 +6,7 @@ supported with security updates.
 ## Reporting a Vulnerability
 
 To report a vulnerability in Development Containers using a latest version,
-email the maintainer olivier.benz@b-data.ch.
+email the maintainer <olivier.benz@b-data.ch>.
 
 ## Vulnerabilities in Prior Versions
 

@@ -9,10 +9,11 @@ variables and incorporate most tweaks and default settings of the
 [docker](https://github.com/b-data/jupyterlab-python-docker-stack)
 [stacks](https://github.com/b-data/jupyterlab-r-docker-stack).
 
-They depend on very few 
+They depend on very few
 [Dev Container Features](https://containers.dev/features) and add some extra
 customisation through build argument (`build.args`) and environment variables
-(`remoteEnv`).
+(`remoteEnv`).  
+:information_source: See [Notes on `INSTALL_DEVTOOLS`](DEVTOOLS_NOTES.md).
 
 ## Tweaks
 
@@ -55,8 +56,8 @@ The following startup scripts are put in place:
   miniconda.
 * `QT_QPA_PLATFORM` (R qgisprocess image): Qt Platform Plugin to use.  
   :point_right: User-settable at runtime.
-    * `offscreen`: Renders to an offscreen buffer. (default)
-    * unset: Auto-detect Qt Platform Plugin.
+  * `offscreen`: Renders to an offscreen buffer. (default)
+  * unset: Auto-detect Qt Platform Plugin.
 * `LIBGL_ALWAYS_SOFTWARE=1` (R qgisprocess image): Always use software
   rendering.  
   :point_right: User-settable at runtime.
@@ -82,8 +83,8 @@ The following startup scripts are put in place:
   :point_right: User-settable at build time with `SET_TZ`.
 * `PIP_USER`: The Python package install directory.  
   :point_right: User-settable at runtime.
-    * `1`: user directory (`~/.local`, persistent (default))
-    * `0`: system directory (`/usr/local`, not persistent)
+  * `1`: user directory (`~/.local`, persistent (default))
+  * `0`: system directory (`/usr/local`, not persistent)
 * `CTAN_REPO`: The CTAN mirror URL. (Julia pubtools, Python scipy, R verse+
   images)
 * `OMP_NUM_THREADS`: If unset (default), BLAS/OpenMP will use as many
@@ -108,59 +109,59 @@ are installed.
 ### Default
 
 * [IPython](.devcontainer/conf/ipython/usr/local/etc/ipython/ipython_config.py):
-    * Only enable figure formats `svg` and `pdf` for IPython.
+  * Only enable figure formats `svg` and `pdf` for IPython.
 * [JupyterLab](.devcontainer/conf/jupyterlab/usr/local/share/jupyter/lab/settings/overrides.json):
-    * Theme > Selected Theme: JupyterLab Dark
-    * Python LSP Server: Example settings according to [jupyter-lsp/jupyterlab-lsp > Installation > Configuring the servers](https://github.com/jupyter-lsp/jupyterlab-lsp#configuring-the-servers)
+  * Theme > Selected Theme: JupyterLab Dark
+  * Python LSP Server: Example settings according to [jupyter-lsp/jupyterlab-lsp > Installation > Configuring the servers](https://github.com/jupyter-lsp/jupyterlab-lsp#configuring-the-servers)
 * VS Code
-    * Extensions > GitLab Workflow
-        * Ai Assisted Code Suggestions: Enabled: false
-    * Extensions > GitLens — Git supercharged
-        * General > Show Welcome On Install: false
-        * General > Show Whats New After Upgrade: false
-    * Extensions > Resource Monitor Configuration
-        * Show: Battery: false
-        * Show: Cpufreq: false
+  * Extensions > GitLab Workflow
+    * Ai Assisted Code Suggestions: Enabled: false
+  * Extensions > GitLens — Git supercharged
+    * General > Show Welcome On Install: false
+    * General > Show Whats New After Upgrade: false
+  * Extensions > Resource Monitor Configuration
+    * Show: Battery: false
+    * Show: Cpufreq: false
 * Zsh
-    * Oh My Zsh: `~/.zshrc`
-        * Set PATH so it includes user's private bin if it exists
+  * Oh My Zsh: `~/.zshrc`
+    * Set PATH so it includes user's private bin if it exists
 
 **Julia images**
 
 * VS Code
-    * Extensions > Julia
-        * Enable Crash Reporter: false
-        * Enable Telemetry: false
+  * Extensions > Julia
+    * Enable Crash Reporter: false
+    * Enable Telemetry: false
 
 **R images**
 
 * R: `$(R RHOME)/etc/Rprofile.site`
-    * IRkernel: Only enable `image/svg+xml` and `application/pdf` for plot
+  * IRkernel: Only enable `image/svg+xml` and `application/pdf` for plot
     display.
-    * R Extension (VS Code): Disable help panel and revert to old behaviour.
+  * R Extension (VS Code): Disable help panel and revert to old behaviour.
 * [JupyterLab](.devcontainer/r-base/conf/jupyterlab/usr/local/share/jupyter/lab/settings/overrides.json):
-    * R LSP Server: Example settings according to [jupyter-lsp/jupyterlab-lsp > Installation > Configuring the servers](https://github.com/jupyter-lsp/jupyterlab-lsp#configuring-the-servers)
+  * R LSP Server: Example settings according to [jupyter-lsp/jupyterlab-lsp > Installation > Configuring the servers](https://github.com/jupyter-lsp/jupyterlab-lsp#configuring-the-servers)
 * VS Code
-    * Extensions > R
-        * Bracketed Paste: true
-        * Plot: Use Httpgd: true
-        * Rterm: Linux: `/usr/local/bin/radian`
-        * Rterm: Option: `["--no-save", "--no-restore"]`
-        * Workspace Viewer: Show Object Size: true
+  * Extensions > R
+    * Bracketed Paste: true
+    * Plot: Use Httpgd: true
+    * Rterm: Linux: `/usr/local/bin/radian`
+    * Rterm: Option: `["--no-save", "--no-restore"]`
+    * Workspace Viewer: Show Object Size: true
 
 ### Customise
 
 * IPython: Create file `~/.ipython/profile_default/ipython_config.py`
-    * Valid figure formats: `png`, `retina`, `jpeg`, `svg`, `pdf`.
+  * Valid figure formats: `png`, `retina`, `jpeg`, `svg`, `pdf`.
 * JupyterLab: Settings > Advanced Settings Editor
 * VS Code Server: Manage > Settings
 * Zsh
-    * Oh My Zsh: Edit `~/.zshrc`.
+  * Oh My Zsh: Edit `~/.zshrc`.
 
 **R images**
 
 * R: Create file `~/.Rprofile`
-    * Valid plot mimetypes: `image/png`, `image/jpeg`, `image/svg+xml`,
+  * Valid plot mimetypes: `image/png`, `image/jpeg`, `image/svg+xml`,
     `application/pdf`.  
     :information_source: MIME type `text/plain` must always be specified.
 
@@ -173,95 +174,3 @@ The Python version is selected as follows:
   such as numba, tensorflow, etc. – are already compatible with it.
 
 This Python version is installed at `/usr/local/bin`.
-
-# Additional notes on CUDA
-
-The CUDA and OS versions are selected as follows:
-
-* CUDA: The lastest version that has image flavour `devel` including cuDNN
-  available.
-* OS: The latest version that has TensortRT libraries for `amd64` available.  
-  :information_source: It is taking quite a long time for these to be available
-  for `arm64`.
-
-## Tweaks
-
-**R images**
-
-* R: Provide NVBLAS-enabled `R_` and `Rscript_`.
-    * Enabled at runtime and only if `nvidia-smi` and at least one GPU are
-    present.
-
-### Environment variables
-
-**Versions**
-
-* `CUDA_VERSION`
-
-**Miscellaneous**
-
-* `CUDA_IMAGE`: The CUDA image it is derived from.
-* `CUDA_VISIBLE_DEVICES`: If unset (default), CUDA will use all available
-  CUDA-capable devices.  
-  :point_right: User-settable at runtime.
-
-## Settings
-
-### Default
-
-**R images**
-
-* VS Code
-    * Extensions > R > Rterm: Linux: `/usr/local/bin/R`
-
-## Basic Linear Algebra Subprograms (BLAS)
-
-The **R images** use OpenBLAS by default.
-
-To have `R` and `Rscript` use NVBLAS instead,
-
-1. copy the NVBLAS-enabled executables to `~/.local/bin`  
-   ```bash
-   for file in $(which {R,Rscript}); do
-     cp "$file"_ "~/.local/bin/$(basename "$file")";
-   done
-   ```
-1. set Extensions > R > Rterm > Linux: `/home/USER/.local/bin/R` in VS Code
-   settings  
-   :point_right: Substitute `USER` with your user name.
-
-and restart the R terminal.
-
-:information_source: The
-[xgboost](https://cran.r-project.org/package=xgboost) package benefits greatly
-from NVBLAS, if it is
-[installed correctly](https://xgboost.readthedocs.io/en/stable/build.html).
-
-# Additional notes on `INSTALL_DEVTOOLS`
-
-If `INSTALL_DEVTOOLS` is set, the required tools according to [microsoft/vscode > Wiki > How to Contribute](https://github.com/Microsoft/vscode/wiki/How-to-Contribute)
-and [coder/code-server > Docs > Contributing](https://github.com/coder/code-server/blob/main/docs/CONTRIBUTING.md)
-are installed.
-
-Node.js is installed with corepack enabled by default. Use it to manage Yarn
-and/or pnpm:
-
-* [Installation | Yarn - Package Manager > Updating the global Yarn version](https://yarnpkg.com/getting-started/install#updating-the-global-yarn-version)
-* [Installation | pnpm > Using Corepack](https://pnpm.io/installation#using-corepack)
-
-## Environment variables
-
-**Versions**
-
-* `NODE_VERSION`
-
-## System Python
-
-Package `libsecret-1-dev` depends on `python3` from the system's package
-repository.
-
-The system's Python version is installed at `/usr/bin`.  
-
-:information_source: Because [a more recent Python version](#python) is
-installed at `/usr/local/bin`, it takes precedence over the system's Python
-version.
