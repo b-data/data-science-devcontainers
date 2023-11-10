@@ -55,6 +55,7 @@
         "mutantdino.resourcemonitor",
         "piotrpalarz.vscode-gitignore-generator",
         "redhat.vscode-yaml",
+        "DavidAnson.vscode-markdownlint",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "ms-python.black-formatter",

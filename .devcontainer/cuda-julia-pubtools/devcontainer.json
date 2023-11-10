@@ -58,6 +58,7 @@
         "julialang.language-julia",
         "James-Yu.latex-workshop",
         "quarto.quarto",
+        "DavidAnson.vscode-markdownlint",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "ms-python.black-formatter",
