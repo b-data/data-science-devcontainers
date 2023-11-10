@@ -9,7 +9,10 @@
 !/.gitattributes
 !/.gitignore
 !/.hadolint.yml
+!/.markdownlint.yml
 !/CODE_OF_CONDUCT.md
+!/CUDA_NOTES.md
+!/DEVTOOLS_NOTES.md
 !/LICENSE
 !/NOTES.md
 !/README.md
