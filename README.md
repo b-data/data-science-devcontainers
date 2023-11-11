@@ -1,6 +1,8 @@
 # \[CUDA-enabled\] Data Science Dev Containers
 
+<!-- markdownlint-disable line-length -->
 [![minimal-readme compliant](https://img.shields.io/badge/readme%20style-minimal-brightgreen.svg)](https://github.com/RichardLitt/standard-readme/blob/main/example-readmes/minimal-readme.md) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <a href="https://liberapay.com/benz0li/donate"><img src="https://liberapay.com/assets/widgets/donate.svg" alt="Donate using Liberapay" height="20"></a> <a href='https://codespaces.new/b-data/data-science-devcontainers?hide_repo_select=true&ref=main'><img src='https://github.com/codespaces/badge.svg' alt='Open in GitHub Codespaces' height="20" style='max-width: 100%;'></a>
+<!-- markdownlint-enable line-length -->
 
 \[GPU accelerated\] Multi-arch (`linux/amd64`, `linux/arm64/v8`) Data Science
 Dev Containers:
@@ -82,6 +84,7 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 <details><summary><b>Pre-installed extensions</b></summary>
 <p>
 
+<!-- markdownlint-disable line-length -->
 * [.gitignore Generator](https://marketplace.visualstudio.com/items?itemName=piotrpalarz.vscode-gitignore-generator)
 * [Black Formatter](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter)
 * [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
@@ -107,6 +110,7 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * [R](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)[^1]
 * [Resource Monitor](https://marketplace.visualstudio.com/items?itemName=mutantdino.resourcemonitor)
 * [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
+<!-- markdownlint-enable line-length -->
 
 [^1]: Depending on which Dev Container configuration is selected.
 
@@ -211,7 +215,7 @@ To disable the `postStartCommand` or `postAttachCommand`, comment out line 8 in
 1. Click the **`<> Code`** button, then click the **Codespaces** tab.  
    A message is displayed at the bottom of the dialog telling you who will pay
    for the codespace.
-2. Create your codespace after configuring advanced options:
+1. Create your codespace after configuring advanced options:
     * **Configure advanced options**  
       To configure advanced options for your codespace, such as a different
       machine type or a particular `devcontainer.json` file:
@@ -225,6 +229,7 @@ To disable the `postStartCommand` or `postAttachCommand`, comment out line 8 in
 
 To open your codespace in JupyterLab:
 
+<!-- markdownlint-disable line-length -->
 1. Execute  
 
        jupyter-lab \
@@ -234,7 +239,8 @@ To open your codespace in JupyterLab:
          --notebook-dir=/home/vscode \
          --no-browser
 
-2. Ctrl+click on one of the URLs shown in the Terminal.
+1. Ctrl+click on one of the URLs shown in the Terminal.
+<!-- markdownlint-enable line-length -->
 
 :information_source: Opening your codespace in JupyterLab according to the
 [GitHub Docs](https://docs.github.com/en/codespaces/developing-in-codespaces/getting-started-with-github-codespaces-for-machine-learning#opening-your-codespace-in-jupyterlab)
@@ -252,14 +258,14 @@ To start JupyterLab:
 
        jupyter-lab
 
-2. `Ctrl+click` on one of the URLs shown in the Terminal.
+1. `Ctrl+click` on one of the URLs shown in the Terminal.
 
 ### Persistence
 
 Data in the following locations is persisted:
 
 1. The user's home directory (`/home/vscode`)[^5]
-2. The Dev Container's workspace (`/workspaces`)
+1. The Dev Container's workspace (`/workspaces`)
 
 [^5]: Alternatively for the root user (`/root`). Use with Docker/Podman in
 *rootless mode*.
@@ -267,8 +273,10 @@ Data in the following locations is persisted:
 This is accomplished either via a *volume* or *bind mount* (or *loop device* on
 Codespaces) and is preconfigured.
 
+<!-- markdownlint-disable line-length -->
 | **Codespaces: A 'Full Rebuild Container' resets the home directory!**<br>:information_source: This is never necessary unless you want exactly that. |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------|
+<!-- markdownlint-enable line-length -->
 
 ## Similar project
 

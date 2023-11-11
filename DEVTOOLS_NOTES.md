@@ -1,6 +1,7 @@
 # Notes on `INSTALL_DEVTOOLS`
 
-If `INSTALL_DEVTOOLS` is set, the required tools according to [microsoft/vscode > Wiki > How to Contribute](https://github.com/Microsoft/vscode/wiki/How-to-Contribute)
+If `INSTALL_DEVTOOLS` is set, the required tools according to
+[microsoft/vscode > Wiki > How to Contribute](https://github.com/Microsoft/vscode/wiki/How-to-Contribute)
 and [coder/code-server > Docs > Contributing](https://github.com/coder/code-server/blob/main/docs/CONTRIBUTING.md)
 are installed.
 
