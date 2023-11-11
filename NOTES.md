@@ -112,7 +112,8 @@ are installed.
   * Only enable figure formats `svg` and `pdf` for IPython.
 * [JupyterLab](.devcontainer/conf/jupyterlab/usr/local/share/jupyter/lab/settings/overrides.json):
   * Theme > Selected Theme: JupyterLab Dark
-  * Python LSP Server: Example settings according to [jupyter-lsp/jupyterlab-lsp > Installation > Configuring the servers](https://github.com/jupyter-lsp/jupyterlab-lsp#configuring-the-servers)
+  * Python LSP Server: Example settings according to
+    [jupyter-lsp/jupyterlab-lsp > Installation > Configuring the servers](https://github.com/jupyter-lsp/jupyterlab-lsp#configuring-the-servers)
 * VS Code
   * Extensions > GitLab Workflow
     * Ai Assisted Code Suggestions: Enabled: false
@@ -140,7 +141,8 @@ are installed.
     display.
   * R Extension (VS Code): Disable help panel and revert to old behaviour.
 * [JupyterLab](.devcontainer/r-base/conf/jupyterlab/usr/local/share/jupyter/lab/settings/overrides.json):
-  * R LSP Server: Example settings according to [jupyter-lsp/jupyterlab-lsp > Installation > Configuring the servers](https://github.com/jupyter-lsp/jupyterlab-lsp#configuring-the-servers)
+  * R LSP Server: Example settings according to
+    [jupyter-lsp/jupyterlab-lsp > Installation > Configuring the servers](https://github.com/jupyter-lsp/jupyterlab-lsp#configuring-the-servers)
 * VS Code
   * Extensions > R
     * Bracketed Paste: true
