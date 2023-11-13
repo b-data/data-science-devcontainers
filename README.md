@@ -273,10 +273,8 @@ Data in the following locations is persisted:
 This is accomplished either via a *volume* or *bind mount* (or *loop device* on
 Codespaces) and is preconfigured.
 
-<!-- markdownlint-disable line-length -->
 | **Codespaces: A 'Full Rebuild Container' resets the home directory!**<br>:information_source: This is never necessary unless you want exactly that. |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------|
-<!-- markdownlint-enable line-length -->
 
 ## Similar project
 
