@@ -2,8 +2,10 @@
 
 !/.devcontainer/
 !/.github/
+!/assets/
 
 !/.github/FUNDING.yml
+!/assets/cuda-screenshot.png
 
 !/.editorconfig
 !/.gitattributes

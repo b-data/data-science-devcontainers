@@ -17,6 +17,8 @@ Dev Containers considered stable for
 * Python versions ≥ 3.10.5
 * R versions ≥ 4.2.0
 
+![CUDA Screenshot](assets/cuda-screenshot.png)
+
 **Parent images**
 
 * \[CUDA-enabled\] [Julia docker stack](https://github.com/b-data/julia-docker-stack)
@@ -96,6 +98,7 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)  
   :information_source: Pinned to version 11.7.0 due to unsolicited AI content
 * [Excel Viewer](https://marketplace.visualstudio.com/items?itemName=GrapeCity.gc-excelviewer)
+* [hadolint](https://marketplace.visualstudio.com/items?itemName=exiasr.hadolint)
 * [Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia)[^1]
 * [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 * [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)  
@@ -109,6 +112,7 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
   :information_source: Julia pubtools, Python scipy, R verse+ images
 * [R](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)[^1]
 * [Resource Monitor](https://marketplace.visualstudio.com/items?itemName=mutantdino.resourcemonitor)
+* [ShellCheck](https://marketplace.visualstudio.com/items?itemName=timonwong.shellcheck)
 * [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 <!-- markdownlint-enable line-length -->
 
