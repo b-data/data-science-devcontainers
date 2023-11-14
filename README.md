@@ -17,6 +17,8 @@ Dev Containers considered stable for
 * Python versions ≥ 3.10.5
 * R versions ≥ 4.2.0
 
+![CUDA Screenshot](assets/cuda-screenshot.png)
+
 **Parent images**
 
 * \[CUDA-enabled\] [Julia docker stack](https://github.com/b-data/julia-docker-stack)
