@@ -5,7 +5,7 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/cuda/julia/pubtools",
-      "JULIA_VERSION": "1.9.3",
+      "JULIA_VERSION": "1.9.4",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "3.6.6",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
