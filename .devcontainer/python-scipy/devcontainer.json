@@ -7,7 +7,7 @@
       "BUILD_ON_IMAGE": "glcr.b-data.ch/python/scipy",
       "PYTHON_VERSION": "3.11.6",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "3.6.6",
+      "JUPYTERLAB_VERSION": "4.0.9",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "18.18.2",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
