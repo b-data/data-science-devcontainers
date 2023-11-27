@@ -58,6 +58,7 @@ RUN apt-get update \
     jupyterlab-lsp \
     notebook \
     nbconvert \
+    nbclassic \
     "python-lsp-server[all]" \
 ## Install R related stuff
   ## Install the R kernel for Jupyter and languageserver

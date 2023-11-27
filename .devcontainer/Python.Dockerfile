@@ -56,6 +56,7 @@ RUN apt-get update \
     jupyterlab-git \
     jupyterlab-lsp \
     notebook \
+    nbclassic \
     nbconvert \
     "python-lsp-server[all]" \
   && if ! echo "$BUILD_ON_IMAGE" | grep -q "python/base"; then \
