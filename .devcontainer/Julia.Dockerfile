@@ -58,6 +58,7 @@ RUN apt-get update \
     jupyterlab-git \
     jupyterlab-lsp \
     notebook \
+    nbclassic \
     nbconvert \
     "python-lsp-server[all]" \
 ## Install Julia related stuff
