@@ -6,6 +6,7 @@ set -e
 
 mkdir -p "$HOME/.local/bin"
 mkdir -p "$HOME/projects"
+mkdir -p "$HOME/workspaces"
 
 # Copy scripts from skeleton directory if home directory is bind mounted
 if [ ! -f "$HOME/.local/bin/dockerSystemPrune.sh" ]; then
