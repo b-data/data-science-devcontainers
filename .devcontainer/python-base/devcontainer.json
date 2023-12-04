@@ -5,11 +5,11 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/python/base",
-      "PYTHON_VERSION": "3.11.6",
+      "PYTHON_VERSION": "3.12.0",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.0.9",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
-      "NODE_VERSION": "18.18.2",
+      "NODE_VERSION": "18.19.0",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
       "SET_LANG": "en_US.UTF-8",
       "SET_TZ": "Etc/UTC"
