@@ -3,7 +3,7 @@ ARG JULIA_VERSION=1.9.4
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
-ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-18.18.2}}
+ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-18.19.0}}
 
 ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
@@ -63,6 +63,14 @@ RUN apt-get update \
     "python-lsp-server[all]" \
 ## Install Julia related stuff
   && export JULIA_DEPOT_PATH="$JULIA_PATH/local/share/julia" \
+  ## Determine JULIA_CPU_TARGETs for different architectures
+  ## https://github.com/JuliaCI/julia-buildkite/blob/main/utilities/build_envs.sh
+  && dpkgArch="$(dpkg --print-architecture)" \
+  && case "${dpkgArch}" in \
+    amd64) export JULIA_CPU_TARGET="generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)" ;; \
+    arm64) export JULIA_CPU_TARGET="generic;cortex-a57;thunderx2t99;carmel" ;; \
+    *) echo "Unknown target processor architecture '${dpkgArch}'" >&2; exit 1 ;; \
+  esac \
   ## Install the Julia kernel for Jupyter
   && julia -e 'using Pkg; Pkg.add(["IJulia", "LanguageServer"]); Pkg.precompile()' \
   && mv /root/.local/share/jupyter/kernels/julia* /usr/local/share/jupyter/kernels/ \
