@@ -5,6 +5,7 @@
 set -e
 
 mkdir -p "$HOME/.julia/config"
+mkdir -p "$HOME/.julia/environments/v${JULIA_VERSION%.*}"
 
 # Copy user-specific startup files if home directory is bind mounted
 if [ ! -f "$HOME/.julia/config/startup_ijulia.jl" ]; then
