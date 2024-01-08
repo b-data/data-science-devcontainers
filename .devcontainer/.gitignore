@@ -20,11 +20,11 @@
 !/cuda-r-*/
 !/julia-*/
 !/julia-base/conf/
-!/julia-base/conf/user/
-!/julia-base/conf/user/etc/
-!/julia-base/conf/user/etc/skel/
-!/julia-base/conf/user/etc/skel/.julia/
-!/julia-base/conf/user/etc/skel/.julia/config/
+!/julia-base/conf/julia/
+!/julia-base/conf/julia/etc/
+!/julia-base/conf/julia/etc/skel/
+!/julia-base/conf/julia/etc/skel/.julia/
+!/julia-base/conf/julia/etc/skel/.julia/config/
 !/julia-base/
 !/julia-base/scripts/
 !/julia-base/scripts/usr/
@@ -60,7 +60,7 @@
 !/cuda-python-*/devcontainer.json
 !/cuda-r-*/devcontainer.json
 !/julia-*/devcontainer.json
-!/julia-base/conf/user/etc/skel/.julia/config/*.jl
+!/julia-base/conf/julia/etc/skel/.julia/config/*.jl
 !/julia-base/scripts/usr/local/bin/*.sh
 !/python-*/devcontainer.json
 !/r-*/devcontainer.json

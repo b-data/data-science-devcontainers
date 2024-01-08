@@ -13,13 +13,14 @@ RUN mkdir /files
 
 COPY conf/ipython /files
 COPY conf/jupyterlab /files
-COPY julia-base/conf/user /files
+COPY julia-base/conf/julia /files
 COPY julia-base/scripts /files
 COPY scripts /files
 
-## Ensure file modes are correct when using CI
-## Otherwise set to 777 in the target image
-RUN find /files -type d -exec chmod 755 {} \; \
+RUN mkdir -p "/files/etc/skel/.julia/environments/v${JULIA_VERSION%.*}" \
+  ## Ensure file modes are correct when using CI
+  ## Otherwise set to 777 in the target image
+  && find /files -type d -exec chmod 755 {} \; \
   && find /files -type f -exec chmod 644 {} \; \
   && find /files/etc/skel/.local/bin -type f -exec chmod 755 {} \; \
   && find /files/usr/local/bin -type f -exec chmod 755 {} \; \
@@ -100,8 +101,12 @@ RUN apt-get update \
   ## Create backup of root directory
   && cp -a /root /var/backups \
   ## Copy user-specific startup file to skeleton directory
-  && mkdir -p /etc/skel/.julia/config \
-  && cp /var/backups/skel/.julia/config/startup.jl /etc/skel/.julia/config/ \
+  && if [ ! -d /etc/skel/.julia/config ]; then \
+    mkdir -p /etc/skel/.julia/config; \
+    if [ ! -f /etc/skel/.julia/config/startup.jl ]; then \
+      cp /var/backups/skel/.julia/config/startup.jl /etc/skel/.julia/config/; \
+    fi \
+  fi \
   ## Clean up
   && rm -rf /var/lib/apt/lists/*
 
