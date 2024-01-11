@@ -50,7 +50,13 @@ else
 fi
 
 # Set PATH so it includes user's private bin if it exists
+if ! grep -q "user's private bin" "$HOME/.bashrc"; then
+  echo -e "\nPATH=\"\${PATH%:\$HOME/.local/bin}\"" >> "$HOME/.bashrc";
+  echo -e "\n# set PATH so it includes user's private bin if it exists\nif [ -d \"\$HOME/bin\" ] && [[ \"\$PATH\" != *\"\$HOME/bin\"* ]] ; then\n    PATH=\"\$HOME/bin:\$PATH\"\nfi" >> "$HOME/.bashrc";
+  echo -e "\n# set PATH so it includes user's private bin if it exists\nif [ -d \"\$HOME/.local/bin\" ] && [[ \"\$PATH\" != *\"\$HOME/.local/bin\"* ]] ; then\n    PATH=\"\$HOME/.local/bin:\$PATH\"\nfi" >> "$HOME/.bashrc";
+fi
 if ! grep -q "user's private bin" "$HOME/.zshrc"; then
+  echo -e "\nPATH=\"\${PATH%:\$HOME/.local/bin}\"" >> "$HOME/.zshrc";
   echo -e "\n# set PATH so it includes user's private bin if it exists\nif [ -d \"\$HOME/bin\" ] && [[ \"\$PATH\" != *\"\$HOME/bin\"* ]] ; then\n    PATH=\"\$HOME/bin:\$PATH\"\nfi" >> "$HOME/.zshrc";
   echo -e "\n# set PATH so it includes user's private bin if it exists\nif [ -d \"\$HOME/.local/bin\" ] && [[ \"\$PATH\" != *\"\$HOME/.local/bin\"* ]] ; then\n    PATH=\"\$HOME/.local/bin:\$PATH\"\nfi" >> "$HOME/.zshrc";
 fi
