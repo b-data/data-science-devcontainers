@@ -199,7 +199,7 @@ a unique way:
         * [julia](.devcontainer/julia-base/scripts/usr/local/bin/postStartCommand.sh):
           Copy user-specific startup files
         * [r](.devcontainer/r-base/scripts/usr/local/bin/postStartCommand.sh):
-          Copy QGIS stuff from skeleton directory; Create R user package library
+          Copy QGIS stuff from skeleton directory; Create R user library
     * [`postAttachCommand`](.devcontainer/scripts/etc/skel/.local/bin/checkForUpdates.sh):
       Codespace only: Check for Dev Container updates
 

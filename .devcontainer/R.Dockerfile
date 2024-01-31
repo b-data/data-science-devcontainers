@@ -12,6 +12,7 @@ FROM ${BUILD_ON_IMAGE}:${R_VERSION} as files
 RUN mkdir /files
 
 COPY conf/ipython /files
+COPY conf/shell /files
 COPY r-base/conf/jupyterlab /files
 COPY r-base/scripts /files
 COPY scripts /files
@@ -23,6 +24,7 @@ RUN find /files -type d -exec chmod 755 {} \; \
   && find /files/etc/skel/.local/bin -type f -exec chmod 755 {} \; \
   && find /files/usr/local/bin -type f -exec chmod 755 {} \; \
   && cp -r /files/etc/skel/. /files/root \
+  && bash -c 'rm -rf /files/root/{.bashrc,.profile}' \
   && chmod 700 /files/root
 
 FROM docker.io/koalaman/shellcheck:stable as sci
@@ -31,11 +33,17 @@ FROM ${BUILD_ON_IMAGE}:${R_VERSION} as r
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+ENV PARENT_IMAGE_CRAN=${CRAN}
+
 ARG BUILD_ON_IMAGE
+ARG CRAN
 ARG UNMINIMIZE
 ARG JUPYTERLAB_VERSION=4.0.11
 
+ARG CRAN_OVERRIDE=${CRAN}
+
 ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${R_VERSION} \
+    CRAN=${CRAN_OVERRIDE:-$CRAN} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
     PARENT_IMAGE_BUILD_DATE=${BUILD_DATE}
 
@@ -44,10 +52,11 @@ RUN if [ "$(command -v unminimize)" ] && [ -n "$UNMINIMIZE" ]; then \
     yes | unminimize; \
   fi
 
-## Ensure that common CA certificates
-## and OpenSSL libraries are up to date
-RUN apt-get update \
-  && apt-get -y install --no-install-recommends --only-upgrade \
+RUN dpkgArch="$(dpkg --print-architecture)" \
+  ## Ensure that common CA certificates
+  ## and OpenSSL libraries are up to date
+  && apt-get update \
+  && apt-get -y install --only-upgrade \
     ca-certificates \
     openssl \
 ## Install Python related stuff
@@ -61,10 +70,17 @@ RUN apt-get update \
     nbclassic \
     "python-lsp-server[all]" \
 ## Install R related stuff
-  ## Install the R kernel for Jupyter and languageserver
-  && install2.r --error --deps TRUE --skipinstalled -n "$(($(nproc)+1))" \
+  ## Install pak
+  && pkgType="$(Rscript -e 'cat(.Platform$pkgType)')" \
+  && os="$(Rscript -e 'cat(R.Version()$os)')" \
+  && arch="$(Rscript -e 'cat(R.Version()$arch)')" \
+  && install2.r -r "https://r-lib.github.io/p/pak/stable/$pkgType/$os/$arch" -e \
+    pak \
+  ## Install the R kernel for Jupyter, languageserver and decor
+  && install2.r -s -d TRUE -n "$(($(nproc)+1))" -e \
     IRkernel \
     languageserver \
+    decor \
   && Rscript -e "IRkernel::installspec(user = FALSE, displayname = paste('R', Sys.getenv('R_VERSION')))" \
   ## IRkernel: Enable 'image/svg+xml' instead of 'image/png' for plot display
   ## IRkernel: Enable 'application/pdf' for PDF conversion
@@ -95,7 +111,6 @@ RUN apt-get update \
     /root/.ipython \
     /root/.local/share/jupyter \
 ## Dev Container only
-  && dpkgArch="$(dpkg --print-architecture)" \
   ## Install hadolint
   && case "$dpkgArch" in \
     amd64) tarArch="x86_64" ;; \
@@ -113,9 +128,8 @@ RUN apt-get update \
     mkdir -p /etc/skel/.local; \
     cp -a /root/.local/share /etc/skel/.local; \
   fi \
-  ## Create R user package library
-  && RLU="$(Rscript -e "cat(Sys.getenv('R_LIBS_USER'))")" \
-  && mkdir -p "$RLU" \
+  ## Create R user library
+  && mkdir -p "$(Rscript -e "cat(Sys.getenv('R_LIBS_USER'))")" \
   ## Create backup of root directory
   && cp -a /root /var/backups \
   ## Clean up
@@ -221,7 +235,9 @@ RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     locale-gen; \
     echo "Setting LANG to $LANG"; \
     update-locale --reset LANG="$LANG"; \
-  fi
+  fi \
+  ## Update CRAN
+  && sed -i "s|$PARENT_IMAGE_CRAN|$CRAN|g" "$(R RHOME)/etc/Rprofile.site"
 
 ## Unset environment variable BUILD_DATE
 ENV BUILD_DATE=

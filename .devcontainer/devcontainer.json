@@ -32,20 +32,20 @@
   "customizations": {
     "vscode": {
       "extensions": [
+        "christian-kohler.path-intellisense",
+        "DavidAnson.vscode-markdownlint",
         "eamodio.gitlens@11.7.0",
         "editorconfig.editorconfig",
-        "exiasr.hadolint",
         "GitHub.vscode-pull-request-github",
         "GitLab.gitlab-workflow",
         "mhutchie.git-graph",
         "ms-python.python",
         "mutantdino.resourcemonitor",
-        "DavidAnson.vscode-markdownlint",
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
+        "redhat.vscode-yaml",
         "ms-python.black-formatter",
-        "ms-azuretools.vscode-docker",
-        "timonwong.shellcheck"
+        "timonwong.shellcheck",
+        "exiasr.hadolint",
+        "ms-azuretools.vscode-docker"
       ],
       "settings": {
         "gitlab.aiAssistedCodeSuggestions.enabled": false,
@@ -71,8 +71,8 @@
   //   // "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-default-root,target=/root,type=bind"
   // ],
 
-  // Pip: Install packages to the user site
   "remoteEnv": {
+    // Pip: Install packages to the user site
     "PIP_USER": "1"
   }
 }

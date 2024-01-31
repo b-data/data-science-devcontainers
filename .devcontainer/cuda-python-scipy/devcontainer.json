@@ -42,27 +42,26 @@
       "extensions": [
         "alefragnani.project-manager",
         "christian-kohler.path-intellisense",
+        "DavidAnson.vscode-markdownlint",
         "eamodio.gitlens@11.7.0",
         "editorconfig.editorconfig",
-        "exiasr.hadolint",
         "GitHub.vscode-pull-request-github",
         "GitLab.gitlab-workflow",
         "grapecity.gc-excelviewer",
         "mhutchie.git-graph",
         "ms-python.python",
         "ms-toolsai.jupyter",
-        "ms-vscode.makefile-tools",
         "mutantdino.resourcemonitor",
         "piotrpalarz.vscode-gitignore-generator",
         "redhat.vscode-yaml",
         "James-Yu.latex-workshop",
         "quarto.quarto",
-        "DavidAnson.vscode-markdownlint",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "ms-python.black-formatter",
-        "ms-azuretools.vscode-docker",
-        "timonwong.shellcheck"
+        "timonwong.shellcheck",
+        "exiasr.hadolint",
+        "ms-azuretools.vscode-docker"
       ],
       "settings": {
         "gitlab.aiAssistedCodeSuggestions.enabled": false,
@@ -93,6 +92,8 @@
   "remoteEnv": {
     // "CUDA_VISIBLE_DEVICES": "0",
     // "OMP_NUM_THREADS": "1",
+    //
+    // Pip: Install packages to the user site
     "PIP_USER": "1"
   },
 

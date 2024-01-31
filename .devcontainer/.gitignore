@@ -15,6 +15,12 @@
 !/conf/jupyterlab/usr/local/share/jupyter/
 !/conf/jupyterlab/usr/local/share/jupyter/lab/
 !/conf/jupyterlab/usr/local/share/jupyter/lab/settings/
+!/conf/shell/
+!/conf/shell/etc/
+!/conf/shell/etc/skel/
+!/conf/shell/var/
+!/conf/shell/var/tmp/
+!/conf/shell/var/tmp/snippets/
 !/cuda-julia-*/
 !/cuda-python-*/
 !/cuda-r-*/
@@ -56,6 +62,8 @@
 
 !/conf/ipython/usr/local/etc/ipython/*.py
 !/conf/jupyterlab/usr/local/share/jupyter/lab/settings/*.json
+!/conf/shell/etc/skel/.profile
+!/conf/shell/var/tmp/snippets/*.sh
 !/cuda-julia-*/devcontainer.json
 !/cuda-python-*/devcontainer.json
 !/cuda-r-*/devcontainer.json
