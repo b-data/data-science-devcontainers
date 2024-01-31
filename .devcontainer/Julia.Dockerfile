@@ -13,6 +13,7 @@ RUN mkdir /files
 
 COPY conf/ipython /files
 COPY conf/jupyterlab /files
+COPY conf/shell /files
 COPY julia-base/conf/julia /files
 COPY julia-base/scripts /files
 COPY scripts /files
@@ -25,6 +26,7 @@ RUN mkdir -p "/files/etc/skel/.julia/environments/v${JULIA_VERSION%.*}" \
   && find /files/etc/skel/.local/bin -type f -exec chmod 755 {} \; \
   && find /files/usr/local/bin -type f -exec chmod 755 {} \; \
   && cp -r /files/etc/skel/. /files/root \
+  && bash -c 'rm -rf /files/root/{.bashrc,.profile}' \
   && chmod 700 /files/root
 
 FROM docker.io/koalaman/shellcheck:stable as sci
@@ -46,9 +48,10 @@ RUN if [ "$(command -v unminimize)" ] && [ -n "$UNMINIMIZE" ]; then \
     yes | unminimize; \
   fi
 
-## Ensure that common CA certificates
-## and OpenSSL libraries are up to date
-RUN apt-get update \
+RUN dpkgArch="$(dpkg --print-architecture)" \
+  ## Ensure that common CA certificates
+  ## and OpenSSL libraries are up to date
+  && apt-get update \
   && apt-get -y install --no-install-recommends --only-upgrade \
     ca-certificates \
     openssl \
@@ -85,7 +88,6 @@ RUN apt-get update \
     /root/.ipython \
     /root/.local \
 ## Dev Container only
-  && dpkgArch="$(dpkg --print-architecture)" \
   ## Install hadolint
   && case "$dpkgArch" in \
     amd64) tarArch="x86_64" ;; \

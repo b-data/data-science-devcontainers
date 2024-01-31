@@ -5,6 +5,7 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/cuda/r/qgisprocess",
+      // "CRAN": "https://cloud.r-project.org",
       "R_VERSION": "4.3.2",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.0.11",
@@ -42,28 +43,27 @@
       "extensions": [
         "alefragnani.project-manager",
         "christian-kohler.path-intellisense",
+        "DavidAnson.vscode-markdownlint",
         "eamodio.gitlens@11.7.0",
         "editorconfig.editorconfig",
-        "exiasr.hadolint",
         "GitHub.vscode-pull-request-github",
         "GitLab.gitlab-workflow",
         "grapecity.gc-excelviewer",
         "mhutchie.git-graph",
         "ms-python.python",
         "ms-toolsai.jupyter",
-        "ms-vscode.makefile-tools",
         "mutantdino.resourcemonitor",
         "piotrpalarz.vscode-gitignore-generator",
         "redhat.vscode-yaml",
         "REditorSupport.r",
         "James-Yu.latex-workshop",
         "quarto.quarto",
-        "DavidAnson.vscode-markdownlint",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "ms-python.black-formatter",
-        "ms-azuretools.vscode-docker",
-        "timonwong.shellcheck"
+        "timonwong.shellcheck",
+        "exiasr.hadolint",
+        "ms-azuretools.vscode-docker"
       ],
       "settings": {
         "gitlab.aiAssistedCodeSuggestions.enabled": false,
@@ -114,6 +114,7 @@
     // This ensures that Linux and Windows users share the same experience.
     // "LIBGL_ALWAYS_SOFTWARE": "1",
     //
+    // Pip: Install packages to the user site
     "PIP_USER": "1"
   },
 

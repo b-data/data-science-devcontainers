@@ -5,19 +5,28 @@ FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION} as files
 
 RUN mkdir -p /files/usr
 
+COPY conf/shell /files
 COPY scripts/usr /files/usr
 
 ## Ensure file modes are correct when using CI
 ## Otherwise set to 777 in the target image
 RUN find /files -type d -exec chmod 755 {} \; \
   && find /files -type f -exec chmod 644 {} \; \
-  && find /files/usr/local/bin -type f -exec chmod 755 {} \;
+  && find /files/usr/local/bin -type f -exec chmod 755 {} \; \
+  && cp -r /files/etc/skel/. /files/root \
+  && bash -c 'rm -rf /files/root/{.bashrc,.profile}' \
+  && chmod 700 /files/root
 
 FROM docker.io/koalaman/shellcheck:stable as sci
 
 FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION}
 
 ARG DEBIAN_FRONTEND=noninteractive
+
+ARG BUILD_ON_IMAGE
+
+ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${PYTHON_VERSION} \
+    PARENT_IMAGE_BUILD_DATE=${BUILD_DATE}
 
 RUN dpkgArch="$(dpkg --print-architecture)" \
   ## Ensure that common CA certificates
@@ -49,8 +58,7 @@ ARG SET_LANG
 ARG SET_TZ
 
 ENV LANG=${SET_LANG:-$LANG} \
-    TZ=${SET_TZ:-$TZ} \
-    PARENT_IMAGE_BUILD_DATE=${BUILD_DATE}
+    TZ=${SET_TZ:-$TZ}
 
   ## Change root's shell to ZSH
 RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \

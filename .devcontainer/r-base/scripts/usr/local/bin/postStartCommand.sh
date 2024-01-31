@@ -4,6 +4,9 @@
 
 set -e
 
+# Create R user library
+mkdir -p "$(Rscript -e "cat(Sys.getenv('R_LIBS_USER'))")"
+
 # Copy QGIS stuff from skeleton directory if home directory is bind mounted
 if [ "$(id -un)" == "root" ]; then
   if [ ! -d /root/.local/share ] && [ "$(command -v qgis)" ]; then
@@ -28,7 +31,3 @@ else
     sudo chown -R "$(id -u)":"$(id -g)" "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen";
   fi
 fi
-
-# Create R user package library
-RLU="$(Rscript -e "cat(Sys.getenv('R_LIBS_USER'))")"
-mkdir -p "$RLU"
