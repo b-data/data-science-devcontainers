@@ -128,8 +128,6 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
     mkdir -p /etc/skel/.local; \
     cp -a /root/.local/share /etc/skel/.local; \
   fi \
-  ## Create R user library
-  && mkdir -p "$(Rscript -e "cat(Sys.getenv('R_LIBS_USER'))")" \
   ## Create backup of root directory
   && cp -a /root /var/backups \
   ## Clean up
