@@ -32,12 +32,10 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "christian-kohler.path-intellisense",
         "DavidAnson.vscode-markdownlint",
         "eamodio.gitlens@11.7.0",
         "editorconfig.editorconfig",
         "GitHub.vscode-pull-request-github",
-        "GitLab.gitlab-workflow",
         "mhutchie.git-graph",
         "ms-python.python",
         "mutantdino.resourcemonitor",
