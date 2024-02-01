@@ -8,8 +8,7 @@ RUN mkdir -p /files/usr
 COPY conf/shell /files
 COPY scripts/usr /files/usr
 
-## Ensure file modes are correct when using CI
-## Otherwise set to 777 in the target image
+## Ensure file modes are correct
 RUN find /files -type d -exec chmod 755 {} \; \
   && find /files -type f -exec chmod 644 {} \; \
   && find /files/usr/local/bin -type f -exec chmod 755 {} \; \
