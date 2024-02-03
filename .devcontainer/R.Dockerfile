@@ -17,8 +17,7 @@ COPY r-base/conf/jupyterlab /files
 COPY r-base/scripts /files
 COPY scripts /files
 
-## Ensure file modes are correct when using CI
-## Otherwise set to 777 in the target image
+## Ensure file modes are correct
 RUN find /files -type d -exec chmod 755 {} \; \
   && find /files -type f -exec chmod 644 {} \; \
   && find /files/etc/skel/.local/bin -type f -exec chmod 755 {} \; \
