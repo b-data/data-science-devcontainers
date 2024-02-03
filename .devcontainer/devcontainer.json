@@ -4,6 +4,7 @@
     "dockerfile": "Dockerfile",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/python/base",
+      "PYTHON_VERSION": "latest",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
       "SET_LANG": "en_US.UTF-8",
       "SET_TZ": "Etc/UTC"
@@ -58,16 +59,6 @@
 
   // Set 'remoteUser' to 'root' to connect as root instead.
   "remoteUser": "vscode",
-  "mounts": [
-    "source=dsdc-default-home-vscode,target=/home/vscode,type=volume"
-    // "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-default-home-vscode,target=/home/vscode,type=bind"
-  ],
-
-  // "remoteUser": "root",
-  // "mounts": [
-  //   "source=dsdc-default-root,target=/root,type=volume"
-  //   // "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-default-root,target=/root,type=bind"
-  // ],
 
   "remoteEnv": {
     // Pip: Install packages to the user site

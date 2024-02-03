@@ -19,8 +19,7 @@ COPY julia-base/scripts /files
 COPY scripts /files
 
 RUN mkdir -p "/files/etc/skel/.julia/environments/v${JULIA_VERSION%.*}" \
-  ## Ensure file modes are correct when using CI
-  ## Otherwise set to 777 in the target image
+  ## Ensure file modes are correct
   && find /files -type d -exec chmod 755 {} \; \
   && find /files -type f -exec chmod 644 {} \; \
   && find /files/etc/skel/.local/bin -type f -exec chmod 755 {} \; \
