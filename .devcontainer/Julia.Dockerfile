@@ -70,8 +70,8 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   ## https://github.com/JuliaCI/julia-buildkite/blob/main/utilities/build_envs.sh
   && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch}" in \
-    amd64) export JULIA_CPU_TARGET="generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)" ;; \
-    arm64) export JULIA_CPU_TARGET="generic;cortex-a57;thunderx2t99;carmel" ;; \
+    amd64) export JULIA_CPU_TARGET="generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);x86-64-v4,-rdrnd,base(1)" ;; \
+    arm64) export JULIA_CPU_TARGET="generic;cortex-a57;thunderx2t99;carmel,clone_all;apple-m1,base(3);neoverse-512tvb,base(3)" ;; \
     *) echo "Unknown target processor architecture '${dpkgArch}'" >&2; exit 1 ;; \
   esac \
   ## Install the Julia kernel for Jupyter
