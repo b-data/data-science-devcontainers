@@ -18,7 +18,14 @@ COPY julia-base/conf/julia /files
 COPY julia-base/scripts /files
 COPY scripts /files
 
-RUN mkdir -p "/files/etc/skel/.julia/environments/v${JULIA_VERSION%.*}" \
+RUN if [ -n "${CUDA_VERSION}" ]; then \
+    mv /opt/nvidia/entrypoint.d /opt/nvidia/nvidia_entrypoint.sh \
+      /files/usr/local/bin; \
+    nlc=$(wc -l < /files/usr/local/bin/nvidia_entrypoint.sh); \
+    sed -i "$((nlc-4)),$nlc s/^/# /" \
+      /files/usr/local/bin/nvidia_entrypoint.sh; \
+  fi \
+  && mkdir -p "/files/etc/skel/.julia/environments/v${JULIA_VERSION%.*}" \
   ## Ensure file modes are correct
   && find /files -type d -exec chmod 755 {} \; \
   && find /files -type f -exec chmod 644 {} \; \

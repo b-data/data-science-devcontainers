@@ -16,8 +16,15 @@ COPY conf/jupyterlab /files
 COPY conf/shell /files
 COPY scripts /files
 
-## Ensure file modes are correct
-RUN find /files -type d -exec chmod 755 {} \; \
+RUN if [ -n "${CUDA_VERSION}" ]; then \
+    mv /opt/nvidia/entrypoint.d /opt/nvidia/nvidia_entrypoint.sh \
+      /files/usr/local/bin; \
+    nlc=$(wc -l < /files/usr/local/bin/nvidia_entrypoint.sh); \
+    sed -i "$((nlc-4)),$nlc s/^/# /" \
+      /files/usr/local/bin/nvidia_entrypoint.sh; \
+  fi \
+  ## Ensure file modes are correct
+  && find /files -type d -exec chmod 755 {} \; \
   && find /files -type f -exec chmod 644 {} \; \
   && find /files/etc/skel/.local/bin -type f -exec chmod 755 {} \; \
   && find /files/usr/local/bin -type f -exec chmod 755 {} \; \
