@@ -8,7 +8,7 @@
       // "CRAN": "https://cloud.r-project.org",
       "R_VERSION": "4.3.3",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.1.5",
+      "JUPYTERLAB_VERSION": "4.1.6",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "18.19.1",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
