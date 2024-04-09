@@ -3,7 +3,7 @@ ARG R_VERSION=4.3.3
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
-ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-18.20.0}}
+ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-18.19.1}}
 
 ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
@@ -44,7 +44,7 @@ ENV PARENT_IMAGE_CRAN=${CRAN}
 ARG BUILD_ON_IMAGE
 ARG CRAN
 ARG UNMINIMIZE
-ARG JUPYTERLAB_VERSION=4.1.5
+ARG JUPYTERLAB_VERSION=4.1.6
 
 ARG CRAN_OVERRIDE=${CRAN}
 
@@ -55,7 +55,9 @@ ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${R_VERSION} \
 
 ## Unminimise if the system has been minimised
 RUN if [ "$(command -v unminimize)" ] && [ -n "$UNMINIMIZE" ]; then \
+    sed -i "s/apt-get upgrade/#apt-get upgrade/g" "$(which unminimize)"; \
     yes | unminimize; \
+    sed -i "s/#apt-get upgrade/apt-get upgrade/g" "$(which unminimize)"; \
   fi
 
 RUN dpkgArch="$(dpkg --print-architecture)" \
