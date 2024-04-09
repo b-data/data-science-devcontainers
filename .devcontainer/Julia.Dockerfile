@@ -51,7 +51,9 @@ ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${JULIA_VERSION} \
 
 ## Unminimise if the system has been minimised
 RUN if [ "$(command -v unminimize)" ] && [ -n "$UNMINIMIZE" ]; then \
+    sed -i "s/apt-get upgrade/#apt-get upgrade/g" "$(which unminimize)"; \
     yes | unminimize; \
+    sed -i "s/#apt-get upgrade/apt-get upgrade/g" "$(which unminimize)"; \
   fi
 
 RUN dpkgArch="$(dpkg --print-architecture)" \
