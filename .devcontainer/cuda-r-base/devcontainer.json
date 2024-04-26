@@ -6,7 +6,7 @@
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/cuda/r/base",
       // "CRAN": "https://cloud.r-project.org",
-      "R_VERSION": "4.3.3",
+      "R_VERSION": "4.4.0",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.1.6",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
