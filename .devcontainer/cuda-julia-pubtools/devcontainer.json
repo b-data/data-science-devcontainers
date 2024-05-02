@@ -5,9 +5,9 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/cuda/julia/pubtools",
-      "JULIA_VERSION": "1.10.2",
+      "JULIA_VERSION": "1.10.3",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.1.6",
+      "JUPYTERLAB_VERSION": "4.1.8",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "18.19.1",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
