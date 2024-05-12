@@ -44,7 +44,7 @@ ENV PARENT_IMAGE_CRAN=${CRAN}
 ARG BUILD_ON_IMAGE
 ARG CRAN
 ARG UNMINIMIZE
-ARG JUPYTERLAB_VERSION=4.1.8
+ARG JUPYTERLAB_VERSION=4.2.0
 
 ARG CRAN_OVERRIDE=${CRAN}
 
@@ -245,11 +245,11 @@ RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
   ## Update CRAN
   && sed -i "s|$PARENT_IMAGE_CRAN|$CRAN|g" "$(R RHOME)/etc/Rprofile.site"
 
-## Unset environment variable BUILD_DATE
-ENV BUILD_DATE=
-
 ## Copy files as late as possible to avoid cache busting
 COPY --from=files /files /
 
 ## Copy shellcheck as late as possible to avoid cache busting
 COPY --from=sci --chown=root:root /bin/shellcheck /usr/local/bin
+
+## Unset environment variable BUILD_DATE
+ENV BUILD_DATE=

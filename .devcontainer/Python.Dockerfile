@@ -40,7 +40,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 ARG BUILD_ON_IMAGE
 ARG UNMINIMIZE
-ARG JUPYTERLAB_VERSION=4.1.8
+ARG JUPYTERLAB_VERSION=4.2.0
 
 ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${PYTHON_VERSION} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
@@ -204,11 +204,11 @@ RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     update-locale --reset LANG="$LANG"; \
   fi
 
-## Unset environment variable BUILD_DATE
-ENV BUILD_DATE=
-
 ## Copy files as late as possible to avoid cache busting
 COPY --from=files /files /
 
 ## Copy shellcheck as late as possible to avoid cache busting
 COPY --from=sci --chown=root:root /bin/shellcheck /usr/local/bin
+
+## Unset environment variable BUILD_DATE
+ENV BUILD_DATE=
