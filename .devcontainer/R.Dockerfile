@@ -3,7 +3,7 @@ ARG R_VERSION=4.4.0
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
-ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-18.19.1}}
+ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-18.20.2}}
 
 ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
@@ -152,6 +152,9 @@ ARG NV
 ARG INSTALL_DOCKER_CLI
 
 ENV NODE_VERSION=${NV}
+
+  ## Prevent Corepack showing the URL when it needs to download software
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
   ## Install Node.js...
 COPY --from=nsi /usr/local /usr/local
