@@ -171,8 +171,8 @@ are installed.
 
 The Python version is selected as follows:
 
-* Julia/R images: The latest [Python version numba is compatible with](https://numba.readthedocs.io/en/stable/user/installing.html#numba-support-info).
+* Julia/R images: The latest [Python version Numba is compatible with](https://numba.readthedocs.io/en/stable/user/installing.html#numba-support-info).
 * Python images: The latest Python version, regardless of whether all packages –
-  such as numba, tensorflow, etc. – are already compatible with it.
+  such as Numba, PyTorch, TensorFlow, etc. – are already compatible with it.
 
 This Python version is installed at `/usr/local/bin`.
