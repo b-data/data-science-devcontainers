@@ -99,7 +99,7 @@ The default shell is Zsh.
 
 In addition to the TeX packages used in
 [rocker/verse](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_texlive.sh),
-[jupyter/scipy-notebook](https://github.com/jupyter/docker-stacks/blob/main/scipy-notebook/Dockerfile)
+[jupyter/scipy-notebook](https://github.com/jupyter/docker-stacks/blob/main/images/scipy-notebook/Dockerfile)
 and required for `nbconvert`, the
 [packages requested by the community](https://yihui.org/gh/tinytex/tools/pkgs-yihui.txt)
 are installed.
@@ -125,7 +125,10 @@ are installed.
     * Show: Cpufreq: false
 * Zsh
   * Oh My Zsh: `~/.zshrc`
-    * Set PATH so it includes user's private bin if it exists
+    * Set `PATH` so it includes user's private bin if it exists
+* Bash: [/etc/skel/.profile](.devcontainer/conf/shell/etc/skel/.profile)
+  * Update `PATH` for login shells, e.g. when started as a server associated
+    with JupyterHub.
 
 **Julia images**
 
@@ -159,6 +162,8 @@ are installed.
 * VS Code Server: Manage > Settings
 * Zsh
   * Oh My Zsh: Edit `~/.zshrc`.
+* Bash
+  * Edit `~/.bashrc`.
 
 **R images**
 
