@@ -9,6 +9,9 @@ ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
 FROM ${BUILD_ON_IMAGE}:${MOJO_VERSION} as files
 
+ARG BUILD_ON_IMAGE
+ARG MOJO_VERSION
+
 RUN mkdir /files
 
 COPY conf/ipython /files
@@ -20,6 +23,9 @@ COPY scripts /files
 RUN if echo "$BUILD_ON_IMAGE" | grep -q "mojo-max"; then \
     ## Update Modular setup
     sed -i s/packages.modular.com_mojo/packages.modular.com_max/g \
+      /files/usr/local/etc/jupyter/jupyter_server_config.d/mojo-lsp-server.json; \
+  elif [ "${MOJO_VERSION}" = "nightly" ]; then \
+    sed -i s/packages.modular.com_mojo/packages.modular.com_nightly_mojo/g \
       /files/usr/local/etc/jupyter/jupyter_server_config.d/mojo-lsp-server.json; \
   fi \
   && if [ -n "${CUDA_VERSION}" ]; then \
