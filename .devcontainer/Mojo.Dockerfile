@@ -1,5 +1,5 @@
-ARG BUILD_ON_IMAGE=glcr.b-data.ch/julia/base
-ARG JULIA_VERSION=1.10.3
+ARG BUILD_ON_IMAGE=glcr.b-data.ch/mojo/base
+ARG MOJO_VERSION=24.3.0
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
@@ -7,18 +7,22 @@ ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-18.20.2}}
 
 ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
-FROM ${BUILD_ON_IMAGE}:${JULIA_VERSION} as files
+FROM ${BUILD_ON_IMAGE}:${MOJO_VERSION} as files
 
 RUN mkdir /files
 
 COPY conf/ipython /files
 COPY conf/jupyterlab /files
 COPY conf/shell /files
-COPY julia-base/conf/julia /files
-COPY julia-base/scripts /files
+COPY mojo-base/conf/jupyterlab /files
 COPY scripts /files
 
-RUN if [ -n "${CUDA_VERSION}" ]; then \
+RUN if echo "$BUILD_ON_IMAGE" | grep -q "mojo-max"; then \
+    ## Update Modular setup
+    sed -i s/packages.modular.com_mojo/packages.modular.com_max/g \
+      /files/usr/local/etc/jupyter/jupyter_server_config.d/mojo-lsp-server.json; \
+  fi \
+  && if [ -n "${CUDA_VERSION}" ]; then \
     ## Use entrypoint of CUDA image
     mv /opt/nvidia/entrypoint.d /opt/nvidia/nvidia_entrypoint.sh \
       /files/usr/local/bin; \
@@ -26,7 +30,6 @@ RUN if [ -n "${CUDA_VERSION}" ]; then \
     sed -i "$((nlc-4)),$nlc s/^/# /" \
       /files/usr/local/bin/nvidia_entrypoint.sh; \
   fi \
-  && mkdir -p "/files/etc/skel/.julia/environments/v${JULIA_VERSION%.*}" \
   ## Ensure file modes are correct
   && find /files -type d -exec chmod 755 {} \; \
   && find /files -type f -exec chmod 644 {} \; \
@@ -38,7 +41,7 @@ RUN if [ -n "${CUDA_VERSION}" ]; then \
 
 FROM docker.io/koalaman/shellcheck:stable as sci
 
-FROM ${BUILD_ON_IMAGE}:${JULIA_VERSION} as julia
+FROM ${BUILD_ON_IMAGE}:${MOJO_VERSION} as mojo
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -46,7 +49,7 @@ ARG BUILD_ON_IMAGE
 ARG UNMINIMIZE
 ARG JUPYTERLAB_VERSION=4.2.0
 
-ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${JULIA_VERSION} \
+ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${MOJO_VERSION} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
     PARENT_IMAGE_BUILD_DATE=${BUILD_DATE}
 
@@ -74,28 +77,19 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
     nbclassic \
     nbconvert \
     "python-lsp-server[all]" \
-## Install Julia related stuff
-  && export JULIA_DEPOT_PATH="$JULIA_PATH/local/share/julia" \
-  ## Determine JULIA_CPU_TARGETs for different architectures
-  ## https://github.com/JuliaCI/julia-buildkite/blob/main/utilities/build_envs.sh
-  && dpkgArch="$(dpkg --print-architecture)" \
-  && case "${dpkgArch}" in \
-    amd64) export JULIA_CPU_TARGET="generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);x86-64-v4,-rdrnd,base(1)" ;; \
-    arm64) export JULIA_CPU_TARGET="generic;cortex-a57;thunderx2t99;carmel,clone_all;apple-m1,base(3);neoverse-512tvb,base(3)" ;; \
-    *) echo "Unknown target processor architecture '${dpkgArch}'" >&2; exit 1 ;; \
-  esac \
-  ## Install the Julia kernel for Jupyter
-  && julia -e 'using Pkg; Pkg.add(["IJulia", "LanguageServer"]); Pkg.precompile()' \
-  && mv /root/.local/share/jupyter/kernels/julia* /usr/local/share/jupyter/kernels/ \
-  ## Make installed packages available system-wide
-  && julia -e 'using Pkg; Pkg.add(readdir("$(ENV["JULIA_DEPOT_PATH"])/packages"))' \
-  && rm -rf "$JULIA_DEPOT_PATH/registries"/* \
-  && chmod -R ugo+rx "$JULIA_DEPOT_PATH" \
+  && if ! echo "$BUILD_ON_IMAGE" | grep -q "base"; then \
+    pip install --no-cache-dir \
+      ipympl \
+      ipywidgets \
+      widgetsnbextension; \
+      ## Install facets
+      cd /tmp; \
+      git clone https://github.com/PAIR-code/facets.git; \
+      jupyter nbclassic-extension install facets/facets-dist/ --sys-prefix; \
+  fi \
   ## Clean up
   && rm -rf /tmp/* \
     /root/.cache \
-    /root/.ipython \
-    /root/.local \
 ## Dev Container only
   ## Install hadolint
   && case "$dpkgArch" in \
@@ -111,20 +105,13 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   && chmod 755 /usr/local/bin/hadolint \
   ## Create backup of root directory
   && cp -a /root /var/backups \
-  ## Copy user-specific startup file to skeleton directory
-  && if [ ! -d /etc/skel/.julia/config ]; then \
-    mkdir -p /etc/skel/.julia/config; \
-    if [ ! -f /etc/skel/.julia/config/startup.jl ]; then \
-      cp /var/backups/skel/.julia/config/startup.jl /etc/skel/.julia/config/; \
-    fi \
-  fi \
   ## Clean up
   && rm -rf /var/lib/apt/lists/*
 
 ## Devtools, Docker
 FROM glcr.b-data.ch/nodejs/nsi${NSI_SFX} as nsi
 
-FROM julia
+FROM mojo
 
 ARG DEBIAN_FRONTEND=noninteractive
 

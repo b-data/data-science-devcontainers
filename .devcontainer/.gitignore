@@ -36,6 +36,14 @@
 !/julia-base/scripts/usr/
 !/julia-base/scripts/usr/local/
 !/julia-base/scripts/usr/local/bin/
+!/mojo-*/
+!/mojo-base/conf/
+!/mojo-base/conf/jupyterlab/
+!/mojo-base/conf/jupyterlab/usr/
+!/mojo-base/conf/jupyterlab/usr/local/
+!/mojo-base/conf/jupyterlab/usr/local/etc/
+!/mojo-base/conf/jupyterlab/usr/local/etc/jupyter/
+!/mojo-base/conf/jupyterlab/usr/local/etc/jupyter/jupyter_server_config.d/
 !/python-*/
 !/r-*/
 !/r-base/conf/
@@ -70,6 +78,8 @@
 !/julia-*/devcontainer.json
 !/julia-base/conf/julia/etc/skel/.julia/config/*.jl
 !/julia-base/scripts/usr/local/bin/*.sh
+!/mojo-*/devcontainer.json
+!/mojo-base/conf/jupyterlab/usr/local/etc/jupyter/jupyter_server_config.d/mojo-lsp-server.json
 !/python-*/devcontainer.json
 !/r-*/devcontainer.json
 !/r-base/conf/jupyterlab/usr/local/share/jupyter/lab/settings/*.json
@@ -81,6 +91,7 @@
 !/devcontainer.json
 !/Dockerfile
 !/Julia.Dockerfile
+!/Mojo.Dockerfile
 !/Python.Dockerfile
 !/R.Dockerfile
 

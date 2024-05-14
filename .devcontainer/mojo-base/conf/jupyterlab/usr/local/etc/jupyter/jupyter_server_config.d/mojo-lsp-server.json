@@ -1,0 +1,16 @@
+{
+  "LanguageServerManager": {
+    "language_servers": {
+      "mojo": {
+        "argv": [
+          "/opt/modular/pkg/packages.modular.com_mojo/bin/mojo-lsp-server",
+          "--log=error"
+        ],
+        "version": 2,
+        "languages": ["mojo"],
+        "mime_types": ["text/x-mojo"],
+        "display_name": "mojo-lsp-server"
+      }
+    }
+  }
+}

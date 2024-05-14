@@ -8,12 +8,14 @@
 Dev Containers:
 
 * \[CUDA\] Julia base, pubtools
+* Mojo base, scipy
 * \[CUDA\] Python base, scipy
 * \[CUDA\] R base, tidyverse, verse, geospatial, qgisprocess
 
 Dev Containers considered stable for
 
 * Julia versions ≥ 1.7.3
+* Mojo versions ≥ 24.3.0
 * Python versions ≥ 3.10.5
 * R versions ≥ 4.2.0
 
@@ -22,10 +24,11 @@ Dev Containers considered stable for
 **Parent images**
 
 * \[CUDA-enabled\] [Julia docker stack](https://github.com/b-data/julia-docker-stack)
+* [Mojo docker stack](https://github.com/b-data/mojo-docker-stack)
 * \[CUDA-enabled\] [Python docker stack](https://github.com/b-data/python-docker-stack)
 * \[CUDA-enabled\] [R docker stack](https://github.com/b-data/r-docker-stack)
 
-Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/jupyterlab-julia-docker-stack)
+Extended to match the \[CUDA-enabled\] [Jupyter](https://github.com/b-data/jupyterlab-julia-docker-stack)[Lab](https://github.com/b-data/jupyterlab-mojo-docker-stack)
 [docker](https://github.com/b-data/jupyterlab-python-docker-stack)
 [stacks](https://github.com/b-data/jupyterlab-r-docker-stack), except that
 
@@ -53,6 +56,7 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
   :information_source: R qgisprocess image (amd64 only)
 * **Julia**[^1]: A high-level, high-performance dynamic language for technical
   computing.
+* **Mojo**[^1]: A programming language for AI developers.
 * **Pandoc**: A universal markup converter.
 * **Python**: An interpreted, object-oriented, high-level programming language
   with dynamic semantics.
@@ -60,14 +64,14 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
   information system (GIS).  
   :information_source: R qgisprocess image
 * **Quarto**: A scientific and technical publishing system built on Pandoc.  
-  :information_source: Julia pubtools, Python scipy, R verse+ images
+  :information_source: Julia pubtools, Mojo/Python scipy, R verse+ images
 * **R**[^1]: A language and environment for statistical computing and graphics.
 * **SAGA GIS**: A Geographic Information System (GIS) software with immense
   capabilities for geodata processing and analysis.  
   :information_source: R qgisprocess image
 * **TinyTeX**: A lightweight, cross-platform, portable, and easy-to-maintain
   LaTeX distribution based on TeX Live.  
-  :information_source: Julia pubtools, Python scipy, R verse+ images
+  :information_source: Julia pubtools, Mojo/Python scipy, R verse+ images
 * **Zsh**: A shell designed for interactive use, although it is also a powerful
   scripting language.
 
@@ -78,6 +82,7 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 
 * Julia: [Version Matrix](https://github.com/b-data/jupyterlab-julia-docker-stack/blob/main/VERSION_MATRIX.md),
   [CUDA Version Matrix](https://github.com/b-data/jupyterlab-julia-docker-stack/blob/main/CUDA_VERSION_MATRIX.md)
+* Mojo: [Version Matrix](https://github.com/b-data/jupyterlab-mojo-docker-stack/blob/main/VERSION_MATRIX.md)
 * Python: [Version Matrix](https://github.com/b-data/jupyterlab-python-docker-stack/blob/main/VERSION_MATRIX.md),
   [CUDA Version Matrix](https://github.com/b-data/jupyterlab-python-docker-stack/blob/main/CUDA_VERSION_MATRIX.md)
 * R: [Version Matrix](https://github.com/b-data/jupyterlab-r-docker-stack/blob/main/VERSION_MATRIX.md),
@@ -102,14 +107,15 @@ Extended to match the \[CUDA-enabled\] [JupyterLab](https://github.com/b-data/ju
 * [Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia)[^1]
 * [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 * [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)  
-  :information_source: Julia pubtools, Python scipy, R verse+ images
+  :information_source: Julia pubtools, Mojo/Python scipy, R verse+ images
 * [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+* [Mojo](https://marketplace.visualstudio.com/items?itemName=modular-mojotools.vscode-mojo)[^1]
 * [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
 * [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 * [Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager)
 * [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
 * [Quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)  
-  :information_source: Julia pubtools, Python scipy, R verse+ images
+  :information_source: Julia pubtools, Mojo/Python scipy, R verse+ images
 * [R](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)[^1]
 * [Resource Monitor](https://marketplace.visualstudio.com/items?itemName=mutantdino.resourcemonitor)
 * [ShellCheck](https://marketplace.visualstudio.com/items?itemName=timonwong.shellcheck)

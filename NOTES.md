@@ -1,11 +1,11 @@
 # Notes
 
 These Dev Containers are derived from the
-[language](https://github.com/b-data/julia-docker-stack)
+[lan](https://github.com/b-data/julia-docker-stack)[guage](https://github.com/b-data/mojo-docker-stack)
 [docker](https://github.com/b-data/python-docker-stack)
 [stacks](https://github.com/b-data/r-docker-stack), share their environment
 variables and incorporate most tweaks and default settings of the
-[JupyterLab](https://github.com/b-data/jupyterlab-julia-docker-stack)
+[Jupyter](https://github.com/b-data/jupyterlab-julia-docker-stack)[Lab](https://github.com/b-data/jupyterlab-mojo-docker-stack)
 [docker](https://github.com/b-data/jupyterlab-python-docker-stack)
 [stacks](https://github.com/b-data/jupyterlab-r-docker-stack).
 
@@ -62,6 +62,11 @@ The following startup scripts are put in place:
   rendering.  
   :point_right: User-settable at runtime.
 
+**Mojo images**
+
+* `MOJO_VERSION`
+* `MODULAR_HOME`
+
 **Versions**
 
 * `PYTHON_VERSION`
@@ -69,7 +74,7 @@ The following startup scripts are put in place:
 * `GIT_VERSION`
 * `GIT_LFS_VERSION`
 * `PANDOC_VERSION`
-* `QUARTO_VERSION` (Julia pubtools, Python scipy, R verse+ images)
+* `QUARTO_VERSION` (Julia pubtools, Mojo/Python scipy, R verse+ images)
 
 **Miscellaneous**
 
@@ -85,7 +90,7 @@ The following startup scripts are put in place:
   :point_right: User-settable at runtime.
   * `1`: user directory (`~/.local`, persistent (default))
   * `0`: system directory (`/usr/local`, not persistent)
-* `CTAN_REPO`: The CTAN mirror URL. (Julia pubtools, Python scipy, R verse+
+* `CTAN_REPO`: The CTAN mirror URL. (Julia pubtools, Mojo/Python scipy, R verse+
   images)
 * `OMP_NUM_THREADS`: If unset (default), BLAS/OpenMP will use as many
   threads as possible.  
@@ -95,11 +100,11 @@ The following startup scripts are put in place:
 
 The default shell is Zsh.
 
-### TeX packages (Julia pubtools, Python scipy, R verse+ images)
+### TeX packages (Julia pubtools, Mojo/Python scipy, R verse+ images)
 
 In addition to the TeX packages used in
 [rocker/verse](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_texlive.sh),
-[jupyter/scipy-notebook](https://github.com/jupyter/docker-stacks/blob/main/scipy-notebook/Dockerfile)
+[jupyter/scipy-notebook](https://github.com/jupyter/docker-stacks/blob/main/images/scipy-notebook/Dockerfile)
 and required for `nbconvert`, the
 [packages requested by the community](https://yihui.org/gh/tinytex/tools/pkgs-yihui.txt)
 are installed.
@@ -125,7 +130,10 @@ are installed.
     * Show: Cpufreq: false
 * Zsh
   * Oh My Zsh: `~/.zshrc`
-    * Set PATH so it includes user's private bin if it exists
+    * Set `PATH` so it includes user's private bin if it exists
+* Bash: [/etc/skel/.profile](.devcontainer/conf/shell/etc/skel/.profile)
+  * Update `PATH` for login shells, e.g. when started as a server associated
+    with JupyterHub.
 
 **Julia images**
 
@@ -133,6 +141,10 @@ are installed.
   * Extensions > Julia
     * Enable Crash Reporter: false
     * Enable Telemetry: false
+
+**Mojo images**
+
+* [Mojo LSP Server](.devcontainer/mojo-base/conf/jupyterlab/usr/local/etc/jupyter/jupyter_server_config.d/mojo-lsp-server.json)
 
 **R images**
 
@@ -159,6 +171,8 @@ are installed.
 * VS Code Server: Manage > Settings
 * Zsh
   * Oh My Zsh: Edit `~/.zshrc`.
+* Bash
+  * Edit `~/.bashrc`.
 
 **R images**
 
@@ -171,8 +185,13 @@ are installed.
 
 The Python version is selected as follows:
 
-* Julia/R images: The latest [Python version numba is compatible with](https://numba.readthedocs.io/en/stable/user/installing.html#numba-support-info).
+* Julia/Mojo/R images: The latest Python version
+  [Numba](https://numba.readthedocs.io/en/stable/user/installing.html#numba-support-info),
+  [PyTorch](https://github.com/pytorch/pytorch/blob/main/RELEASE.md#release-compatibility-matrix)
+  and
+  [TensorFlow](https://www.tensorflow.org/install/source#cpu) are compatible
+  with.
 * Python images: The latest Python version, regardless of whether all packages –
-  such as numba, tensorflow, etc. – are already compatible with it.
+  such as Numba, PyTorch, TensorFlow, etc. – are already compatible with it.
 
 This Python version is installed at `/usr/local/bin`.

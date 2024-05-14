@@ -1,12 +1,11 @@
 {
-  "name": "CUDA R base",
+  "name": "Mojo base",
   "build": {
-    "dockerfile": "../R.Dockerfile",
+    "dockerfile": "../Mojo.Dockerfile",
     "context": "..",
     "args": {
-      "BUILD_ON_IMAGE": "glcr.b-data.ch/cuda/r/base",
-      // "CRAN": "https://cloud.r-project.org",
-      "R_VERSION": "4.4.0",
+      "BUILD_ON_IMAGE": "glcr.b-data.ch/mojo/base",
+      "MOJO_VERSION": "24.3.0",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.2.0",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
@@ -18,8 +17,8 @@
   },
 
   "onCreateCommand": "onCreateCommand.sh",
-  "postStartCommand": "postStartCommand.sh && ${HOME}/.local/bin/dockerSystemPrune.sh",
-  "postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh && nvidia_entrypoint.sh",
+  "postStartCommand": "${HOME}/.local/bin/dockerSystemPrune.sh",
+  "postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh",
 
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
@@ -50,12 +49,12 @@
         "GitLab.gitlab-workflow",
         "grapecity.gc-excelviewer",
         "mhutchie.git-graph",
+        "modular-mojotools.vscode-mojo",
         "ms-python.python",
         "ms-toolsai.jupyter",
         "mutantdino.resourcemonitor",
         "piotrpalarz.vscode-gitignore-generator",
         "redhat.vscode-yaml",
-        "REditorSupport.r",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "ms-python.black-formatter",
@@ -68,14 +67,6 @@
         "gitlab.duoChat.enabled": false,
         "gitlens.showWelcomeOnInstall": false,
         "gitlens.showWhatsNewAfterUpgrades": false,
-        "r.bracketedPaste": true,
-        "r.plot.useHttpgd": true,
-        "r.rterm.linux": "/usr/local/bin/R",
-        "r.rterm.option": [
-          "--no-save",
-          "--no-restore"
-        ],
-        "r.workspaceViewer.showObjectSize": true,
         "resmon.show.battery": false,
         "resmon.show.cpufreq": false
       }
@@ -84,29 +75,21 @@
 
   // Set 'remoteUser' to 'root' to connect as root instead.
   "remoteUser": "vscode",
-  "workspaceMount": "source=cuda-r-base-home-vscode,target=/home/vscode,type=volume",
-  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-r-base-home-vscode,target=/home/vscode,type=bind",
+  "workspaceMount": "source=dsdc-mojo-base-home-vscode,target=/home/vscode,type=volume",
+  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-base-home-vscode,target=/home/vscode,type=bind",
   "workspaceFolder": "/home/vscode",
 
   // "remoteUser": "root",
-  // "workspaceMount": "source=cuda-r-base-root,target=/root,type=volume",
-  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-r-base-root,target=/root,type=bind",
+  // "workspaceMount": "source=dsdc-mojo-base-root,target=/root,type=volume",
+  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-base-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
-  // By default,
-  // - CUDA will use all available CUDA-capable devices.
-  // - BLAS/OpenMP will use as many threads as possible.
-  // Set the following environment variables to control the exact device(s)/number to use.
+  // By default, BLAS/OpenMP will use as many threads as possible.
+  // Set the following environment variable to control the exact number to use.
   "remoteEnv": {
-    // "CUDA_VISIBLE_DEVICES": "0",
     // "OMP_NUM_THREADS": "1",
     //
     // Pip: Install packages to the user site
     "PIP_USER": "1"
-  },
-
-  "runArgs": [
-    "--gpus=all",
-    "--shm-size=2g"
-  ]
+  }
 }

@@ -3,7 +3,7 @@ ARG PYTHON_VERSION=3.12.3
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
-ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-18.19.1}}
+ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-18.20.2}}
 
 ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
@@ -17,6 +17,7 @@ COPY conf/shell /files
 COPY scripts /files
 
 RUN if [ -n "${CUDA_VERSION}" ]; then \
+    ## Use entrypoint of CUDA image
     mv /opt/nvidia/entrypoint.d /opt/nvidia/nvidia_entrypoint.sh \
       /files/usr/local/bin; \
     nlc=$(wc -l < /files/usr/local/bin/nvidia_entrypoint.sh); \
@@ -40,7 +41,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 ARG BUILD_ON_IMAGE
 ARG UNMINIMIZE
-ARG JUPYTERLAB_VERSION=4.1.8
+ARG JUPYTERLAB_VERSION=4.2.0
 
 ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${PYTHON_VERSION} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
@@ -112,6 +113,9 @@ ARG NV
 ARG INSTALL_DOCKER_CLI
 
 ENV NODE_VERSION=${NV}
+
+  ## Prevent Corepack showing the URL when it needs to download software
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
   ## Install Node.js...
 COPY --from=nsi /usr/local /usr/local
@@ -204,11 +208,11 @@ RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     update-locale --reset LANG="$LANG"; \
   fi
 
-## Unset environment variable BUILD_DATE
-ENV BUILD_DATE=
-
 ## Copy files as late as possible to avoid cache busting
 COPY --from=files /files /
 
 ## Copy shellcheck as late as possible to avoid cache busting
 COPY --from=sci --chown=root:root /bin/shellcheck /usr/local/bin
+
+## Unset environment variable BUILD_DATE
+ENV BUILD_DATE=
