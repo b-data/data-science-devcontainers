@@ -19,6 +19,7 @@ COPY julia-base/scripts /files
 COPY scripts /files
 
 RUN if [ -n "${CUDA_VERSION}" ]; then \
+    ## Use entrypoint of CUDA image
     mv /opt/nvidia/entrypoint.d /opt/nvidia/nvidia_entrypoint.sh \
       /files/usr/local/bin; \
     nlc=$(wc -l < /files/usr/local/bin/nvidia_entrypoint.sh); \
