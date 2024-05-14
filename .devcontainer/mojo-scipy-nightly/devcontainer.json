@@ -1,0 +1,97 @@
+{
+  "name": "Mojo scipy (nightly)",
+  "build": {
+    "dockerfile": "../Mojo.Dockerfile",
+    "context": "..",
+    "args": {
+      "BUILD_ON_IMAGE": "glcr.b-data.ch/mojo/scipy",
+      "MOJO_VERSION": "nightly",
+      // "UNMINIMIZE": "unset-to-keep-minimized",
+      "JUPYTERLAB_VERSION": "4.2.0",
+      // "INSTALL_DEVTOOLS": "unset-to-not-install",
+      "NODE_VERSION": "18.20.2",
+      "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
+      "SET_LANG": "en_US.UTF-8",
+      "SET_TZ": "Etc/UTC"
+    }
+  },
+
+  "onCreateCommand": "onCreateCommand.sh",
+  "postStartCommand": "${HOME}/.local/bin/dockerSystemPrune.sh",
+  "postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh",
+
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true,
+      "upgradePackages": false,
+      "username": "vscode",
+      "userUid": "automatic",
+      "userGid": "automatic"
+    },
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": false
+    },
+    // A comma separated list of packages to install
+    "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+      "packages": ""
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "alefragnani.project-manager",
+        "christian-kohler.path-intellisense",
+        "DavidAnson.vscode-markdownlint",
+        "eamodio.gitlens@11.7.0",
+        "editorconfig.editorconfig",
+        "GitHub.vscode-pull-request-github",
+        "GitLab.gitlab-workflow",
+        "grapecity.gc-excelviewer",
+        "mhutchie.git-graph",
+        "modular-mojotools.vscode-mojo-nightly",
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "mutantdino.resourcemonitor",
+        "piotrpalarz.vscode-gitignore-generator",
+        "redhat.vscode-yaml",
+        "James-Yu.latex-workshop",
+        "quarto.quarto",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-python.black-formatter",
+        "timonwong.shellcheck",
+        "exiasr.hadolint",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "gitlab.aiAssistedCodeSuggestions.enabled": false,
+        "gitlab.duoChat.enabled": false,
+        "gitlens.showWelcomeOnInstall": false,
+        "gitlens.showWhatsNewAfterUpgrades": false,
+        "resmon.show.battery": false,
+        "resmon.show.cpufreq": false
+      }
+    }
+  },
+
+  // Set 'remoteUser' to 'root' to connect as root instead.
+  "remoteUser": "vscode",
+  "workspaceMount": "source=dsdc-mojo-scipy-nightly-home-vscode,target=/home/vscode,type=volume",
+  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-scipy-nightly-home-vscode,target=/home/vscode,type=bind",
+  "workspaceFolder": "/home/vscode",
+
+  // "remoteUser": "root",
+  // "workspaceMount": "source=dsdc-mojo-scipy-nightly-root,target=/root,type=volume",
+  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-scipy-nightly-root,target=/root,type=bind",
+  // "workspaceFolder": "/root",
+
+  // By default, BLAS/OpenMP will use as many threads as possible.
+  // Set the following environment variable to control the exact number to use.
+  "remoteEnv": {
+    // "OMP_NUM_THREADS": "1",
+    //
+    // Pip: Install packages to the user site
+    "PIP_USER": "1"
+  }
+}
