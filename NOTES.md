@@ -83,9 +83,9 @@ The following startup scripts are put in place:
 * `PARENT_IMAGE_BUILD_DATE`: The date the parent image was built (ISO 8601
   format).
 * `LANG`: The locale inside the container.  
-  :point_right: User-settable at build time with `SET_LANG`.
+  :point_right: User-settable at build time with `LANG`.
 * `TZ`: The timezone inside the container.  
-  :point_right: User-settable at build time with `SET_TZ`.
+  :point_right: User-settable at build time with `TZ`.
 * `PIP_USER`: The Python package install directory.  
   :point_right: User-settable at runtime.
   * `1`: user directory (`~/.local`, persistent (default))
