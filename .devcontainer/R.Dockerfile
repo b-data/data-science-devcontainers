@@ -44,6 +44,8 @@ ENV PARENT_IMAGE_CRAN=${CRAN}
 
 ARG BUILD_ON_IMAGE
 ARG CRAN
+ARG NCPUS
+ARG R_BINARY_PACKAGES
 ARG UNMINIMIZE
 ARG JUPYTERLAB_VERSION=4.2.0
 
@@ -51,6 +53,7 @@ ARG CRAN_OVERRIDE=${CRAN}
 
 ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${R_VERSION} \
     CRAN=${CRAN_OVERRIDE:-$CRAN} \
+    R_BINARY_PACKAGES=${R_BINARY_PACKAGES} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
     PARENT_IMAGE_BUILD_DATE=${BUILD_DATE}
 
@@ -79,6 +82,25 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
     nbclassic \
     "python-lsp-server[all]" \
 ## Install R related stuff
+  && CRAN_ORIG=$(sed -n "s/.*CRAN='\(.*\)'),.*$/\1/p" "$(R RHOME)/etc/Rprofile.site") \
+  && CRAN_ORIG_P3M=$(echo "$CRAN_ORIG" | sed 's/packagemanager.posit.co/p3m.dev/g') \
+  ## Update CRAN mirror
+  && if [ "$CRAN" != "$CRAN_ORIG" ]; then \
+    sed -i "s|$CRAN_ORIG|$CRAN|g" "$(R RHOME)/etc/Rprofile.site"; \
+  fi \
+  ## Use binary packages
+  && if [ "$R_BINARY_PACKAGES" = "1" ] || [ "$R_BINARY_PACKAGES" = "yes" ]; then \
+    if [ "$CRAN" = "$CRAN_ORIG" ] || [ "$CRAN" = "$CRAN_ORIG_P3M" ]; then \
+      . /etc/os-release; \
+      ## Set options repos and HTTPUserAgent in Rprofile.site
+      sed -i "s|cran|cran/__linux__/$VERSION_CODENAME|g" \
+        "$(R RHOME)/etc/Rprofile.site"; \
+      echo '# https://docs.rstudio.com/rspm/admin/serving-binaries/#binaries-r-configuration-linux' \
+        >> "$(R RHOME)/etc/Rprofile.site"; \
+      echo 'options(HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(), paste(getRversion(), R.version["platform"], R.version["arch"], R.version["os"])))' \
+        >> "$(R RHOME)/etc/Rprofile.site"; \
+    fi \
+  fi \
   ## Install pak
   && pkgType="$(Rscript -e 'cat(.Platform$pkgType)')" \
   && os="$(Rscript -e 'cat(R.Version()$os)')" \
@@ -86,7 +108,7 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   && install2.r -r "https://r-lib.github.io/p/pak/stable/$pkgType/$os/$arch" -e \
     pak \
   ## Install the R kernel for Jupyter, languageserver and decor
-  && install2.r -s -d TRUE -n "$(($(nproc)+1))" -e \
+  && install2.r -s -d TRUE -n "${NCPUS:-$(($(nproc)+1))}" -e \
     IRkernel \
     languageserver \
     decor \
@@ -248,9 +270,7 @@ RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     locale-gen; \
     echo "Setting LANG to $LANG"; \
     update-locale --reset LANG="$LANG"; \
-  fi \
-  ## Update CRAN
-  && sed -i "s|$PARENT_IMAGE_CRAN|$CRAN|g" "$(R RHOME)/etc/Rprofile.site"
+  fi
 
 ## Copy files as late as possible to avoid cache busting
 COPY --from=files /files /
