@@ -49,7 +49,12 @@ The following startup scripts are put in place:
 * `R_VERSION`
 * `QGIS_VERSION` (R qgisprocess image)
 * `OTB_VERSION` (R qgisprocess image)
-* `CRAN`: The CRAN mirror URL.
+* `CRAN`: The CRAN mirror URL.  
+  :point_right: User-settable at build time.
+* `R_BINARY_PACKAGES`: R package type to use.  
+  :point_right: User-settable at build time.
+  * unset: Source packages. (default)
+  * `1`/`yes`: Binary packages.
 * `DOWNLOAD_STATIC_LIBV8=1`: R (V8): Installing V8 on Linux, the alternative
   way.
 * `RETICULATE_MINICONDA_ENABLED=0`: R (reticulate): Disable prompt to install
@@ -83,9 +88,9 @@ The following startup scripts are put in place:
 * `PARENT_IMAGE_BUILD_DATE`: The date the parent image was built (ISO 8601
   format).
 * `LANG`: The locale inside the container.  
-  :point_right: User-settable at build time with `SET_LANG`.
+  :point_right: User-settable at build time.
 * `TZ`: The timezone inside the container.  
-  :point_right: User-settable at build time with `SET_TZ`.
+  :point_right: User-settable at build time.
 * `PIP_USER`: The Python package install directory.  
   :point_right: User-settable at runtime.
   * `1`: user directory (`~/.local`, persistent (default))
