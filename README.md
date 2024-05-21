@@ -319,4 +319,6 @@ This project follows the
 
 ## License
 
-[MIT](LICENSE) © 2023 b-data GmbH
+Copyright © 2023 b-data GmbH
+
+Distributed under the terms of the [MIT License](LICENSE).
