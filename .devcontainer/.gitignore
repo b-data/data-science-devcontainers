@@ -54,6 +54,12 @@
 !/r-base/conf/jupyterlab/usr/local/share/jupyter/
 !/r-base/conf/jupyterlab/usr/local/share/jupyter/lab/
 !/r-base/conf/jupyterlab/usr/local/share/jupyter/lab/settings/
+!/r-base/conf/rstudio/
+!/r-base/conf/rstudio/etc/
+!/r-base/conf/rstudio/etc/rstudio/
+!/r-base/conf/rstudio/etc/skel/
+!/r-base/conf/rstudio/etc/skel/.config/
+!/r-base/conf/rstudio/etc/skel/.config/rstudio/
 !/r-base/
 !/r-base/scripts/
 !/r-base/scripts/usr/
@@ -83,6 +89,9 @@
 !/python-*/devcontainer.json
 !/r-*/devcontainer.json
 !/r-base/conf/jupyterlab/usr/local/share/jupyter/lab/settings/*.json
+!/r-base/conf/rstudio/etc/rstudio/file-locks
+!/r-base/conf/rstudio/etc/rstudio/*.conf
+!/r-base/conf/rstudio/etc/skel/.config/rstudio/rstudio-prefs.json
 !/r-base/scripts/usr/local/bin/*.sh
 !/scripts/etc/skel/.local/bin/*.sh
 !/scripts/usr/local/bin/*.sh

@@ -9,11 +9,14 @@ ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
 FROM ${BUILD_ON_IMAGE}:${R_VERSION} as files
 
+ARG RSTUDIO_VERSION
+
 RUN mkdir /files
 
 COPY conf/ipython /files
 COPY conf/shell /files
 COPY r-base/conf/jupyterlab /files
+COPY r-base/conf/rstudio /files
 COPY r-base/scripts /files
 COPY scripts /files
 
@@ -24,6 +27,10 @@ RUN if [ -n "${CUDA_VERSION}" ]; then \
     nlc=$(wc -l < /files/usr/local/bin/nvidia_entrypoint.sh); \
     sed -i "$((nlc-4)),$nlc s/^/# /" \
       /files/usr/local/bin/nvidia_entrypoint.sh; \
+  fi \
+  && if [ -z "${RSTUDIO_VERSION}" ]; then \
+    rm -rf /files/etc/rstudio \
+      /files/etc/skel/.config; \
   fi \
   ## Ensure file modes are correct
   && find /files -type d -exec chmod 755 {} \; \
@@ -48,6 +55,7 @@ ARG NCPUS
 ARG R_BINARY_PACKAGES
 ARG UNMINIMIZE
 ARG JUPYTERLAB_VERSION=4.2.0
+ARG RSTUDIO_VERSION
 
 ARG CRAN_OVERRIDE=${CRAN}
 
@@ -55,6 +63,7 @@ ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${R_VERSION} \
     CRAN=${CRAN_OVERRIDE:-$CRAN} \
     R_BINARY_PACKAGES=${R_BINARY_PACKAGES} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
+    RSTUDIO_VERSION=${RSTUDIO_VERSION} \
     PARENT_IMAGE_BUILD_DATE=${BUILD_DATE}
 
 ## Unminimise if the system has been minimised
@@ -62,6 +71,62 @@ RUN if [ "$(command -v unminimize)" ] && [ -n "$UNMINIMIZE" ]; then \
     sed -i "s/apt-get upgrade/#apt-get upgrade/g" "$(which unminimize)"; \
     yes | unminimize; \
     sed -i "s/#apt-get upgrade/apt-get upgrade/g" "$(which unminimize)"; \
+  fi
+
+## Install RStudio
+RUN if [ -n "${RSTUDIO_VERSION}" ]; then \
+    dpkgArch="$(dpkg --print-architecture)"; \
+    . /etc/os-release; \
+    apt-get update; \
+    ## Install lsb-release
+    if [ "$ID" = "debian" ]; then \
+      dpkg --compare-versions "$VERSION_ID" lt "12"; \
+      condDebian=$?; \
+    fi; \
+    if [ "$ID" = "ubuntu" ]; then \
+      dpkg --compare-versions "$VERSION_ID" lt "23.04"; \
+      condUbuntu=$?; \
+    fi; \
+    if [ "$condDebian" = "0" ] || [ "$condUbuntu" = "0" ]; then \
+      curl -sL \
+        http://mirrors.kernel.org/debian/pool/main/l/lsb-release-minimal/lsb-release_12.0-2_all.deb \
+        -o lsb-release.deb; \
+      dpkg -i lsb-release.deb; \
+      rm lsb-release.deb; \
+    else \
+      apt-get -y install --no-install-recommends lsb-release; \
+    fi; \
+    ## Map Ubuntu codename
+    if [ "$ID" = "debian" ]; then \
+      case "$VERSION_CODENAME" in \
+        bullseye) UBUNTU_CODENAME="focal" ;; \
+        bookworm) UBUNTU_CODENAME="jammy" ;; \
+        *) echo "error: Debian $VERSION unsupported"; exit 1 ;; \
+      esac; \
+    fi; \
+    ## Install RStudio
+    apt-get -y install --no-install-recommends \
+      libapparmor1 \
+      libpq5 \
+      libssl-dev; \
+    rm -rf /var/lib/apt/lists/*; \
+    DOWNLOAD_FILE=rstudio-server-$(echo $RSTUDIO_VERSION | tr + -)-$dpkgArch.deb; \
+    wget --progress=dot:mega \
+      "https://download2.rstudio.org/server/$UBUNTU_CODENAME/$dpkgArch/$DOWNLOAD_FILE" || \
+      wget --progress=dot:mega \
+      "https://s3.amazonaws.com/rstudio-ide-build/server/$UBUNTU_CODENAME/$dpkgArch/$DOWNLOAD_FILE"; \
+    dpkg -i "$DOWNLOAD_FILE"; \
+    rm "$DOWNLOAD_FILE"; \
+    ## Enable rstudio-server and rserver system-wide
+    ln -fs /usr/lib/rstudio-server/bin/rstudio-server /usr/local/bin; \
+    ln -fs /usr/lib/rstudio-server/bin/rserver /usr/local/bin; \
+    ## Check for quarto redundancy
+    if [ -d /opt/quarto ]; then \
+      ## Remove RStudio quarto
+      rm -rf /usr/lib/rstudio-server/bin/quarto; \
+      ## Link to system quarto
+      ln -s /opt/quarto /usr/lib/rstudio-server/bin/quarto; \
+    fi \
   fi
 
 RUN dpkgArch="$(dpkg --print-architecture)" \
@@ -81,6 +146,7 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
     nbconvert \
     nbclassic \
     "python-lsp-server[all]" \
+    ${RSTUDIO_VERSION:+jupyter-rsession-proxy} \
 ## Install R related stuff
   && CRAN_ORIG=$(sed -n "s/.*CRAN='\(.*\)'),.*$/\1/p" "$(R RHOME)/etc/Rprofile.site") \
   && CRAN_ORIG_P3M=$(echo "$CRAN_ORIG" | sed 's/packagemanager.posit.co/p3m.dev/g') \
@@ -136,6 +202,8 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
     >> "$(R RHOME)/etc/Rprofile.site" \
   ## REditorSupport.r: Disable help panel and revert to old behaviour
   && echo "options(vsc.helpPanel = FALSE)" >> "$(R RHOME)/etc/Rprofile.site" \
+  ## Change ownership and permission of $(R RHOME)/etc/*.site
+  && chmod go+w "$(R RHOME)/etc" "$(R RHOME)/etc/"*.site \
   ## Clean up
   && rm -rf /tmp/* \
     /root/.cache \
