@@ -12,8 +12,6 @@
     "python_project_environment_automatic_activate": false,
     "reuse_sessions_for_project_links": true,
     "save_workspace": "never",
-    "server_editor_font": "MesloLGS NF",
-    "server_editor_font_enabled": true,
     "style_diagnostics": true,
     "warn_variable_defined_but_not_used": true
 }
