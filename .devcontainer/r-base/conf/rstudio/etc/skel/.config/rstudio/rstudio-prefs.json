@@ -1,0 +1,19 @@
+{
+    "auto_append_newline": true,
+    "check_arguments_to_r_function_calls": true,
+    "check_for_updates": false,
+    "check_unexpected_assignment_in_function_call": true,
+    "default_encoding": "UTF-8",
+    "default_open_project_location": "~/projects",
+    "editor_theme": "Tomorrow Night",
+    "initial_working_directory": "~/working",
+    "load_workspace": false,
+    "posix_terminal_shell": "zsh",
+    "python_project_environment_automatic_activate": false,
+    "reuse_sessions_for_project_links": true,
+    "save_workspace": "never",
+    "server_editor_font": "MesloLGS NF",
+    "server_editor_font_enabled": true,
+    "style_diagnostics": true,
+    "warn_variable_defined_but_not_used": true
+}

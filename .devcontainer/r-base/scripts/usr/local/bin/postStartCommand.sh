@@ -7,6 +7,24 @@ set -e
 # Create R user library
 mkdir -p "$(Rscript -e "cat(Sys.getenv('R_LIBS_USER'))")"
 
+if [ -n "${RSTUDIO_VERSION}" ]; then
+  # Set environment variables in Renviron.site
+  exclude_vars="HOME LD_LIBRARY_PATH OLDPWD PATH PWD RSTUDIO_VERSION SHLVL"
+  for var in $(compgen -e); do
+    [[ ! $exclude_vars =~ $var ]] && echo "$var=${!var}" \
+      >> "$(R RHOME)/etc/Renviron.site"
+  done
+  RS_USD="$HOME/.config/rstudio"
+  # Install RStudio settings if home directory is bind mounted
+  mkdir -p "$RS_USD"
+  if [[ ! -f "$RS_USD/rstudio-prefs.json" ]]; then
+    cp -a /etc/skel/.config/rstudio/rstudio-prefs.json \
+      "$RS_USD/rstudio-prefs.json"
+  fi
+  # Create user's working folder
+  mkdir -p "$HOME/working"
+fi
+
 # Copy QGIS stuff from skeleton directory if home directory is bind mounted
 if [ "$(id -un)" == "root" ]; then
   if [ "$(command -v qgis)" ] && [ ! -d /root/.local/share ]; then
