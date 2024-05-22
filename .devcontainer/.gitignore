@@ -46,6 +46,7 @@
 !/mojo-base/conf/jupyterlab/usr/local/etc/jupyter/jupyter_server_config.d/
 !/python-*/
 !/r-*/
+!/r-base/
 !/r-base/conf/
 !/r-base/conf/jupyterlab/
 !/r-base/conf/jupyterlab/usr/
@@ -60,7 +61,6 @@
 !/r-base/conf/rstudio/etc/skel/
 !/r-base/conf/rstudio/etc/skel/.config/
 !/r-base/conf/rstudio/etc/skel/.config/rstudio/
-!/r-base/
 !/r-base/scripts/
 !/r-base/scripts/usr/
 !/r-base/scripts/usr/local/
