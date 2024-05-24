@@ -9,7 +9,7 @@
       // "CRAN": "https://cloud.r-project.org",
       "R_BINARY_PACKAGES": "1",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.2.0",
+      "JUPYTERLAB_VERSION": "4.2.1",
       // "RSTUDIO_VERSION": "2024.04.1+748",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "18.20.3",
