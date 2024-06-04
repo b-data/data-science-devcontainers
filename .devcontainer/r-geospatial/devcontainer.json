@@ -12,7 +12,7 @@
       "JUPYTERLAB_VERSION": "4.2.1",
       // "RSTUDIO_VERSION": "2024.04.1+748",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
-      "NODE_VERSION": "18.20.3",
+      "NODE_VERSION": "20.14.0",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
       "LANG": "en_US.UTF-8",
       "TZ": "Etc/UTC"
