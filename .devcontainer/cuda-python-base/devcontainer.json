@@ -5,7 +5,7 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/cuda/python/base",
-      "PYTHON_VERSION": "3.12.3",
+      "PYTHON_VERSION": "3.12.4",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.2.1",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
