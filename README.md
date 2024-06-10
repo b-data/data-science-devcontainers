@@ -1,4 +1,4 @@
-# \[CUDA-enabled\] Data Science Dev Containers
+# \[CUDA-based\] Data Science Dev Containers
 
 <!-- markdownlint-disable line-length -->
 [![minimal-readme compliant](https://img.shields.io/badge/readme%20style-minimal-brightgreen.svg)](https://github.com/RichardLitt/standard-readme/blob/main/example-readmes/minimal-readme.md) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <a href="https://liberapay.com/benz0li/donate"><img src="https://liberapay.com/assets/widgets/donate.svg" alt="Donate using Liberapay" height="20"></a> <a href='https://codespaces.new/b-data/data-science-devcontainers?hide_repo_select=true&ref=main'><img src='https://github.com/codespaces/badge.svg' alt='Open in GitHub Codespaces' height="20" style='max-width: 100%;'></a>
@@ -23,12 +23,12 @@ Dev Containers considered stable for
 
 **Parent images**
 
-* \[CUDA-enabled\] [Julia docker stack](https://github.com/b-data/julia-docker-stack)
+* \[CUDA-based\] [Julia docker stack](https://github.com/b-data/julia-docker-stack)
 * [Mojo docker stack](https://github.com/b-data/mojo-docker-stack)
-* \[CUDA-enabled\] [Python docker stack](https://github.com/b-data/python-docker-stack)
-* \[CUDA-enabled\] [R docker stack](https://github.com/b-data/r-docker-stack)
+* \[CUDA-based\] [Python docker stack](https://github.com/b-data/python-docker-stack)
+* \[CUDA-based\] [R docker stack](https://github.com/b-data/r-docker-stack)
 
-Extended to match the \[CUDA-enabled\] [Jupyter](https://github.com/b-data/jupyterlab-julia-docker-stack)[Lab](https://github.com/b-data/jupyterlab-mojo-docker-stack)
+Extended to match the \[CUDA-based\] [Jupyter](https://github.com/b-data/jupyterlab-julia-docker-stack)[Lab](https://github.com/b-data/jupyterlab-mojo-docker-stack)
 [docker](https://github.com/b-data/jupyterlab-python-docker-stack)
 [stacks](https://github.com/b-data/jupyterlab-r-docker-stack), except that
 
@@ -138,7 +138,7 @@ Extended to match the \[CUDA-enabled\] [Jupyter](https://github.com/b-data/jupyt
 
 ## Prerequisites
 
-Dev Containers require either Docker or Podman[^2] to be installed. CUDA-enabled
+Dev Containers require either Docker or Podman[^2] to be installed. CUDA-based
 versions require the following in addition:
 
 * NVIDIA GPU
@@ -296,13 +296,13 @@ What makes this project different:
    :information_source: Runs on Apple M series using Docker Desktop.
 1. Base image: [Debian](https://hub.docker.com/_/debian) instead of
    [Ubuntu](https://hub.docker.com/_/ubuntu)  
-   :information_source: CUDA-enabled images are Ubuntu-based.
+   :information_source: CUDA-based images use Ubuntu.
 1. IDE: [JupyterLab](https://github.com/jupyterlab/jupyterlab) next to
    [VS Code](https://github.com/microsoft/vscode)
 1. Just Python – no [Conda](https://github.com/conda/conda) /
    [Mamba](https://github.com/mamba-org/mamba)
 
-CUDA-enabled images:
+CUDA-based images:
 
 1. Derived from [`nvidia/cuda:12.4.1-runtime-ubuntu22.04`](https://hub.docker.com/r/nvidia/cuda/tags?page=1&name=12.4.1-runtime-ubuntu22.04)
 1. TensortRT and TensorRT plugin libraries
