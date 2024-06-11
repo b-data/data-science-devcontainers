@@ -10,7 +10,7 @@
       "R_BINARY_PACKAGES": "1",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.2.2",
-      // "RSTUDIO_VERSION": "2024.04.1+748",
+      // "RSTUDIO_VERSION": "2024.04.2+764",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "20.14.0",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
