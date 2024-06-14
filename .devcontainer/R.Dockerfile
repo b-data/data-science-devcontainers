@@ -209,7 +209,7 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
     /root/.cache \
     /root/.ipython \
     /root/.local/share/jupyter \
-## Dev Container only
+## Dev container only
   ## Install hadolint
   && case "$dpkgArch" in \
     amd64) tarArch="x86_64" ;; \

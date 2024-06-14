@@ -96,7 +96,7 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   ## Clean up
   && rm -rf /tmp/* \
     /root/.cache \
-## Dev Container only
+## Dev container only
   ## Install hadolint
   && case "$dpkgArch" in \
     amd64) tarArch="x86_64" ;; \

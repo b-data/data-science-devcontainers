@@ -1,18 +1,18 @@
-# \[CUDA-based\] Data Science Dev Containers
+# \[CUDA-based\] Data Science dev containers
 
 <!-- markdownlint-disable line-length -->
 [![minimal-readme compliant](https://img.shields.io/badge/readme%20style-minimal-brightgreen.svg)](https://github.com/RichardLitt/standard-readme/blob/main/example-readmes/minimal-readme.md) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <a href="https://liberapay.com/benz0li/donate"><img src="https://liberapay.com/assets/widgets/donate.svg" alt="Donate using Liberapay" height="20"></a> <a href='https://codespaces.new/b-data/data-science-devcontainers?hide_repo_select=true&ref=main'><img src='https://github.com/codespaces/badge.svg' alt='Open in GitHub Codespaces' height="20" style='max-width: 100%;'></a>
 <!-- markdownlint-enable line-length -->
 
 \[GPU accelerated\] Multi-arch (`linux/amd64`, `linux/arm64/v8`) Data Science
-Dev Containers:
+dev containers:
 
 * \[CUDA\] Julia base, pubtools
 * Mojo base, scipy
 * \[CUDA\] Python base, scipy
 * \[CUDA\] R base, tidyverse, verse, geospatial, qgisprocess
 
-Dev Containers considered stable for
+Dev containers considered stable for
 
 * Julia versions ≥ 1.7.3
 * Mojo versions ≥ 24.3.0
@@ -32,12 +32,12 @@ Extended to match the \[CUDA-based\] [Jupyter](https://github.com/b-data/jupyter
 [docker](https://github.com/b-data/jupyterlab-python-docker-stack)
 [stacks](https://github.com/b-data/jupyterlab-r-docker-stack), except that
 
-* GPU accelerated Dev Containers are based on the
+* GPU accelerated dev containers are based on the
   [NVIDIA CUDA](https://hub.docker.com/r/nvidia/cuda) **runtime** flavoured
   image.
   * The JupyterLab docker stacks are based on the NVIDIA CUDA **devel**
     flavoured image.
-* Dev Containers' Oh My Zsh uses the **devcontainers theme + default font**.
+* Dev containers' Oh My Zsh uses the **devcontainers theme + default font**.
   * The JupyterLab docker stacks' Oh My Zsh uses **Powerlevel10k theme +**
     **MesloLGS NF font**.
 
@@ -122,7 +122,7 @@ Extended to match the \[CUDA-based\] [Jupyter](https://github.com/b-data/jupyter
 * [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 <!-- markdownlint-enable line-length -->
 
-[^1]: Depending on which Dev Container configuration is selected.
+[^1]: Depending on which dev container configuration is selected.
 
 </p>
 </details>
@@ -138,7 +138,7 @@ Extended to match the \[CUDA-based\] [Jupyter](https://github.com/b-data/jupyter
 
 ## Prerequisites
 
-Dev Containers require either Docker or Podman[^2] to be installed. CUDA-based
+Dev containers require either Docker or Podman[^2] to be installed. CUDA-based
 versions require the following in addition:
 
 * NVIDIA GPU
@@ -149,7 +149,7 @@ versions require the following in addition:
 [#1](https://github.com/b-data/data-science-devcontainers/issues/1) about
 limitations in Podman.
 
-:information_source: The host running the GPU accelerated Dev Containers only
+:information_source: The host running the GPU accelerated dev containers only
 requires the NVIDIA driver, the CUDA toolkit does not have to be installed.
 
 ## Install
@@ -179,9 +179,9 @@ platform:
 
 ## Usage
 
-The default Dev Container is meant to work on this repository.
+The default dev container is meant to work on this repository.
 
-Every other configuration is a custom Data Science Dev Container that behaves in
+Every other configuration is a custom Data Science dev container that behaves in
 a unique way:
 
 1. Default mount[^3]:
@@ -207,7 +207,7 @@ a unique way:
         * [r](.devcontainer/r-base/scripts/usr/local/bin/postStartCommand.sh):
           Copy QGIS stuff from skeleton directory; Create R user library
     * [`postAttachCommand`](.devcontainer/scripts/etc/skel/.local/bin/checkForUpdates.sh):
-      Codespace only: Check for Dev Container updates
+      Codespace only: Check for dev container updates
 
 [^3]: See issue
 [#2](https://github.com/b-data/data-science-devcontainers/issues/2) about
@@ -275,7 +275,7 @@ To start JupyterLab:
 Data in the following locations is persisted:
 
 1. The user's home directory (`/home/vscode`)[^5]
-1. The Dev Container's workspace (`/workspaces`)
+1. The dev container's workspace (`/workspaces`)
 
 [^5]: Alternatively for the root user (`/root`). Use with Docker/Podman in
 *rootless mode*.

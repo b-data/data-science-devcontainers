@@ -104,11 +104,11 @@
     //
     // Set QT_QPA_PLATFORM to "" if you have a local X Window Server available,
     // i.e. xorg-server (Linux), XQuartz (macOS) or VcXsrv (Windows).
-    // This allows QGIS to run from within the Dev Container.
+    // This allows QGIS to run from within the dev container.
     // "QT_QPA_PLATFORM": "",
     //
     // Additionaly, set LIBGL_ALWAYS_SOFTWARE to "1" so OpenGL rendering takes place
-    // in the Dev Container using the mesa software renderer (LLVMpipe driver).
+    // in the dev container using the mesa software renderer (LLVMpipe driver).
     // This ensures that Linux and Windows users share the same experience.
     // "LIBGL_ALWAYS_SOFTWARE": "1",
     //

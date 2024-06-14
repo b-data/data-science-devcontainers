@@ -1,6 +1,6 @@
 # Notes
 
-These Dev Containers are derived from the
+These dev containers are derived from the
 [lan](https://github.com/b-data/julia-docker-stack)[guage](https://github.com/b-data/mojo-docker-stack)
 [docker](https://github.com/b-data/python-docker-stack)
 [stacks](https://github.com/b-data/r-docker-stack), share their environment
@@ -19,7 +19,7 @@ customisation through build argument (`build.args`) and environment variables
 
 In comparison to the
 [rocker-org/devcontainer-images](https://github.com/rocker-org/devcontainer-images),
-these Dev Containers are tweaked as follows:
+these dev containers are tweaked as follows:
 
 ### Startup scripts
 
