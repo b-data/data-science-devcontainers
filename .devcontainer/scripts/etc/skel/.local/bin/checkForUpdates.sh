@@ -4,5 +4,5 @@
 
 set -e
 
-# Codespace only: Check for Dev Container updates
+# Codespace only: Check for dev container updates
 if [ -n "$CODESPACES" ]; then git -C "/workspaces/$RepositoryName" pull -q; fi
