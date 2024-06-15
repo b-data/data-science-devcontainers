@@ -1,16 +1,16 @@
-# \[CUDA-based\] Data Science dev containers
+# (CUDA-based) Data Science dev containers
 
 <!-- markdownlint-disable line-length -->
 [![minimal-readme compliant](https://img.shields.io/badge/readme%20style-minimal-brightgreen.svg)](https://github.com/RichardLitt/standard-readme/blob/main/example-readmes/minimal-readme.md) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <a href="https://liberapay.com/benz0li/donate"><img src="https://liberapay.com/assets/widgets/donate.svg" alt="Donate using Liberapay" height="20"></a> <a href='https://codespaces.new/b-data/data-science-devcontainers?hide_repo_select=true&ref=main'><img src='https://github.com/codespaces/badge.svg' alt='Open in GitHub Codespaces' height="20" style='max-width: 100%;'></a>
 <!-- markdownlint-enable line-length -->
 
-\[GPU accelerated\] Multi-arch (`linux/amd64`, `linux/arm64/v8`) Data Science
+(GPU accelerated) Multi-arch (`linux/amd64`, `linux/arm64/v8`) Data Science
 dev containers:
 
-* \[CUDA\] Julia base, pubtools
+* (CUDA) Julia base, pubtools
 * Mojo base, scipy
-* \[CUDA\] Python base, scipy
-* \[CUDA\] R base, tidyverse, verse, geospatial, qgisprocess
+* (CUDA) Python base, scipy
+* (CUDA) R base, tidyverse, verse, geospatial, qgisprocess
 
 Dev containers considered stable for
 
@@ -23,12 +23,12 @@ Dev containers considered stable for
 
 **Parent images**
 
-* \[CUDA-based\] [Julia docker stack](https://github.com/b-data/julia-docker-stack)
+* (CUDA-based) [Julia docker stack](https://github.com/b-data/julia-docker-stack)
 * [Mojo docker stack](https://github.com/b-data/mojo-docker-stack)
-* \[CUDA-based\] [Python docker stack](https://github.com/b-data/python-docker-stack)
-* \[CUDA-based\] [R docker stack](https://github.com/b-data/r-docker-stack)
+* (CUDA-based) [Python docker stack](https://github.com/b-data/python-docker-stack)
+* (CUDA-based) [R docker stack](https://github.com/b-data/r-docker-stack)
 
-Extended to match the \[CUDA-based\] [Jupyter](https://github.com/b-data/jupyterlab-julia-docker-stack)[Lab](https://github.com/b-data/jupyterlab-mojo-docker-stack)
+Extended to match the (CUDA-based) [Jupyter](https://github.com/b-data/jupyterlab-julia-docker-stack)[Lab](https://github.com/b-data/jupyterlab-mojo-docker-stack)
 [docker](https://github.com/b-data/jupyterlab-python-docker-stack)
 [stacks](https://github.com/b-data/jupyterlab-r-docker-stack), except that
 
