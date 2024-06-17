@@ -134,6 +134,7 @@ Extended to match the (CUDA-based) [Jupyter](https://github.com/b-data/jupyterla
 * [Usage](#usage)
 * [Similar project](#similar-project)
 * [Contributing](#contributing)
+* [Support](#support)
 * [License](#license)
 
 ## Prerequisites
@@ -321,6 +322,13 @@ PRs accepted.
 This project follows the
 [Contributor Covenant](https://www.contributor-covenant.org)
 [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Support
+
+Community support: Open a new disussion
+[here](https://github.com/orgs/b-data/discussions).
+
+Commercial support: Contact b-data by [email](mailto:support@b-data.ch).
 
 ## License
 
