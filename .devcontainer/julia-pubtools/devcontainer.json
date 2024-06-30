@@ -7,7 +7,7 @@
       "BUILD_ON_IMAGE": "glcr.b-data.ch/julia/pubtools",
       "JULIA_VERSION": "1.10.4",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.2.2",
+      "JUPYTERLAB_VERSION": "4.2.3",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "20.14.0",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
