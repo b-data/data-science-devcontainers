@@ -87,9 +87,15 @@ RUN if [ -n "${RSTUDIO_VERSION}" ]; then \
       dpkg --compare-versions "$VERSION_ID" lt "23.04"; \
       condUbuntu=$?; \
     fi; \
-    if [ "$condDebian" = "0" ] || [ "$condUbuntu" = "0" ]; then \
+    if [ "$condDebian" = "0" ]; then \
       curl -sL \
-        http://mirrors.kernel.org/debian/pool/main/l/lsb-release-minimal/lsb-release_12.0-2_all.deb \
+        http://mirrors.kernel.org/debian/pool/main/l/lsb-release-minimal/lsb-release_12.0-1_all.deb \
+        -o lsb-release.deb; \
+      dpkg -i lsb-release.deb; \
+      rm lsb-release.deb; \
+    elif [ "$condUbuntu" = "0" ]; then \
+      curl -sL \
+        http://mirrors.kernel.org/ubuntu/pool/main/l/lsb-release-minimal/lsb-release_12.0-2_all.deb \
         -o lsb-release.deb; \
       dpkg -i lsb-release.deb; \
       rm lsb-release.deb; \
