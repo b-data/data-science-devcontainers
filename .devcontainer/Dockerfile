@@ -80,11 +80,11 @@ RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     update-locale --reset LANG="$LANG"; \
   fi
 
+## Unset environment variable BUILD_DATE
+ENV BUILD_DATE=
+
 ## Copy files as late as possible to avoid cache busting
 COPY --from=files /files /
 
 ## Copy shellcheck as late as possible to avoid cache busting
 COPY --from=sci --chown=root:root /bin/shellcheck /usr/local/bin
-
-## Unset environment variable BUILD_DATE
-ENV BUILD_DATE=
