@@ -145,6 +145,7 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
 ## Install Python related stuff
   ## Install JupyterLab
   && pip install --no-cache-dir \
+    jupyter-server-proxy \
     jupyterlab=="$JUPYTERLAB_VERSION" \
     jupyterlab-git \
     jupyterlab-lsp \
@@ -346,11 +347,14 @@ RUN if [ -n "$USE_ZSH_FOR_ROOT" ]; then \
     update-locale --reset LANG="$LANG"; \
   fi
 
+## Use Jupyter Server Proxy for TensorBoard
+ENV TENSORBOARD_PROXY_URL=/proxy/%PORT%/
+
+## Unset environment variable BUILD_DATE
+ENV BUILD_DATE=
+
 ## Copy files as late as possible to avoid cache busting
 COPY --from=files /files /
 
 ## Copy shellcheck as late as possible to avoid cache busting
 COPY --from=sci --chown=root:root /bin/shellcheck /usr/local/bin
-
-## Unset environment variable BUILD_DATE
-ENV BUILD_DATE=
