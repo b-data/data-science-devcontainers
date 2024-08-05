@@ -150,15 +150,16 @@ versions require the following in addition:
 [#1](https://github.com/b-data/data-science-devcontainers/issues/1) about
 limitations in Podman.
 
+:information_source: The host running the GPU accelerated dev containers only
+requires the NVIDIA driver, the CUDA toolkit does not have to be installed.
+
 Use driver version 535
 ([Long Term Support Branch](https://docs.nvidia.com/datacenter/tesla/drivers/index.html#lifecycle))
 with [NVIDIA Data Center GPUs](https://resources.nvidia.com/l/en-us-gpu) or
 [select NGC-Ready NVIDIA RTX boards](https://docs.nvidia.com/certification-programs/ngc-ready-systems/index.html)
 to ensure
 [forward compatibility](https://docs.nvidia.com/deploy/cuda-compatibility/index.html#forward-compatibility)
-until June 2026.  
-:information_source: The host running the GPU accelerated dev containers only
-requires the NVIDIA driver, the CUDA toolkit does not have to be installed.
+until June 2026.
 
 ## Install
 
