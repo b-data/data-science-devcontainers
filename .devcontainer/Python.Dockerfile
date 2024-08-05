@@ -61,6 +61,14 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   && apt-get -y install --no-install-recommends --only-upgrade \
     ca-certificates \
     openssl \
+## Install CUDA related stuff
+  && if [ -n "${CUDA_VERSION}" ]; then \
+    ## Install command-line tools and nvcc
+    CUDA_VERSION_MAJ_MIN_DASH=$(echo ${CUDA_VERSION%.*} | tr '.' '-'); \
+    apt-get -y install --no-install-recommends \
+      cuda-command-line-tools-${CUDA_VERSION_MAJ_MIN_DASH}=${NV_CUDA_LIB_VERSION} \
+      cuda-nvcc-${CUDA_VERSION_MAJ_MIN_DASH}; \
+  fi \
 ## Install Python related stuff
   ## Install JupyterLab
   && pip install --no-cache-dir \
