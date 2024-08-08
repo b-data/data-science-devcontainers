@@ -1,5 +1,5 @@
 ARG BUILD_ON_IMAGE=glcr.b-data.ch/python/base
-ARG PYTHON_VERSION=3.12.4
+ARG PYTHON_VERSION=3.12.5
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
@@ -61,6 +61,14 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   && apt-get -y install --no-install-recommends --only-upgrade \
     ca-certificates \
     openssl \
+## Install CUDA related stuff
+  && if [ -n "${CUDA_VERSION}" ]; then \
+    ## Install command-line tools and nvcc
+    CUDA_VERSION_MAJ_MIN_DASH=$(echo ${CUDA_VERSION%.*} | tr '.' '-'); \
+    apt-get -y install --no-install-recommends \
+      cuda-command-line-tools-${CUDA_VERSION_MAJ_MIN_DASH}=${NV_CUDA_LIB_VERSION} \
+      cuda-nvcc-${CUDA_VERSION_MAJ_MIN_DASH}; \
+  fi \
 ## Install Python related stuff
   ## Install JupyterLab
   && pip install --no-cache-dir \

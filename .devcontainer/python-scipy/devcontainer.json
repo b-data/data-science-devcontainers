@@ -5,7 +5,7 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/python/scipy",
-      "PYTHON_VERSION": "3.12.4",
+      "PYTHON_VERSION": "3.12.5",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.2.4",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
