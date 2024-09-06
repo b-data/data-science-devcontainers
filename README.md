@@ -313,7 +313,7 @@ What makes this project different:
 
 CUDA-based images:
 
-1. Derived from [`nvidia/cuda:12.6.0-runtime-ubuntu22.04`](https://hub.docker.com/r/nvidia/cuda/tags?page=1&name=12.6.0-runtime-ubuntu22.04)
+1. Derived from [`nvidia/cuda:12.6.1-runtime-ubuntu22.04`](https://hub.docker.com/r/nvidia/cuda/tags?page=1&name=12.6.1-runtime-ubuntu22.04)
 1. TensortRT and TensorRT plugin libraries
 
 See [Notes](NOTES.md) and [CUDA Notes](CUDA_NOTES.md) for tweaks, settings, etc.
