@@ -5,7 +5,7 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/mojo/scipy",
-      "MOJO_VERSION": "24.4.0",
+      "MOJO_VERSION": "24.5.0",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.2.5",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
@@ -18,7 +18,7 @@
 
   "onCreateCommand": "onCreateCommand.sh",
   "postStartCommand": "${HOME}/.local/bin/dockerSystemPrune.sh",
-  "postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh",
+  "postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh && postAttachCommand.sh",
 
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {

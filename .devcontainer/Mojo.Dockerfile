@@ -1,5 +1,5 @@
 ARG BUILD_ON_IMAGE=glcr.b-data.ch/mojo/base
-ARG MOJO_VERSION=24.4.0
+ARG MOJO_VERSION=24.5.0
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
@@ -18,17 +18,10 @@ COPY conf/ipython /files
 COPY conf/jupyterlab /files
 COPY conf/shell /files
 COPY mojo-base/conf/jupyterlab /files
+COPY mojo-base/scripts /files
 COPY scripts /files
 
-RUN if echo "$BUILD_ON_IMAGE" | grep -q "mojo-max"; then \
-    ## Update Modular setup
-    sed -i s/packages.modular.com_mojo/packages.modular.com_max/g \
-      /files/usr/local/etc/jupyter/jupyter_server_config.d/mojo-lsp-server.json; \
-  elif [ "${MOJO_VERSION}" = "nightly" ]; then \
-    sed -i s/packages.modular.com_mojo/packages.modular.com_nightly_mojo/g \
-      /files/usr/local/etc/jupyter/jupyter_server_config.d/mojo-lsp-server.json; \
-  fi \
-  && if [ -n "${CUDA_VERSION}" ]; then \
+RUN if [ -n "${CUDA_VERSION}" ]; then \
     ## Use entrypoint of CUDA image
     mv /opt/nvidia/entrypoint.d /opt/nvidia/nvidia_entrypoint.sh \
       /files/usr/local/bin; \

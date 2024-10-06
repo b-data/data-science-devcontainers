@@ -44,6 +44,10 @@
 !/mojo-base/conf/jupyterlab/usr/local/etc/
 !/mojo-base/conf/jupyterlab/usr/local/etc/jupyter/
 !/mojo-base/conf/jupyterlab/usr/local/etc/jupyter/jupyter_server_config.d/
+!/mojo-base/scripts/
+!/mojo-base/scripts/usr/
+!/mojo-base/scripts/usr/local/
+!/mojo-base/scripts/usr/local/bin/
 !/python-*/
 !/r-*/
 !/r-base/
@@ -86,6 +90,7 @@
 !/julia-base/scripts/usr/local/bin/*.sh
 !/mojo-*/devcontainer.json
 !/mojo-base/conf/jupyterlab/usr/local/etc/jupyter/jupyter_server_config.d/mojo-lsp-server.json
+!/mojo-base/scripts/usr/local/bin/*.sh
 !/python-*/devcontainer.json
 !/r-*/devcontainer.json
 !/r-base/conf/jupyterlab/usr/local/share/jupyter/lab/settings/*.json
