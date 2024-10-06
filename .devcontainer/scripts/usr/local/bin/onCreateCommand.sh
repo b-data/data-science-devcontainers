@@ -6,6 +6,7 @@ set -e
 
 # Add user to group users
 sudo usermod -a -G users "$(id -un)"
+newgrp users
 
 # Create user's private bin
 mkdir -p "$HOME/.local/bin"
