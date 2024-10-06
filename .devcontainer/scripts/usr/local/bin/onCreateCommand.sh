@@ -4,7 +4,13 @@
 
 set -e
 
+# Add user to group users
+sudo usermod -a -G users "$(id -un)"
+
+# Create user's private bin
 mkdir -p "$HOME/.local/bin"
+
+# Create user's projects and workspaces folder
 mkdir -p "$HOME/projects"
 mkdir -p "$HOME/workspaces"
 
@@ -63,3 +69,10 @@ sed -i "s/plugins=(git)/plugins=(docker docker-compose git git-lfs pip screen tm
 
 # Remove old .zcompdump files
 rm -f "$HOME"/.zcompdump*
+
+# Fix for older versions
+if [ -d /opt/TinyTeX ]; then
+  if [ "$(stat -c %G /opt/TinyTeX)" != "users" ]; then
+    sudo chown -R :users /opt/TinyTeX
+  fi
+fi
