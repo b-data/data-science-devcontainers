@@ -60,6 +60,8 @@ RUN if [ "$(command -v unminimize)" ] && [ -n "$UNMINIMIZE" ]; then \
   fi
 
 RUN dpkgArch="$(dpkg --print-architecture)" \
+  ## Add user vscode to group users
+  && sed -i- 's/users:x:100:/users:x:100:vscode/g' /etc/group \
   ## Ensure that common CA certificates
   ## and OpenSSL libraries are up to date
   && apt-get update \
