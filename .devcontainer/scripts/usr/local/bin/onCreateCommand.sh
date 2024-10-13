@@ -52,21 +52,31 @@ else
   fi
 fi
 
-if ! grep -q "user's private bin" "$HOME/.bashrc"; then
-  # If existent, prepend the user's private bin to PATH
-  cat "/var/tmp/snippets/rc.sh" >> "$HOME/.bashrc"
-fi
-if ! grep -q "user's private bin" "$HOME/.zshrc"; then
-  if [ "$(command -v mojo)" ]; then
-    # Append the magic bin dir to PATH
+if [ "$(command -v mojo)" ]; then
+  # Append the user's modular bin dir to PATH
+  if ! grep -q "user's modular bin dir" "$HOME/.bashrc"; then
     curl -ssL https://magic.modular.com | grep '^MODULAR_HOME\|^BIN_DIR' \
       > /tmp/magicenv
     sed -i 's/\$HOME/\\$HOME/g' /tmp/magicenv
     . /tmp/magicenv
-    echo -e "\nif [[ \"\$PATH\" != *\"${BIN_DIR}\"* ]] ; then\n    PATH=\"\$PATH:${BIN_DIR}\"\nfi" >> "$HOME/.zshrc"
+    echo -e "\n# Append the user's modular bin dir to PATH\nif [[ \"\$PATH\" != *\"${BIN_DIR}\"* ]] ; then\n    PATH=\"\$PATH:${BIN_DIR}\"\nfi" >> "$HOME/.bashrc"
     rm /tmp/magicenv
   fi
-  # If existent, prepend the user's private bin to PATH
+  if ! grep -q "user's modular bin dir" "$HOME/.zshrc"; then
+    curl -ssL https://magic.modular.com | grep '^MODULAR_HOME\|^BIN_DIR' \
+      > /tmp/magicenv
+    sed -i 's/\$HOME/\\$HOME/g' /tmp/magicenv
+    . /tmp/magicenv
+    echo -e "\n# Append the user's modular bin dir to PATH\nif [[ \"\$PATH\" != *\"${BIN_DIR}\"* ]] ; then\n    PATH=\"\$PATH:${BIN_DIR}\"\nfi" >> "$HOME/.zshrc"
+    rm /tmp/magicenv
+  fi
+fi
+
+# If existent, prepend the user's private bin to PATH
+if ! grep -q "user's private bin" "$HOME/.bashrc"; then
+  cat "/var/tmp/snippets/rc.sh" >> "$HOME/.bashrc"
+fi
+if ! grep -q "user's private bin" "$HOME/.zshrc"; then
   cat "/var/tmp/snippets/rc.sh" >> "$HOME/.zshrc"
 fi
 
