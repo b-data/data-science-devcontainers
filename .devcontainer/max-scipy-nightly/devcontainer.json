@@ -1,5 +1,5 @@
 {
-  "name": "Mojo nightly (MAX) scipy",
+  "name": "MAX nightly scipy",
   "build": {
     "dockerfile": "../Mojo.Dockerfile",
     "context": "..",
