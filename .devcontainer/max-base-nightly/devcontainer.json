@@ -1,10 +1,10 @@
 {
-  "name": "Mojo nightly base",
+  "name": "Mojo nightly (MAX) base",
   "build": {
     "dockerfile": "../Mojo.Dockerfile",
     "context": "..",
     "args": {
-      "BUILD_ON_IMAGE": "glcr.b-data.ch/mojo/base",
+      "BUILD_ON_IMAGE": "glcr.b-data.ch/max/base",
       "MOJO_VERSION": "nightly",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.2.5",
@@ -75,13 +75,13 @@
 
   // Set 'remoteUser' to 'root' to connect as root instead.
   "remoteUser": "vscode",
-  "workspaceMount": "source=dsdc-mojo-nightly-base-home-vscode,target=/home/vscode,type=volume",
-  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-nightly-base-home-vscode,target=/home/vscode,type=bind",
+  "workspaceMount": "source=dsdc-max-nightly-base-home-vscode,target=/home/vscode,type=volume",
+  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-max-nightly-base-home-vscode,target=/home/vscode,type=bind",
   "workspaceFolder": "/home/vscode",
 
   // "remoteUser": "root",
-  // "workspaceMount": "source=dsdc-mojo-nightly-base-root,target=/root,type=volume",
-  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-nightly-base-root,target=/root,type=bind",
+  // "workspaceMount": "source=dsdc-max-nightly-base-root,target=/root,type=volume",
+  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-max-nightly-base-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
   // By default, BLAS/OpenMP will use as many threads as possible.

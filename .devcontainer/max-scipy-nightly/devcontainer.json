@@ -1,10 +1,10 @@
 {
-  "name": "Mojo nightly base",
+  "name": "Mojo nightly (MAX) scipy",
   "build": {
     "dockerfile": "../Mojo.Dockerfile",
     "context": "..",
     "args": {
-      "BUILD_ON_IMAGE": "glcr.b-data.ch/mojo/base",
+      "BUILD_ON_IMAGE": "glcr.b-data.ch/max/scipy",
       "MOJO_VERSION": "nightly",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.2.5",
@@ -33,7 +33,7 @@
     },
     // A comma separated list of packages to install
     "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
-      "packages": "qpdf"
+      "packages": ""
     }
   },
 
@@ -55,6 +55,8 @@
         "mutantdino.resourcemonitor",
         "piotrpalarz.vscode-gitignore-generator",
         "redhat.vscode-yaml",
+        "James-Yu.latex-workshop",
+        "quarto.quarto",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "ms-python.black-formatter",
@@ -75,13 +77,13 @@
 
   // Set 'remoteUser' to 'root' to connect as root instead.
   "remoteUser": "vscode",
-  "workspaceMount": "source=dsdc-mojo-nightly-base-home-vscode,target=/home/vscode,type=volume",
-  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-nightly-base-home-vscode,target=/home/vscode,type=bind",
+  "workspaceMount": "source=dsdc-max-nightly-scipy-home-vscode,target=/home/vscode,type=volume",
+  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-max-nightly-scipy-home-vscode,target=/home/vscode,type=bind",
   "workspaceFolder": "/home/vscode",
 
   // "remoteUser": "root",
-  // "workspaceMount": "source=dsdc-mojo-nightly-base-root,target=/root,type=volume",
-  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-nightly-base-root,target=/root,type=bind",
+  // "workspaceMount": "source=dsdc-max-nightly-scipy-root,target=/root,type=volume",
+  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-max-nightly-scipy-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
   // By default, BLAS/OpenMP will use as many threads as possible.
