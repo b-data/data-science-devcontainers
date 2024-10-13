@@ -57,6 +57,8 @@ if [ "$(command -v mojo)" ]; then
   if ! grep -q "user's modular bin dir" "$HOME/.bashrc"; then
     curl -ssL https://magic.modular.com | grep '^MODULAR_HOME\|^BIN_DIR' \
       > /tmp/magicenv
+    . /tmp/magicenv
+    mkdir -p "${BIN_DIR}"
     sed -i 's/\$HOME/\\$HOME/g' /tmp/magicenv
     . /tmp/magicenv
     echo -e "\n# Append the user's modular bin dir to PATH\nif [[ \"\$PATH\" != *\"${BIN_DIR}\"* ]] ; then\n    PATH=\"\$PATH:${BIN_DIR}\"\nfi" >> "$HOME/.bashrc"
@@ -65,6 +67,8 @@ if [ "$(command -v mojo)" ]; then
   if ! grep -q "user's modular bin dir" "$HOME/.zshrc"; then
     curl -ssL https://magic.modular.com | grep '^MODULAR_HOME\|^BIN_DIR' \
       > /tmp/magicenv
+    . /tmp/magicenv
+    mkdir -p "${BIN_DIR}"
     sed -i 's/\$HOME/\\$HOME/g' /tmp/magicenv
     . /tmp/magicenv
     echo -e "\n# Append the user's modular bin dir to PATH\nif [[ \"\$PATH\" != *\"${BIN_DIR}\"* ]] ; then\n    PATH=\"\$PATH:${BIN_DIR}\"\nfi" >> "$HOME/.zshrc"
