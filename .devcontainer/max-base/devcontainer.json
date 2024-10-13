@@ -1,5 +1,5 @@
 {
-  "name": "Mojo (MAX) base",
+  "name": "MAX base",
   "build": {
     "dockerfile": "../Mojo.Dockerfile",
     "context": "..",

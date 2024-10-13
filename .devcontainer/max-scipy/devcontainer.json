@@ -1,5 +1,5 @@
 {
-  "name": "Mojo (MAX) scipy",
+  "name": "MAX scipy",
   "build": {
     "dockerfile": "../Mojo.Dockerfile",
     "context": "..",
