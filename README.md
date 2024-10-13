@@ -56,6 +56,7 @@ Extended to match the (CUDA-based) [Jupyter](https://github.com/b-data/jupyterla
   :information_source: R qgisprocess image (amd64 only)
 * **Julia**[^1]: A high-level, high-performance dynamic language for technical
   computing.
+* **MAX**[^1]: A high-performance generative AI framework.
 * **Mojo**[^1]: A programming language for AI developers.
 * **Pandoc**: A universal markup converter.
 * **Python**: An interpreted, object-oriented, high-level programming language

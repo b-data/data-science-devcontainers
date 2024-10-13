@@ -1,5 +1,5 @@
 {
-  "name": "Mojo scipy (nightly)",
+  "name": "Mojo nightly scipy",
   "build": {
     "dockerfile": "../Mojo.Dockerfile",
     "context": "..",
@@ -77,13 +77,13 @@
 
   // Set 'remoteUser' to 'root' to connect as root instead.
   "remoteUser": "vscode",
-  "workspaceMount": "source=dsdc-mojo-scipy-nightly-home-vscode,target=/home/vscode,type=volume",
-  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-scipy-nightly-home-vscode,target=/home/vscode,type=bind",
+  "workspaceMount": "source=dsdc-mojo-nightly-scipy-home-vscode,target=/home/vscode,type=volume",
+  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-nightly-scipy-home-vscode,target=/home/vscode,type=bind",
   "workspaceFolder": "/home/vscode",
 
   // "remoteUser": "root",
-  // "workspaceMount": "source=dsdc-mojo-scipy-nightly-root,target=/root,type=volume",
-  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-scipy-nightly-root,target=/root,type=bind",
+  // "workspaceMount": "source=dsdc-mojo-nightly-scipy-root,target=/root,type=volume",
+  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-nightly-scipy-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
   // By default, BLAS/OpenMP will use as many threads as possible.

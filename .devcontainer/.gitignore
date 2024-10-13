@@ -36,6 +36,7 @@
 !/julia-base/scripts/usr/
 !/julia-base/scripts/usr/local/
 !/julia-base/scripts/usr/local/bin/
+!/max-*/
 !/mojo-*/
 !/mojo-base/conf/
 !/mojo-base/conf/jupyterlab/
@@ -88,6 +89,7 @@
 !/julia-*/devcontainer.json
 !/julia-base/conf/julia/etc/skel/.julia/config/*.jl
 !/julia-base/scripts/usr/local/bin/*.sh
+!/max-*/devcontainer.json
 !/mojo-*/devcontainer.json
 !/mojo-base/conf/jupyterlab/usr/local/etc/jupyter/jupyter_server_config.d/mojo-lsp-server.json
 !/mojo-base/scripts/usr/local/bin/*.sh
