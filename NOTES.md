@@ -67,7 +67,7 @@ The following startup scripts are put in place:
   rendering.  
   :point_right: User-settable at runtime.
 
-**Mojo images**
+**MAX/Mojo images**
 
 * `MOJO_VERSION`
 * `MODULAR_HOME`
@@ -79,7 +79,7 @@ The following startup scripts are put in place:
 * `GIT_VERSION`
 * `GIT_LFS_VERSION`
 * `PANDOC_VERSION`
-* `QUARTO_VERSION` (Julia pubtools, Mojo/Python scipy, R verse+ images)
+* `QUARTO_VERSION` (Julia pubtools, MAX/Mojo/Python scipy, R verse+ images)
 
 **Miscellaneous**
 
@@ -95,8 +95,8 @@ The following startup scripts are put in place:
   :point_right: User-settable at runtime.
   * `1`: user directory (`~/.local`, persistent (default))
   * `0`: system directory (`/usr/local`, not persistent)
-* `CTAN_REPO`: The CTAN mirror URL. (Julia pubtools, Mojo/Python scipy, R verse+
-  images)
+* `CTAN_REPO`: The CTAN mirror URL. (Julia pubtools, MAX/Mojo/Python scipy, R
+  verse+ images)
 * `OMP_NUM_THREADS`: If unset (default), BLAS/OpenMP will use as many
   threads as possible.  
   :point_right: User-settable at runtime.
@@ -105,7 +105,7 @@ The following startup scripts are put in place:
 
 The default shell is Zsh.
 
-### TeX packages (Julia pubtools, Mojo/Python scipy, R verse+ images)
+### TeX packages (Julia pubtools, MAX/Mojo/Python scipy, R verse+ images)
 
 In addition to the TeX packages used in
 [rocker/verse](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_texlive.sh),
@@ -147,7 +147,7 @@ are installed.
     * Enable Crash Reporter: false
     * Enable Telemetry: false
 
-**Mojo images**
+**MAX/Mojo images**
 
 * [Mojo LSP Server](.devcontainer/mojo-base/conf/jupyterlab/usr/local/etc/jupyter/jupyter_server_config.d/mojo-lsp-server.json)
 
@@ -190,7 +190,7 @@ are installed.
 
 The Python version is selected as follows:
 
-* Julia/Mojo/R images: The latest Python version
+* Julia/MAX/Mojo/R images: The latest Python version
   [Numba](https://numba.readthedocs.io/en/stable/user/installing.html#numba-support-info),
   [PyTorch](https://github.com/pytorch/pytorch/blob/main/RELEASE.md#release-compatibility-matrix)
   and
