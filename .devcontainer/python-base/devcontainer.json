@@ -5,7 +5,7 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/python/base",
-      "PYTHON_VERSION": "3.12.7",
+      "PYTHON_VERSION": "3.13.0",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.2.5",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
