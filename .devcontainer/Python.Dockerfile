@@ -74,6 +74,7 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
 ## Install Python related stuff
   ## Install JupyterLab
   && pip install --no-cache-dir \
+    httpx==0.27.2 \
     jupyter-server-proxy \
     jupyterlab=="$JUPYTERLAB_VERSION" \
     jupyterlab-git \
