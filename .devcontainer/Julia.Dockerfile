@@ -3,7 +3,7 @@ ARG JULIA_VERSION=1.11.2
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
-ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-20.18.0}}
+ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-20.18.1}}
 
 ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
@@ -44,7 +44,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 ARG BUILD_ON_IMAGE
 ARG UNMINIMIZE
-ARG JUPYTERLAB_VERSION=4.2.5
+ARG JUPYTERLAB_VERSION=4.2.6
 
 ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${JULIA_VERSION} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
@@ -69,6 +69,7 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
 ## Install Python related stuff
   ## Install JupyterLab
   && pip install --no-cache-dir \
+    httpx==0.27.2 \
     jupyter-server-proxy \
     jupyterlab=="$JUPYTERLAB_VERSION" \
     jupyterlab-git \
