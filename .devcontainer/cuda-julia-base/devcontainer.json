@@ -86,15 +86,18 @@
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-julia-base-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
-  // By default,
-  // - CUDA will use all available CUDA-capable devices.
-  // - Julia starts up with a single thread of execution.
-  // - BLAS/OpenMP will use as many threads as possible.
-  // Set the following environment variables to control the exact device(s)/number to use.
   "remoteEnv": {
+    // By default, CUDA will use all available CUDA-capable devices.
+    // Set the following environment variable to control the exact devices to use.
     // "CUDA_VISIBLE_DEVICES": "0",
-    // "JULIA_NUM_THREADS": "1",
+    //
+    // By default, BLAS/OpenMP will use as many threads as possible.
+    // Set the following environment variable to control the exact number to use.
     // "OMP_NUM_THREADS": "1",
+    //
+    // By default, Julia starts up with a single thread of execution.
+    // Set the following environment variable to control the exact number to use.
+    // "JULIA_NUM_THREADS": "1",
     //
     // Pip: Install packages to the user site
     "PIP_USER": "1"

@@ -86,9 +86,9 @@
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-nightly-scipy-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
-  // By default, BLAS/OpenMP will use as many threads as possible.
-  // Set the following environment variable to control the exact number to use.
   "remoteEnv": {
+    // By default, BLAS/OpenMP will use as many threads as possible.
+    // Set the following environment variable to control the exact number to use.
     // "OMP_NUM_THREADS": "1",
     //
     // Pip: Install packages to the user site

@@ -97,12 +97,13 @@
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-r-geospatial-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
-  // By default,
-  // - CUDA will use all available CUDA-capable devices.
-  // - BLAS/OpenMP will use as many threads as possible.
-  // Set the following environment variables to control the exact device(s)/number to use.
   "remoteEnv": {
+    // By default, CUDA will use all available CUDA-capable devices.
+    // Set the following environment variable to control the exact devices to use.
     // "CUDA_VISIBLE_DEVICES": "0",
+    //
+    // By default, BLAS/OpenMP will use as many threads as possible.
+    // Set the following environment variable to control the exact number to use.
     // "OMP_NUM_THREADS": "1",
     //
     // Pip: Install packages to the user site
