@@ -97,6 +97,11 @@
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-r-qgisprocess-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
+  "runArgs": [
+    "--gpus", "device=all",
+    "--shm-size", "2g"
+  ],
+
   "remoteEnv": {
     // By default, CUDA will use all available CUDA-capable devices.
     // Set the following environment variable to control the exact devices to use.
@@ -118,10 +123,5 @@
     //
     // Pip: Install packages to the user site
     "PIP_USER": "1"
-  },
-
-  "runArgs": [
-    "--gpus", "device=all",
-    "--shm-size", "2g"
-  ]
+  }
 }
