@@ -46,7 +46,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 ARG BUILD_ON_IMAGE
 ARG UNMINIMIZE
-ARG JUPYTERLAB_VERSION=4.2.6
+ARG JUPYTERLAB_VERSION=4.3.4
 
 ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${MOJO_VERSION} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
@@ -79,7 +79,6 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
 ## Install Python related stuff
   ## Install JupyterLab
   && pip install --no-cache-dir \
-    httpx==0.27.2 \
     jupyter-server-proxy \
     jupyterlab=="$JUPYTERLAB_VERSION" \
     jupyterlab-git \
