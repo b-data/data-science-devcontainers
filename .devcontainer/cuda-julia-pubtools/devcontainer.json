@@ -106,7 +106,7 @@
   },
 
   "runArgs": [
-    "--gpus=all",
-    "--shm-size=2g"
+    "--gpus", "device=all",
+    "--shm-size", "2g"
   ]
 }
