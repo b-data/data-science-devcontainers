@@ -7,7 +7,7 @@
       "BUILD_ON_IMAGE": "glcr.b-data.ch/max/base",
       "MOJO_VERSION": "24.6.0",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.2.6",
+      "JUPYTERLAB_VERSION": "4.3.4",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "20.18.1",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
@@ -84,9 +84,14 @@
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-max-base-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
-  // By default, BLAS/OpenMP will use as many threads as possible.
-  // Set the following environment variable to control the exact number to use.
+  // "runArgs": [
+  //   "--gpus", "device=all",
+  //   "--shm-size", "2g"
+  // ],
+
   "remoteEnv": {
+    // By default, BLAS/OpenMP will use as many threads as possible.
+    // Set the following environment variable to control the exact number to use.
     // "OMP_NUM_THREADS": "1",
     //
     // Pip: Install packages to the user site

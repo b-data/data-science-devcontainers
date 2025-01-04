@@ -46,7 +46,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 ARG BUILD_ON_IMAGE
 ARG UNMINIMIZE
-ARG JUPYTERLAB_VERSION=4.2.6
+ARG JUPYTERLAB_VERSION=4.3.4
 
 ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${MOJO_VERSION} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
@@ -68,18 +68,9 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   && apt-get -y install --no-install-recommends --only-upgrade \
     ca-certificates \
     openssl \
-## Install CUDA related stuff
-  && if [ -n "${CUDA_VERSION}" ]; then \
-    ## Install command-line tools and nvcc
-    CUDA_VERSION_MAJ_MIN_DASH=$(echo ${CUDA_VERSION%.*} | tr '.' '-'); \
-    apt-get -y install --no-install-recommends \
-      cuda-command-line-tools-${CUDA_VERSION_MAJ_MIN_DASH}=${NV_CUDA_LIB_VERSION} \
-      cuda-nvcc-${CUDA_VERSION_MAJ_MIN_DASH}; \
-  fi \
 ## Install Python related stuff
   ## Install JupyterLab
   && pip install --no-cache-dir \
-    httpx==0.27.2 \
     jupyter-server-proxy \
     jupyterlab=="$JUPYTERLAB_VERSION" \
     jupyterlab-git \

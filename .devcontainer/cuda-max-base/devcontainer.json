@@ -1,11 +1,11 @@
 {
-  "name": "Mojo nightly scipy",
+  "name": "CUDA MAX base",
   "build": {
     "dockerfile": "../Mojo.Dockerfile",
     "context": "..",
     "args": {
-      "BUILD_ON_IMAGE": "glcr.b-data.ch/mojo/scipy",
-      "MOJO_VERSION": "nightly",
+      "BUILD_ON_IMAGE": "glcr.b-data.ch/cuda/max/base",
+      "MOJO_VERSION": "24.6.0",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.3.4",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
@@ -18,7 +18,7 @@
 
   "onCreateCommand": "onCreateCommand.sh",
   "postStartCommand": "${HOME}/.local/bin/dockerSystemPrune.sh",
-  "postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh && postAttachCommand.sh",
+  "postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh && postAttachCommand.sh && nvidia_entrypoint.sh",
 
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
@@ -33,7 +33,7 @@
     },
     // A comma separated list of packages to install
     "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
-      "packages": ""
+      "packages": "qpdf"
     }
   },
 
@@ -49,14 +49,12 @@
         "GitLab.gitlab-workflow",
         "grapecity.gc-excelviewer",
         "mhutchie.git-graph",
-        "modular-mojotools.vscode-mojo-nightly",
+        "modular-mojotools.vscode-mojo",
         "ms-python.python",
         "ms-toolsai.jupyter",
         "mutantdino.resourcemonitor",
         "piotrpalarz.vscode-gitignore-generator",
         "redhat.vscode-yaml",
-        "James-Yu.latex-workshop",
-        "quarto.quarto",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "ms-python.black-formatter",
@@ -77,16 +75,25 @@
 
   // Set 'remoteUser' to 'root' to connect as root instead.
   "remoteUser": "vscode",
-  "workspaceMount": "source=dsdc-mojo-nightly-scipy-home-vscode,target=/home/vscode,type=volume",
-  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-nightly-scipy-home-vscode,target=/home/vscode,type=bind",
+  "workspaceMount": "source=dsdc-cuda-max-base-home-vscode,target=/home/vscode,type=volume",
+  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-max-base-home-vscode,target=/home/vscode,type=bind",
   "workspaceFolder": "/home/vscode",
 
   // "remoteUser": "root",
-  // "workspaceMount": "source=dsdc-mojo-nightly-scipy-root,target=/root,type=volume",
-  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-nightly-scipy-root,target=/root,type=bind",
+  // "workspaceMount": "source=dsdc-cuda-max-base-root,target=/root,type=volume",
+  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-max-base-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
+  "runArgs": [
+    "--gpus", "device=all",
+    "--shm-size", "2g"
+  ],
+
   "remoteEnv": {
+    // By default, CUDA will use all available CUDA-capable devices.
+    // Set the following environment variable to control the exact devices to use.
+    // "CUDA_VISIBLE_DEVICES": "0",
+    //
     // By default, BLAS/OpenMP will use as many threads as possible.
     // Set the following environment variable to control the exact number to use.
     // "OMP_NUM_THREADS": "1",

@@ -9,7 +9,7 @@
       // "CRAN": "https://cloud.r-project.org",
       "R_BINARY_PACKAGES": "1",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.2.6",
+      "JUPYTERLAB_VERSION": "4.3.4",
       // "RSTUDIO_VERSION": "2024.12.0+467",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "20.18.1",
@@ -88,14 +88,19 @@
 
   // Set 'remoteUser' to 'root' to connect as root instead.
   "remoteUser": "vscode",
-  "workspaceMount": "source=cuda-r-qgisprocess-home-vscode,target=/home/vscode,type=volume",
+  "workspaceMount": "source=dsdc-cuda-r-qgisprocess-home-vscode,target=/home/vscode,type=volume",
   // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-r-qgisprocess-home-vscode,target=/home/vscode,type=bind",
   "workspaceFolder": "/home/vscode",
 
   // "remoteUser": "root",
-  // "workspaceMount": "source=cuda-r-qgisprocess-root,target=/root,type=volume",
+  // "workspaceMount": "source=dsdc-cuda-r-qgisprocess-root,target=/root,type=volume",
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-r-qgisprocess-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
+
+  "runArgs": [
+    "--gpus", "device=all",
+    "--shm-size", "2g"
+  ],
 
   "remoteEnv": {
     // By default, CUDA will use all available CUDA-capable devices.
@@ -118,10 +123,5 @@
     //
     // Pip: Install packages to the user site
     "PIP_USER": "1"
-  },
-
-  "runArgs": [
-    "--gpus=all",
-    "--shm-size=2g"
-  ]
+  }
 }

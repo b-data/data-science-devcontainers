@@ -1,10 +1,10 @@
 {
-  "name": "Mojo nightly scipy",
+  "name": "CUDA MAX nightly scipy",
   "build": {
     "dockerfile": "../Mojo.Dockerfile",
     "context": "..",
     "args": {
-      "BUILD_ON_IMAGE": "glcr.b-data.ch/mojo/scipy",
+      "BUILD_ON_IMAGE": "glcr.b-data.ch/cuda/max/scipy",
       "MOJO_VERSION": "nightly",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.3.4",
@@ -18,7 +18,7 @@
 
   "onCreateCommand": "onCreateCommand.sh",
   "postStartCommand": "${HOME}/.local/bin/dockerSystemPrune.sh",
-  "postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh && postAttachCommand.sh",
+  "postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh && postAttachCommand.sh && nvidia_entrypoint.sh",
 
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
@@ -77,16 +77,25 @@
 
   // Set 'remoteUser' to 'root' to connect as root instead.
   "remoteUser": "vscode",
-  "workspaceMount": "source=dsdc-mojo-nightly-scipy-home-vscode,target=/home/vscode,type=volume",
-  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-nightly-scipy-home-vscode,target=/home/vscode,type=bind",
+  "workspaceMount": "source=dsdc-cuda-max-nightly-scipy-home-vscode,target=/home/vscode,type=volume",
+  // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-max-nightly-scipy-home-vscode,target=/home/vscode,type=bind",
   "workspaceFolder": "/home/vscode",
 
   // "remoteUser": "root",
-  // "workspaceMount": "source=dsdc-mojo-nightly-scipy-root,target=/root,type=volume",
-  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-mojo-nightly-scipy-root,target=/root,type=bind",
+  // "workspaceMount": "source=dsdc-cuda-max-nightly-scipy-root,target=/root,type=volume",
+  // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-max-nightly-scipy-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
+  "runArgs": [
+    "--gpus", "device=all",
+    "--shm-size", "2g"
+  ],
+
   "remoteEnv": {
+    // By default, CUDA will use all available CUDA-capable devices.
+    // Set the following environment variable to control the exact devices to use.
+    // "CUDA_VISIBLE_DEVICES": "0",
+    //
     // By default, BLAS/OpenMP will use as many threads as possible.
     // Set the following environment variable to control the exact number to use.
     // "OMP_NUM_THREADS": "1",

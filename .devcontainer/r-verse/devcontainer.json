@@ -9,7 +9,7 @@
       // "CRAN": "https://cloud.r-project.org",
       "R_BINARY_PACKAGES": "1",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.2.6",
+      "JUPYTERLAB_VERSION": "4.3.4",
       // "RSTUDIO_VERSION": "2024.12.0+467",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "20.18.1",
@@ -97,9 +97,9 @@
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-r-verse-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
-  // By default, BLAS/OpenMP will use as many threads as possible.
-  // Set the following environment variable to control the exact number to use.
   "remoteEnv": {
+    // By default, BLAS/OpenMP will use as many threads as possible.
+    // Set the following environment variable to control the exact number to use.
     // "OMP_NUM_THREADS": "1",
     //
     // Pip: Install packages to the user site

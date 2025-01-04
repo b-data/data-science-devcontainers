@@ -54,7 +54,7 @@ ARG CRAN
 ARG NCPUS
 ARG R_BINARY_PACKAGES
 ARG UNMINIMIZE
-ARG JUPYTERLAB_VERSION=4.2.6
+ARG JUPYTERLAB_VERSION=4.3.4
 ARG RSTUDIO_VERSION
 
 ARG CRAN_OVERRIDE=${CRAN}
@@ -155,7 +155,6 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
 ## Install Python related stuff
   ## Install JupyterLab
   && pip install --no-cache-dir \
-    httpx==0.27.2 \
     jupyter-server-proxy \
     jupyterlab=="$JUPYTERLAB_VERSION" \
     jupyterlab-git \

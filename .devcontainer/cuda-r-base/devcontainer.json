@@ -9,7 +9,7 @@
       // "CRAN": "https://cloud.r-project.org",
       "R_BINARY_PACKAGES": "1",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.2.6",
+      "JUPYTERLAB_VERSION": "4.3.4",
       // "RSTUDIO_VERSION": "2024.12.0+467",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "20.18.1",
@@ -86,29 +86,30 @@
 
   // Set 'remoteUser' to 'root' to connect as root instead.
   "remoteUser": "vscode",
-  "workspaceMount": "source=cuda-r-base-home-vscode,target=/home/vscode,type=volume",
+  "workspaceMount": "source=dsdc-cuda-r-base-home-vscode,target=/home/vscode,type=volume",
   // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-r-base-home-vscode,target=/home/vscode,type=bind",
   "workspaceFolder": "/home/vscode",
 
   // "remoteUser": "root",
-  // "workspaceMount": "source=cuda-r-base-root,target=/root,type=volume",
+  // "workspaceMount": "source=dsdc-cuda-r-base-root,target=/root,type=volume",
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-r-base-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
-  // By default,
-  // - CUDA will use all available CUDA-capable devices.
-  // - BLAS/OpenMP will use as many threads as possible.
-  // Set the following environment variables to control the exact device(s)/number to use.
+  "runArgs": [
+    "--gpus", "device=all",
+    "--shm-size", "2g"
+  ],
+
   "remoteEnv": {
+    // By default, CUDA will use all available CUDA-capable devices.
+    // Set the following environment variable to control the exact devices to use.
     // "CUDA_VISIBLE_DEVICES": "0",
+    //
+    // By default, BLAS/OpenMP will use as many threads as possible.
+    // Set the following environment variable to control the exact number to use.
     // "OMP_NUM_THREADS": "1",
     //
     // Pip: Install packages to the user site
     "PIP_USER": "1"
-  },
-
-  "runArgs": [
-    "--gpus=all",
-    "--shm-size=2g"
-  ]
+  }
 }
