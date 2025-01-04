@@ -77,12 +77,12 @@
 
   // Set 'remoteUser' to 'root' to connect as root instead.
   "remoteUser": "vscode",
-  "workspaceMount": "source=cuda-julia-base-home-vscode,target=/home/vscode,type=volume",
+  "workspaceMount": "source=dsdc-cuda-julia-base-home-vscode,target=/home/vscode,type=volume",
   // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-julia-base-home-vscode,target=/home/vscode,type=bind",
   "workspaceFolder": "/home/vscode",
 
   // "remoteUser": "root",
-  // "workspaceMount": "source=cuda-julia-base-root,target=/root,type=volume",
+  // "workspaceMount": "source=dsdc-cuda-julia-base-root,target=/root,type=volume",
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-cuda-julia-base-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
