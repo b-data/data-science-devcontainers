@@ -9,6 +9,7 @@ dev containers:
 
 * (CUDA) Julia base, pubtools
 * MAX/Mojo base, scipy
+* CUDA MAX base, scipy
 * (CUDA) Python base, scipy
 * (CUDA) R base, tidyverse, verse, geospatial, qgisprocess
 
@@ -25,7 +26,7 @@ Dev containers considered stable for
 **Parent images**
 
 * (CUDA-based) [Julia docker stack](https://github.com/b-data/julia-docker-stack)
-* [MAX/Mojo docker stack](https://github.com/b-data/mojo-docker-stack)
+* (CUDA-based) [MAX/Mojo docker stack](https://github.com/b-data/mojo-docker-stack)
 * (CUDA-based) [Python docker stack](https://github.com/b-data/python-docker-stack)
 * (CUDA-based) [R docker stack](https://github.com/b-data/r-docker-stack)
 
@@ -84,7 +85,8 @@ Extended to match the (CUDA-based) [Jupyter](https://github.com/b-data/jupyterla
 
 * Julia: [Version Matrix](https://github.com/b-data/jupyterlab-julia-docker-stack/blob/main/VERSION_MATRIX.md),
   [CUDA Version Matrix](https://github.com/b-data/jupyterlab-julia-docker-stack/blob/main/CUDA_VERSION_MATRIX.md)
-* MAX/Mojo: [Version Matrix](https://github.com/b-data/jupyterlab-mojo-docker-stack/blob/main/VERSION_MATRIX.md)
+* MAX/Mojo: [Version Matrix](https://github.com/b-data/jupyterlab-mojo-docker-stack/blob/main/VERSION_MATRIX.md),
+  [CUDA Version Matrix](https://github.com/b-data/jupyterlab-mojo-docker-stack/blob/main/CUDA_VERSION_MATRIX.md)
 * Python: [Version Matrix](https://github.com/b-data/jupyterlab-python-docker-stack/blob/main/VERSION_MATRIX.md),
   [CUDA Version Matrix](https://github.com/b-data/jupyterlab-python-docker-stack/blob/main/CUDA_VERSION_MATRIX.md)
 * R: [Version Matrix](https://github.com/b-data/jupyterlab-r-docker-stack/blob/main/VERSION_MATRIX.md),
