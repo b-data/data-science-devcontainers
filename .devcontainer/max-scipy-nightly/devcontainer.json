@@ -86,6 +86,11 @@
   // // "workspaceMount": "source=${localWorkspaceFolder}/.devcontainer/bind-mounts/dsdc-max-nightly-scipy-root,target=/root,type=bind",
   // "workspaceFolder": "/root",
 
+  // "runArgs": [
+  //   "--gpus", "device=all",
+  //   "--shm-size", "2g"
+  // ],
+
   "remoteEnv": {
     // By default, BLAS/OpenMP will use as many threads as possible.
     // Set the following environment variable to control the exact number to use.
