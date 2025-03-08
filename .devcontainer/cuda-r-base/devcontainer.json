@@ -101,6 +101,10 @@
   ],
 
   "remoteEnv": {
+    // Enable CUDA forward compatibility. Only applicable for systems
+    // with NVIDIA Data Center GPUs or select NGC-Ready NVIDIA RTX boards.
+    // "LD_LIBRARY_PATH": "/usr/local/cuda/compat:${containerEnv:LD_LIBRARY_PATH}",
+    //
     // By default, CUDA will use all available CUDA-capable devices.
     // Set the following environment variable to control the exact devices to use.
     // "CUDA_VISIBLE_DEVICES": "0",
