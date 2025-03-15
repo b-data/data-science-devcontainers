@@ -7,7 +7,7 @@
       "BUILD_ON_IMAGE": "glcr.b-data.ch/cuda/max/base",
       "MOJO_VERSION": "nightly",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.3.5",
+      "JUPYTERLAB_VERSION": "4.3.6",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "20.18.2",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
