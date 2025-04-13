@@ -5,7 +5,7 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/r/base",
-      "R_VERSION": "4.4.3",
+      "R_VERSION": "4.5.0",
       // "CRAN": "https://cloud.r-project.org",
       "R_BINARY_PACKAGES": "1",
       // "UNMINIMIZE": "unset-to-keep-minimized",
