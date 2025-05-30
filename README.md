@@ -98,7 +98,7 @@ Extended to match the (CUDA-based) [Jupyter](https://github.com/b-data/jupyterla
 <!-- markdownlint-disable line-length -->
 * [.gitignore Generator](https://marketplace.visualstudio.com/items?itemName=piotrpalarz.vscode-gitignore-generator)
 * [Black Formatter](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter)
-* [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+* [Container Tools](https://open-vsx.org/extension/ms-azuretools/vscode-containers)
 * [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)  
 * [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
