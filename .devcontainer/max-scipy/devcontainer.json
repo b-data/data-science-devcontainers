@@ -5,7 +5,7 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/max/scipy",
-      "MOJO_VERSION": "25.3.0",
+      "MOJO_VERSION": "25.4.0",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.4.3",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
