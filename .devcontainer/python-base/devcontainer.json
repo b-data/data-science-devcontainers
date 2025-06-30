@@ -7,7 +7,7 @@
       "BUILD_ON_IMAGE": "glcr.b-data.ch/python/base",
       "PYTHON_VERSION": "3.13.5",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.4.3",
+      "JUPYTERLAB_VERSION": "4.4.4",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "20.19.0",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
