@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2024 b-data GmbH.
+# Copyright (c) 2024 b-data GmbH
 # Distributed under the terms of the MIT License.
 
 # Get SHELL and run commands

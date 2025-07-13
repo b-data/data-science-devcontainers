@@ -16,6 +16,7 @@
     }
   },
 
+  "initializeCommand": [".devcontainer/init"],
   "onCreateCommand": "onCreateCommand.sh",
   "postStartCommand": "${HOME}/.local/bin/dockerSystemPrune.sh",
   "postAttachCommand": "${HOME}/.local/bin/checkForUpdates.sh",

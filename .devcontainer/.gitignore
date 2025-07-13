@@ -108,6 +108,8 @@
 !/.gitignore
 !/devcontainer.json
 !/Dockerfile
+!/init
+!/init.cmd
 !/Julia.Dockerfile
 !/Mojo.Dockerfile
 !/Python.Dockerfile
