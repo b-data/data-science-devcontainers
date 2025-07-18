@@ -17,6 +17,7 @@ COPY conf/shell /files
 COPY julia-base/conf/julia /files
 COPY julia-base/scripts /files
 COPY scripts /files
+COPY vsix /files
 
 RUN if [ -n "${CUDA_VERSION}" ]; then \
     ## Use entrypoint of CUDA image

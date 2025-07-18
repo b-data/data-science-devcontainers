@@ -7,6 +7,7 @@ RUN mkdir -p /files/usr
 
 COPY conf/shell /files
 COPY scripts/usr /files/usr
+COPY vsix /files
 
 ## Ensure file modes are correct
 RUN find /files -type d -exec chmod 755 {} \; \
