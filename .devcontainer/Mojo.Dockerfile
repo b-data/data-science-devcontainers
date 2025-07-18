@@ -20,6 +20,7 @@ COPY conf/shell /files
 COPY mojo-base/conf/jupyterlab /files
 COPY mojo-base/scripts /files
 COPY scripts /files
+COPY vsix /files
 
 RUN if [ -n "${CUDA_VERSION}" ]; then \
     ## Use entrypoint of CUDA image

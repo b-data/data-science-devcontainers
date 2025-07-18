@@ -20,6 +20,7 @@ COPY r-base/conf/jupyterlab /files
 COPY r-base/conf/rstudio /files
 COPY r-base/scripts /files
 COPY scripts /files
+COPY vsix /files
 
 RUN if [ -n "${CUDA_VERSION}" ]; then \
     ## Use entrypoint of CUDA image

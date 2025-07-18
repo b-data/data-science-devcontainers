@@ -15,6 +15,7 @@ COPY conf/ipython /files
 COPY conf/jupyterlab /files
 COPY conf/shell /files
 COPY scripts /files
+COPY vsix /files
 
 RUN if [ -n "${CUDA_VERSION}" ]; then \
     ## Use entrypoint of CUDA image
