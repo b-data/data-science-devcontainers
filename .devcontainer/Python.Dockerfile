@@ -34,6 +34,8 @@ RUN if [ -n "${CUDA_VERSION}" ]; then \
   && bash -c 'rm -rf /files/root/{.bashrc,.profile}' \
   && chmod 700 /files/root
 
+FROM ghcr.io/hadolint/hadolint:latest as hsi
+
 FROM docker.io/koalaman/shellcheck:stable as sci
 
 FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION} as python
@@ -97,18 +99,6 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   && rm -rf /tmp/* \
     /root/.cache \
 ## Dev container only
-  ## Install hadolint
-  && case "$dpkgArch" in \
-    amd64) tarArch="x86_64" ;; \
-    arm64) tarArch="arm64" ;; \
-    *) echo "error: Architecture $dpkgArch unsupported"; exit 1 ;; \
-  esac \
-  && apiResponse="$(curl -sSL \
-    https://api.github.com/repos/hadolint/hadolint/releases/latest)" \
-  && downloadUrl="$(echo "$apiResponse" | grep -e \
-    "browser_download_url.*Linux-$tarArch\"" | cut -d : -f 2,3 | tr -d \")" \
-  && echo "$downloadUrl" | xargs curl -sSLo /usr/local/bin/hadolint \
-  && chmod 755 /usr/local/bin/hadolint \
   ## Create backup of root directory
   && cp -a /root /var/backups \
   ## Clean up
@@ -229,5 +219,8 @@ ENV BUILD_DATE=
 ## Copy files as late as possible to avoid cache busting
 COPY --from=files /files /
 
-## Copy shellcheck as late as possible to avoid cache busting
+## Copy binaries as late as possible to avoid cache busting
+## Install Haskell Dockerfile Linter
+COPY --from=hsi /bin/hadolint /usr/local/bin
+## Install ShellCheck
 COPY --from=sci --chown=root:root /bin/shellcheck /usr/local/bin
