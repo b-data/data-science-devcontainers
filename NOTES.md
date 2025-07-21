@@ -126,7 +126,10 @@ are installed.
     [jupyter-lsp/jupyterlab-lsp > Installation > Configuring the servers](https://github.com/jupyter-lsp/jupyterlab-lsp#configuring-the-servers)
 * VS Code
   * Extensions > GitLab Workflow
-    * Ai Assisted Code Suggestions: Enabled: false
+    * GitLab Duo Pro > Duo Code Suggestions: false
+    * GitLab Duo Pro > Duo Chat: false
+    * GitLab Duo Pro > Duo Agent Platform: false
+    * GitLab Duo Pro > Enabled Without Gitlab Project: false
   * Extensions > GitLens — Git supercharged
     * General > Show Welcome On Install: false
     * General > Show Whats New After Upgrade: false
