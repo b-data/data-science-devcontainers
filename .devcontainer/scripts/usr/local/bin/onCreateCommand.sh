@@ -52,24 +52,24 @@ else
   fi
 fi
 
-if [ "$(command -v mojo)" ]; then
-  # Append the user's pixi bin dir to PATH
-  if ! grep -q "user's pixi bin dir" "$HOME/.bashrc"; then
-    mkdir -p "$HOME/.pixi/bin"
-    echo -e echo "\n# Append the user's pixi bin dir to PATH\nif [[ \"\$PATH\" != *\"\$HOME/.pixi/bin\"* ]] ; then\n    PATH=\"\$PATH:\$HOME/.pixi/bin\"\nfi" >> "$HOME/.bashrc"
-  fi
-  if ! grep -q "user's pixi bin dir" "$HOME/.zshrc"; then
-    mkdir -p "$HOME/.pixi/bin"
-    echo -e echo "\n# Append the user's pixi bin dir to PATH\nif [[ \"\$PATH\" != *\"\$HOME/.pixi/bin\"* ]] ; then\n    PATH=\"\$PATH:\$HOME/.pixi/bin\"\nfi" >> "$HOME/.zshrc"
-  fi
-fi
-
-# If existent, prepend the user's private bin to PATH
+# Prepend the user's private bin to PATH
 if ! grep -q "user's private bin" "$HOME/.bashrc"; then
   cat "/var/tmp/snippets/rc.sh" >> "$HOME/.bashrc"
 fi
 if ! grep -q "user's private bin" "$HOME/.zshrc"; then
   cat "/var/tmp/snippets/rc.sh" >> "$HOME/.zshrc"
+fi
+
+if [ "$(command -v mojo)" ]; then
+  # Append the user's pixi bin dir to PATH
+  if ! grep -q "user's pixi bin" "$HOME/.bashrc"; then
+    mkdir -p "$HOME/.pixi/bin"
+    cat "/var/tmp/snippets/rc2.sh" >> "$HOME/.bashrc"
+  fi
+  if ! grep -q "user's pixi bin" "$HOME/.zshrc"; then
+    mkdir -p "$HOME/.pixi/bin"
+    cat "/var/tmp/snippets/rc2.sh" >> "$HOME/.zshrc"
+  fi
 fi
 
 # Enable Oh My Zsh plugins
