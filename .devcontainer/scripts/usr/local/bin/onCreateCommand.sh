@@ -64,7 +64,7 @@ if [ "$(command -v mojo)" ]; then
   fi
 fi
 
-# If existent, prepend the user's private bin to PATH
+# Prepend the user's private bin to PATH
 if ! grep -q "user's private bin" "$HOME/.bashrc"; then
   cat "/var/tmp/snippets/rc.sh" >> "$HOME/.bashrc"
 fi
