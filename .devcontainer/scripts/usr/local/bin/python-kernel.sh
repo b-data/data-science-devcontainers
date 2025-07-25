@@ -6,8 +6,8 @@
 SHELL="$(readlink /proc/$$/exe)"
 . "$HOME/.$(basename "$SHELL")rc"
 
-# remove potentially appended $HOME/.local/bin from PATH
-PATH="${PATH%:$HOME/.local/bin}"
+# Remove potentially present $HOME/.local/bin from PATH
+PATH="${PATH/:$HOME\/.local\/bin/}"
 
 # Set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] && [[ "$PATH" != *"$HOME/bin"* ]] ; then
