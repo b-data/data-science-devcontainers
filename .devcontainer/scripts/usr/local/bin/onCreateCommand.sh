@@ -52,14 +52,6 @@ else
   fi
 fi
 
-# Prepend the user's private bin to PATH
-if ! grep -q "user's private bin" "$HOME/.bashrc"; then
-  cat "/var/tmp/snippets/rc.sh" >> "$HOME/.bashrc"
-fi
-if ! grep -q "user's private bin" "$HOME/.zshrc"; then
-  cat "/var/tmp/snippets/rc.sh" >> "$HOME/.zshrc"
-fi
-
 if [ "$(command -v mojo)" ]; then
   # Append the user's pixi bin dir to PATH
   if ! grep -q "user's pixi bin" "$HOME/.bashrc"; then
@@ -70,6 +62,14 @@ if [ "$(command -v mojo)" ]; then
     mkdir -p "$HOME/.pixi/bin"
     cat "/var/tmp/snippets/rc2.sh" >> "$HOME/.zshrc"
   fi
+fi
+
+# Prepend the user's private bin to PATH
+if ! grep -q "user's private bin" "$HOME/.bashrc"; then
+  cat "/var/tmp/snippets/rc.sh" >> "$HOME/.bashrc"
+fi
+if ! grep -q "user's private bin" "$HOME/.zshrc"; then
+  cat "/var/tmp/snippets/rc.sh" >> "$HOME/.zshrc"
 fi
 
 # Enable Oh My Zsh plugins
