@@ -31,7 +31,7 @@ RUN if [ -n "${CUDA_VERSION}" ]; then \
       /files/usr/local/bin/nvidia_entrypoint.sh; \
   fi \
   && if [ "${MOJO_VERSION}" != "nightly" ]; then \
-    if dpkg --compare-versions "${MOJO_VERSION}" lt "25.5.0"; then \
+    if dpkg --compare-versions "${MOJO_VERSION}" lt "25.4.0"; then \
       ## Fix path for the Mojo LSP server
       sed -i "s|/usr/local|/opt/modular|g" \
         /files/usr/local/etc/jupyter/jupyter_server_config.d/mojo-lsp-server.json; \
