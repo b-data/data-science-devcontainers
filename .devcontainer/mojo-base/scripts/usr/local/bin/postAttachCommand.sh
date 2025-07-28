@@ -37,7 +37,7 @@ if [ "${MOJO_VERSION}" = "nightly" ]; then
   ln -snf /usr/local "$extDataDir/magic-data-home/envs/max"
   mkdir -p "$extDataDir/versionDone/$sdkVersion"
 else
-  if dpkg --compare-versions "${MOJO_VERSION}" ge "25.5.0"; then
+  if dpkg --compare-versions "${MOJO_VERSION}" ge "25.4.0"; then
     # MAX SDK: Create symlink to /usr/local
     mkdir -p "$extDataDir/magic-data-home/envs"
     ln -snf /usr/local "$extDataDir/magic-data-home/envs/max"
