@@ -5,7 +5,7 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/mojo/base",
-      "MOJO_VERSION": "25.4.0",
+      "MOJO_VERSION": "25.5.0",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.4.5",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
