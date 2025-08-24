@@ -175,8 +175,7 @@ RUN if [ -n "$NV" ]; then \
     apt-get -y install --no-install-recommends \
       docker-ce-cli \
       docker-buildx-plugin \
-      docker-compose-plugin \
-      "$(test "$dpkgArch" = "amd64" && echo docker-scan-plugin)"; \
+      docker-compose-plugin; \
     ln -s /usr/libexec/docker/cli-plugins/docker-compose \
       /usr/local/bin/docker-compose; \
     ## Clean up
