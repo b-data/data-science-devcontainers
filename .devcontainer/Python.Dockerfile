@@ -1,9 +1,9 @@
 ARG BUILD_ON_IMAGE=glcr.b-data.ch/python/base
-ARG PYTHON_VERSION=3.13.6
+ARG PYTHON_VERSION=3.13.7
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
-ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-22.15.1}}
+ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-22.17.0}}
 
 ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
@@ -175,8 +175,7 @@ RUN if [ -n "$NV" ]; then \
     apt-get -y install --no-install-recommends \
       docker-ce-cli \
       docker-buildx-plugin \
-      docker-compose-plugin \
-      "$(test "$dpkgArch" = "amd64" && echo docker-scan-plugin)"; \
+      docker-compose-plugin; \
     ln -s /usr/libexec/docker/cli-plugins/docker-compose \
       /usr/local/bin/docker-compose; \
     ## Clean up

@@ -4,7 +4,7 @@ ARG RSTUDIO_VERSION
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
-ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-22.15.1}}
+ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-22.17.0}}
 
 ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
@@ -120,7 +120,14 @@ RUN if [ -n "${RSTUDIO_VERSION}" ]; then \
       case "$VERSION_CODENAME" in \
         bullseye) UBUNTU_CODENAME="focal" ;; \
         bookworm) UBUNTU_CODENAME="jammy" ;; \
+        trixie) UBUNTU_CODENAME="jammy" ;; \
         *) echo "error: Debian $VERSION unsupported"; exit 1 ;; \
+      esac; \
+    fi; \
+    if [ "$ID" = "ubuntu" ]; then \
+      case "$VERSION_CODENAME" in \
+        noble) UBUNTU_CODENAME="jammy" ;; \
+        *) echo "error: Ubuntu $VERSION unsupported"; exit 1 ;; \
       esac; \
     fi; \
     ## Install RStudio
@@ -320,8 +327,7 @@ RUN if [ -n "$NV" ]; then \
     apt-get -y install --no-install-recommends \
       docker-ce-cli \
       docker-buildx-plugin \
-      docker-compose-plugin \
-      "$(test "$dpkgArch" = "amd64" && echo docker-scan-plugin)"; \
+      docker-compose-plugin; \
     ln -s /usr/libexec/docker/cli-plugins/docker-compose \
       /usr/local/bin/docker-compose; \
     ## Clean up
