@@ -120,6 +120,7 @@ RUN if [ -n "${RSTUDIO_VERSION}" ]; then \
       case "$VERSION_CODENAME" in \
         bullseye) UBUNTU_CODENAME="focal" ;; \
         bookworm) UBUNTU_CODENAME="jammy" ;; \
+        trixie) UBUNTU_CODENAME="jammy" ;; \
         *) echo "error: Debian $VERSION unsupported"; exit 1 ;; \
       esac; \
     fi; \
