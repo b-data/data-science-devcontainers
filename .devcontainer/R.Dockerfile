@@ -124,6 +124,12 @@ RUN if [ -n "${RSTUDIO_VERSION}" ]; then \
         *) echo "error: Debian $VERSION unsupported"; exit 1 ;; \
       esac; \
     fi; \
+    if [ "$ID" = "ubuntu" ]; then \
+      case "$VERSION_CODENAME" in \
+        noble) UBUNTU_CODENAME="jammy" ;; \
+        *) echo "error: Ubuntu $VERSION unsupported"; exit 1 ;; \
+      esac; \
+    fi; \
     ## Install RStudio
     apt-get -y install --no-install-recommends \
       libapparmor1 \
