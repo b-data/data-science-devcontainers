@@ -47,8 +47,8 @@ The following startup scripts are put in place:
 **R images**
 
 * `R_VERSION`
-* `QGIS_VERSION` (R qgisprocess image)
-* `OTB_VERSION` (R qgisprocess image)
+* `QGIS_VERSION` ((CUDA) R qgisprocess image)
+* `OTB_VERSION` ((CUDA) qgisprocess image)
 * `CRAN`: The CRAN mirror URL.  
   :point_right: User-settable at build time.
 * `R_BINARY_PACKAGES`: R package type to use.  
@@ -57,14 +57,17 @@ The following startup scripts are put in place:
   * `1`/`yes`: Binary packages.
 * `DOWNLOAD_STATIC_LIBV8=1`: R (V8): Installing V8 on Linux, the alternative
   way.
-* `RETICULATE_MINICONDA_ENABLED=0`: R (reticulate): Disable prompt to install
-  miniconda.
-* `QT_QPA_PLATFORM` (R qgisprocess image): Qt Platform Plugin to use.  
+* `RETICULATE_MINICONDA_ENABLED=0`: R ((CUDA)eticulate): Disable prompt to
+  install miniconda.
+* `QT_QPA_PLATFORM` ((CUDA) qgisprocess image): Qt Platform Plugin to use.  
   :point_right: User-settable at runtime.
   * `offscreen`: Renders to an offscreen buffer. (default)
   * unset: Auto-detect Qt Platform Plugin.
-* `LIBGL_ALWAYS_SOFTWARE=1` (R qgisprocess image): Always use software
+* `LIBGL_ALWAYS_SOFTWARE=1` ((CUDA) qgisprocess image): Always use software
   rendering.  
+  :point_right: User-settable at runtime.
+* `VGL_DISPLAY=egl` ((CUDA) R qgisprocess image): Use the EGL backend to enable
+  OpenGL rendering without an X server.  
   :point_right: User-settable at runtime.
 
 **MAX/Mojo images**

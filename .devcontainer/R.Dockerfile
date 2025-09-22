@@ -257,6 +257,46 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   ## Clean up
   && rm -rf /var/lib/apt/lists/*
 
+ARG VIRTUALGL_VERSION=3.1.3
+
+## Install VirtualGL
+RUN if [ "$(command -v qgis)" ]; then \
+    dpkgArch="$(dpkg --print-architecture)"; \
+    curl -fsSL "https://github.com/VirtualGL/virtualgl/releases/download/${VIRTUALGL_VERSION}/virtualgl_${VIRTUALGL_VERSION}_${dpkgArch}.deb" -o virtualgl.deb; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+      mesa-utils \
+      ./virtualgl.deb; \
+    ## Install misc Vulkan utilities
+    apt-get install -y --no-install-recommends \
+      mesa-vulkan-drivers \
+      vulkan-tools; \
+    ## Make libraries available for preload
+    chmod u+s /usr/lib/libvglfaker.so; \
+    chmod u+s /usr/lib/libdlfaker.so; \
+    ## Configure EGL manually (fallback)
+    mkdir -p /usr/share/glvnd/egl_vendor.d/; \
+    echo "{\n\
+    \"file_format_version\" : \"1.0.0\",\n\
+    \"ICD\" : {\n\
+        \"library_path\" : \"libEGL_nvidia.so.0\"\n\
+    }\n\
+}" > /usr/share/glvnd/egl_vendor.d/10_nvidia.json; \
+    ## Configure Vulkan manually (fallback)
+    VULKAN_API_VERSION=$(dpkg -s libvulkan1 | grep -oP 'Version: [0-9|\.]+' | grep -oP '[0-9]+(\.[0-9]+)(\.[0-9]+)'); \
+    mkdir -p /etc/vulkan/icd.d/; \
+    echo "{\n\
+    \"file_format_version\" : \"1.0.0\",\n\
+    \"ICD\": {\n\
+        \"library_path\": \"libGLX_nvidia.so.0\",\n\
+        \"api_version\" : \"${VULKAN_API_VERSION}\"\n\
+    }\n\
+}" > /etc/vulkan/icd.d/nvidia_icd.json; \
+  ## Clean up
+  rm -rf /var/lib/apt/lists/* \
+    virtualgl.deb; \
+  fi
+
 ## Devtools, Docker
 FROM glcr.b-data.ch/nodejs/nsi${NSI_SFX} as nsi
 
