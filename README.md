@@ -52,10 +52,10 @@ Extended to match the (CUDA-based) [Jupyter](https://github.com/b-data/jupyterla
   code.
 * **Git LFS**: A Git extension for versioning large files.
 * **GRASS GIS**: A free and open source Geographic Information System (GIS).  
-  :information_source: R qgisprocess image
+  :information_source: (CUDA) R qgisprocess image
 * **Orfeo Toolbox**: An open-source project for state-of-the-art remote
   sensing.  
-  :information_source: R qgisprocess image (amd64 only)
+  :information_source: (CUDA) R qgisprocess image (amd64 only)
 * **Julia**[^1]: A high-level, high-performance dynamic language for technical
   computing.
 * **MAX**[^1]: A high-performance generative AI framework.
@@ -65,13 +65,13 @@ Extended to match the (CUDA-based) [Jupyter](https://github.com/b-data/jupyterla
   with dynamic semantics.
 * **QGIS**: A free, open source, cross platform (lin/win/mac) geographical
   information system (GIS).  
-  :information_source: R qgisprocess image
+  :information_source: (CUDA) R qgisprocess image
 * **Quarto**: A scientific and technical publishing system built on Pandoc.  
   :information_source: Julia pubtools, MAX/Mojo/Python scipy, R verse+ images
 * **R**[^1]: A language and environment for statistical computing and graphics.
 * **SAGA GIS**: A Geographic Information System (GIS) software with immense
   capabilities for geodata processing and analysis.  
-  :information_source: R qgisprocess image
+  :information_source: (CUDA) R qgisprocess image
 * **TinyTeX**: A lightweight, cross-platform, portable, and easy-to-maintain
   LaTeX distribution based on TeX Live.  
   :information_source: Julia pubtools, MAX/Mojo/Python scipy, R verse+ images
