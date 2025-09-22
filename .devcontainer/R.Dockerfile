@@ -131,9 +131,11 @@ RUN if [ -n "${RSTUDIO_VERSION}" ]; then \
       esac; \
     fi; \
     ## Install RStudio
+    ## https://github.com/rstudio/rstudio/blob/main/package/linux/CMakeLists.txt
     apt-get -y install --no-install-recommends \
       libapparmor1 \
       libpq5 \
+      libsqlite3-0 \
       libssl-dev; \
     rm -rf /var/lib/apt/lists/*; \
     DOWNLOAD_FILE=rstudio-server-$(echo $RSTUDIO_VERSION | tr + -)-$dpkgArch.deb; \
