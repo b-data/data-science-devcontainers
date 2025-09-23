@@ -113,7 +113,7 @@ Extended to match the (CUDA-based) [Jupyter](https://github.com/b-data/jupyterla
 * [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)  
   :information_source: Julia pubtools, MAX/Mojo/Python scipy, R verse+ images
 * [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
-* [Mojo](https://marketplace.visualstudio.com/items?itemName=modular-mojotools.vscode-mojo)[^1]
+* [Mojo 🔥](https://marketplace.visualstudio.com/items?itemName=modular-mojotools.vscode-mojo)[^1]
 * [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
 * [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 * [Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager)
