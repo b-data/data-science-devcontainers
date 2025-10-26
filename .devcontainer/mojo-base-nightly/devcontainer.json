@@ -7,7 +7,7 @@
       "BUILD_ON_IMAGE": "glcr.b-data.ch/mojo/base",
       "MOJO_VERSION": "nightly",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.4.9",
+      "JUPYTERLAB_VERSION": "4.4.10",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "22.19.0",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
