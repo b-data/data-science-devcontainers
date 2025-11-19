@@ -65,6 +65,7 @@
         "ms-azuretools.vscode-containers"
       ],
       "settings": {
+        "chat.disableAIFeatures": true,
         "gitlab.aiAssistedCodeSuggestions.enabled": false,
         "gitlab.duo.enabledWithoutGitlabProject": false,
         "gitlab.duoAgentPlatform.enabled": false,
