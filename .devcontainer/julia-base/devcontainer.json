@@ -5,7 +5,7 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/julia/base",
-      "JULIA_VERSION": "1.12.1",
+      "JULIA_VERSION": "1.12.2",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.4.10",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
