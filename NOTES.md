@@ -128,6 +128,7 @@ are installed.
   * Python LSP Server: Example settings according to
     [jupyter-lsp/jupyterlab-lsp > Installation > Configuring the servers](https://github.com/jupyter-lsp/jupyterlab-lsp#configuring-the-servers)
 * VS Code
+  * Features > Chat > Disable AI Features: true
   * Extensions > GitLab Workflow
     * GitLab Duo Pro > Duo Code Suggestions: false
     * GitLab Duo Pro > Duo Chat: false
