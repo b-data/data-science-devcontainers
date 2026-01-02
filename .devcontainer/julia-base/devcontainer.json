@@ -74,6 +74,7 @@
         "gitlens.showWhatsNewAfterUpgrades": false,
         "julia.enableCrashReporter": false,
         "julia.enableTelemetry": false,
+        "julia.executablePath": "julia",
         "resmon.show.battery": false,
         "resmon.show.cpufreq": false
       }
