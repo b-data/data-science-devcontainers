@@ -7,7 +7,7 @@
       "BUILD_ON_IMAGE": "glcr.b-data.ch/max/scipy",
       "MOJO_VERSION": "nightly",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.5.1",
+      "JUPYTERLAB_VERSION": "4.5.2",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "22.21.1",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
