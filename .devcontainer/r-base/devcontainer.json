@@ -7,7 +7,7 @@
       "BUILD_ON_IMAGE": "glcr.b-data.ch/r/base",
       "R_VERSION": "4.5.3",
       // "CRAN": "https://cloud.r-project.org",
-      // "R_BINARY_PACKAGES": "1",
+      "R_BINARY_PACKAGES": "1",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.5.5",
       // "RSTUDIO_VERSION": "2026.01.1+403",
