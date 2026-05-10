@@ -67,6 +67,10 @@
 !/r-base/conf/rstudio/etc/skel/
 !/r-base/conf/rstudio/etc/skel/.config/
 !/r-base/conf/rstudio/etc/skel/.config/rstudio/
+!/r-base/scripts/cuda/
+!/r-base/scripts/cuda/usr/
+!/r-base/scripts/cuda/usr/local/
+!/r-base/scripts/cuda/usr/local/bin/
 !/r-base/scripts/
 !/r-base/scripts/usr/
 !/r-base/scripts/usr/local/
@@ -106,7 +110,9 @@
 !/r-base/conf/rstudio/etc/rstudio/*.conf
 !/r-base/conf/rstudio/etc/rstudio/rstudio-prefs.json
 !/r-base/conf/rstudio/etc/skel/.config/rstudio/rstudio-prefs.json
+!/r-base/scripts/cuda/usr/local/bin/radian_
 !/r-base/scripts/usr/local/bin/*.sh
+!/r-base/scripts/usr/local/bin/radian
 !/scripts/etc/skel/.local/bin/*.sh
 !/scripts/usr/local/bin/*.sh
 !/vsix/var/tmp/extensions/*.vsix

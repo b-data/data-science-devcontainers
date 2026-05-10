@@ -47,6 +47,7 @@ The following startup scripts are put in place:
 **R images**
 
 * `R_VERSION`
+* `ARF_VERSION`
 * `QGIS_VERSION` ((CUDA) R qgisprocess image)
 * `OTB_VERSION` ((CUDA) R qgisprocess image)
 * `CRAN`: The CRAN mirror URL.  
@@ -171,7 +172,9 @@ are installed.
   * Extensions > R
     * Bracketed Paste: true
     * Plot: Use Httpgd: true
-    * Rterm: Linux: `/usr/local/bin/radian`
+    * Rterm: Linux: `/usr/local/bin/radian`  
+      :information_source: For versions ≥ 4.6.0, it can also be set to
+      `/usr/local/bin/arf`.
     * Rterm: Option: `["--no-save", "--no-restore"]`
     * Workspace Viewer: Show Object Size: true
 

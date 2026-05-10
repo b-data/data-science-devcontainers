@@ -69,6 +69,7 @@ Extended to match the (CUDA-based) [Jupyter](https://github.com/b-data/jupyterla
 * **Quarto**: A scientific and technical publishing system built on Pandoc.  
   :information_source: Julia pubtools, MAX/Mojo/Python scipy, R verse+ images
 * **R**[^1]: A language and environment for statistical computing and graphics.
+* **arf**: An alternative R frontend — a modern R console written in Rust.
 * **SAGA GIS**: A Geographic Information System (GIS) software with immense
   capabilities for geodata processing and analysis.  
   :information_source: (CUDA) R qgisprocess image

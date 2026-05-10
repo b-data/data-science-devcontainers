@@ -19,6 +19,7 @@ COPY conf/shell /files
 COPY r-base/conf/jupyterlab /files
 COPY r-base/conf/rstudio /files
 COPY r-base/scripts /files
+COPY r-base/scripts${CUDA_IMAGE:+/cuda}/usr/local/bin /files/usr/local/bin
 COPY scripts /files
 COPY vsix /files
 
