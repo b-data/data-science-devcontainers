@@ -104,6 +104,7 @@
 !/r-base/conf/jupyterlab/usr/local/share/jupyter/lab/settings/*.json
 !/r-base/conf/rstudio/etc/rstudio/file-locks
 !/r-base/conf/rstudio/etc/rstudio/*.conf
+!/r-base/conf/rstudio/etc/rstudio/rstudio-prefs.json
 !/r-base/conf/rstudio/etc/skel/.config/rstudio/rstudio-prefs.json
 !/r-base/scripts/usr/local/bin/*.sh
 !/scripts/etc/skel/.local/bin/*.sh
