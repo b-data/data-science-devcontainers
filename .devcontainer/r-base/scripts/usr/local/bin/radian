@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "radian is deprecated. Starting arf instead..."
+echo
+exec /usr/local/bin/arf "${@}"

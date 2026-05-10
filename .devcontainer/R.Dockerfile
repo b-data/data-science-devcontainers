@@ -1,5 +1,5 @@
 ARG BUILD_ON_IMAGE=glcr.b-data.ch/r/base
-ARG R_VERSION=4.5.3
+ARG R_VERSION=4.6.0
 ARG RSTUDIO_VERSION
 
 ARG INSTALL_DEVTOOLS
@@ -19,6 +19,7 @@ COPY conf/shell /files
 COPY r-base/conf/jupyterlab /files
 COPY r-base/conf/rstudio /files
 COPY r-base/scripts /files
+COPY r-base/scripts${CUDA_IMAGE:+/cuda}/usr/local/bin /files/usr/local/bin
 COPY scripts /files
 COPY vsix /files
 
@@ -69,7 +70,7 @@ ARG CRAN
 ARG NCPUS
 ARG R_BINARY_PACKAGES
 ARG UNMINIMIZE
-ARG JUPYTERLAB_VERSION=4.5.6
+ARG JUPYTERLAB_VERSION=4.5.7
 
 ARG CRAN_OVERRIDE=${CRAN}
 
@@ -185,7 +186,7 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
     nbconvert \
     nbclassic \
     "python-lsp-server[all]" \
-    ${RSTUDIO_VERSION:+jupyter-rsession-proxy} \
+    ${RSTUDIO_VERSION:+jupyter-rsession-proxy==2.4.0} \
 ## Install R related stuff
   && CRAN_ORIG=$(sed -n "s/.*CRAN='\(.*\)'),.*$/\1/p" "$(R RHOME)/etc/Rprofile.site") \
   && CRAN_ORIG_P3M=$(echo "$CRAN_ORIG" | sed 's/packagemanager.posit.co/p3m.dev/g') \

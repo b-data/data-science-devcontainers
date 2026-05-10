@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "radian is deprecated. Starting arf instead..."
+echo
+command -v nvidia-smi >/dev/null && nvidia-smi -L | grep 'GPU[[:space:]]\?[[:digit:]]\+' >/dev/null && export LD_PRELOAD=libnvblas.so
+exec /usr/local/bin/arf "${@}"
