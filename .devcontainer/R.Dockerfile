@@ -149,6 +149,12 @@ RUN if [ -n "${RSTUDIO_VERSION}" ]; then \
     ## Enable rstudio-server and rserver system-wide
     ln -fs /usr/lib/rstudio-server/bin/rstudio-server /usr/local/bin; \
     ln -fs /usr/lib/rstudio-server/bin/rserver /usr/local/bin; \
+    ## Remove the secure-cookie-key
+    ## https://github.com/rocker-org/rocker-versioned2/issues/137
+    rm -f /var/lib/rstudio-server/secure-cookie-key; \
+    ## Remove the session-rpc-key
+    ## https://github.com/rocker-org/ml/issues/42
+    rm -f /var/lib/rstudio-server/session-rpc-key; \
     ## Check for quarto redundancy
     if [ -d /opt/quarto ]; then \
       ## Remove RStudio quarto
