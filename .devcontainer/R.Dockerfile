@@ -10,6 +10,7 @@ ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
 FROM ${BUILD_ON_IMAGE}:${R_VERSION} as files
 
+ARG R_VERSION
 ARG RSTUDIO_VERSION
 
 RUN mkdir /files
@@ -34,6 +35,10 @@ RUN if [ -n "${CUDA_VERSION}" ]; then \
   && if [ -z "${RSTUDIO_VERSION}" ]; then \
     rm -rf /files/etc/rstudio \
       /files/etc/skel/.config; \
+  fi \
+  && if dpkg --compare-versions "$R_VERSION" lt "4.6.0"; then \
+    rm -f /files/usr/local/bin/radian \
+      /files/usr/local/bin/radian_; \
   fi \
   ## Ensure file modes are correct
   && find /files -type d -exec chmod 755 {} \; \
@@ -246,6 +251,19 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
     >> "$(R RHOME)/etc/Rprofile.site" \
   && echo "    sep = .Platform\$path.sep))}" \
     >> "$(R RHOME)/etc/Rprofile.site" \
+  ## Temporary workaround
+  && echo '# https://github.com/REditorSupport/vscode-R/issues/1696' \
+    >> $(R RHOME)/etc/Rprofile.site \
+  && echo 'if (interactive() && Sys.getenv("RSTUDIO") == "" &&' \
+    >> $(R RHOME)/etc/Rprofile.site \
+  && echo '  Sys.getenv("TERM_PROGRAM") == "vscode" &&' \
+    >> $(R RHOME)/etc/Rprofile.site \
+  && echo '  dir.exists(file.path(Sys.getenv("HOME"), ".vscode-R"))) {' \
+    >> $(R RHOME)/etc/Rprofile.site \
+  && echo '  source(file.path(Sys.getenv("HOME"), ".vscode-R", "init.R"))' \
+    >> $(R RHOME)/etc/Rprofile.site \
+  && echo '  .First.sys()}' \
+    >> $(R RHOME)/etc/Rprofile.site \
   ## REditorSupport.r: Disable help panel and revert to old behaviour
   && echo "options(vsc.helpPanel = FALSE)" >> "$(R RHOME)/etc/Rprofile.site" \
   ## Change ownership and permission of $(R RHOME)/etc/*.site
