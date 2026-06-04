@@ -10,6 +10,7 @@ ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
 FROM ${BUILD_ON_IMAGE}:${R_VERSION} as files
 
+ARG R_VERSION
 ARG RSTUDIO_VERSION
 
 RUN mkdir /files
@@ -34,6 +35,10 @@ RUN if [ -n "${CUDA_VERSION}" ]; then \
   && if [ -z "${RSTUDIO_VERSION}" ]; then \
     rm -rf /files/etc/rstudio \
       /files/etc/skel/.config; \
+  fi \
+  && if dpkg --compare-versions "$R_VERSION" lt "4.6.0"; then \
+    rm -f /files/usr/local/bin/radian \
+      /files/usr/local/bin/radian_; \
   fi \
   ## Ensure file modes are correct
   && find /files -type d -exec chmod 755 {} \; \
