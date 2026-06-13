@@ -197,7 +197,7 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
     nbconvert \
     nbclassic \
     "python-lsp-server[all]" \
-    ${RSTUDIO_VERSION:+jupyter-rsession-proxy==2.4.0} \
+    ${RSTUDIO_VERSION:+jupyter-rsession-proxy} \
 ## Install R related stuff
   && CRAN_ORIG=$(sed -n "s/.*CRAN='\(.*\)'),.*$/\1/p" "$(R RHOME)/etc/Rprofile.site") \
   && CRAN_ORIG_P3M=$(echo "$CRAN_ORIG" | sed 's/packagemanager.posit.co/p3m.dev/g') \
