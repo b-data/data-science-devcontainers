@@ -1,11 +1,11 @@
 {
   "name": "CUDA MAX base",
   "build": {
-    "dockerfile": "../Mojo.Dockerfile",
+    "dockerfile": "../MAX.Dockerfile",
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/cuda/max/base",
-      "MOJO_VERSION": "26.3.0",
+      "MAX_VERSION": "26.4.0",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.5.8",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",

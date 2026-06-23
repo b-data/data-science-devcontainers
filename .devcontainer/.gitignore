@@ -123,6 +123,7 @@
 !/init
 !/init.cmd
 !/Julia.Dockerfile
+!/MAX.Dockerfile
 !/Mojo.Dockerfile
 !/Python.Dockerfile
 !/R.Dockerfile

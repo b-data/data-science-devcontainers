@@ -1,5 +1,5 @@
 ARG BUILD_ON_IMAGE=glcr.b-data.ch/mojo/base
-ARG MOJO_VERSION=1.0.0b2
+ARG MAX_VERSION=26.4.0
 
 ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
@@ -7,10 +7,10 @@ ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-24.15.0}}
 
 ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
 
-FROM ${BUILD_ON_IMAGE}:${MOJO_VERSION} as files
+FROM ${BUILD_ON_IMAGE}:${MAX_VERSION} as files
 
 ARG BUILD_ON_IMAGE
-ARG MOJO_VERSION
+ARG MAX_VERSION
 
 RUN mkdir /files
 
@@ -30,8 +30,8 @@ RUN if [ -n "${CUDA_VERSION}" ]; then \
     sed -i "$((nlc-4)),$nlc s/^/# /" \
       /files/usr/local/bin/nvidia_entrypoint.sh; \
   fi \
-  && if [ "${MOJO_VERSION}" != "nightly" ]; then \
-    if dpkg --compare-versions "${MOJO_VERSION}" lt "25.4.0"; then \
+  && if [ "${MAX_VERSION}" != "nightly" ]; then \
+    if dpkg --compare-versions "${MAX_VERSION}" lt "25.4.0"; then \
       ## Fix path for the Mojo LSP server
       sed -i "s|/usr/local|/opt/modular|g" \
         /files/usr/local/etc/jupyter/jupyter_server_config.d/mojo-lsp-server.json; \
@@ -50,7 +50,7 @@ FROM ghcr.io/hadolint/hadolint:latest as hsi
 
 FROM docker.io/koalaman/shellcheck:stable as sci
 
-FROM ${BUILD_ON_IMAGE}:${MOJO_VERSION} as mojo
+FROM ${BUILD_ON_IMAGE}:${MAX_VERSION} as mojo
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -60,7 +60,7 @@ ARG JUPYTERLAB_VERSION=4.5.8
 
 ENV PIXI_NO_PATH_UPDATE=1
 
-ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${MOJO_VERSION} \
+ENV PARENT_IMAGE=${BUILD_ON_IMAGE}:${MAX_VERSION} \
     JUPYTERLAB_VERSION=${JUPYTERLAB_VERSION} \
     PARENT_IMAGE_BUILD_DATE=${BUILD_DATE}
 
