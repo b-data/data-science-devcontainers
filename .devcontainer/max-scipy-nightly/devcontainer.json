@@ -1,11 +1,11 @@
 {
   "name": "MAX nightly scipy",
   "build": {
-    "dockerfile": "../Mojo.Dockerfile",
+    "dockerfile": "../MAX.Dockerfile",
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/max/scipy",
-      "MOJO_VERSION": "nightly",
+      "MAX_VERSION": "nightly",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.5.8",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
