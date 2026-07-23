@@ -9,10 +9,10 @@
       // "CRAN": "https://cloud.r-project.org",
       "R_BINARY_PACKAGES": "1",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.6.1",
-      // "RSTUDIO_VERSION": "2026.07.0+139",
+      "JUPYTERLAB_VERSION": "4.6.2",
+      // "RSTUDIO_VERSION": "2026.07.1+147",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
-      "NODE_VERSION": "24.17.0",
+      "NODE_VERSION": "24.18.0",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
       "LANG": "en_US.UTF-8",
       "TZ": "Etc/UTC"
