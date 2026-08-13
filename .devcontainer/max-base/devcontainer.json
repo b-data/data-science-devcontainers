@@ -5,7 +5,7 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/max/base",
-      "MAX_VERSION": "26.4.0",
+      "MAX_VERSION": "26.5.0",
       // "UNMINIMIZE": "unset-to-keep-minimized",
       "JUPYTERLAB_VERSION": "4.6.3",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
