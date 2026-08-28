@@ -284,7 +284,7 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   ## Clean up
   && rm -rf /var/lib/apt/lists/*
 
-ARG VIRTUALGL_VERSION=3.1.3
+ARG VIRTUALGL_VERSION=3.1.5
 
 ## Install VirtualGL
 RUN if [ "$(command -v qgis)" ]; then \
