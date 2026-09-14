@@ -94,6 +94,8 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   && julia -e 'using Pkg; Pkg.add(["IJulia", "LanguageServer"]); Pkg.precompile()' \
   && mv /root/.local/share/jupyter/kernels/julia* /usr/local/share/jupyter/kernels/ \
   ## Make installed packages available system-wide
+  && find ${JULIA_DEPOT_PATH} -name CACHEDIR.TAG -exec rm {} \; \
+  && rm -rf ${JULIA_DEPOT_PATH}/packages/temp \
   && julia -e 'using Pkg; Pkg.add(readdir("$(ENV["JULIA_DEPOT_PATH"])/packages"))' \
   && rm -rf "$JULIA_DEPOT_PATH/registries"/* \
   && chmod -R ugo+rx "$JULIA_DEPOT_PATH" \
