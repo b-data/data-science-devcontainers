@@ -5,7 +5,7 @@ ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
 ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-24.18.1}}
 
-ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
+ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bookworm}
 
 FROM ${BUILD_ON_IMAGE}:${PYTHON_VERSION} as files
 

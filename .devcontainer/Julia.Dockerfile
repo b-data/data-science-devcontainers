@@ -5,7 +5,7 @@ ARG INSTALL_DEVTOOLS
 ARG NODE_VERSION
 ARG NV=${INSTALL_DEVTOOLS:+${NODE_VERSION:-24.18.1}}
 
-ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bullseye}
+ARG NSI_SFX=${NV:+/}${NV:-:none}${NV:+/debian}${NV:+:bookworm}
 
 FROM ${BUILD_ON_IMAGE}:${JULIA_VERSION} as files
 
@@ -87,13 +87,15 @@ RUN dpkgArch="$(dpkg --print-architecture)" \
   && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch}" in \
     amd64) export JULIA_CPU_TARGET="generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);x86-64-v4,-rdrnd,base(1)" ;; \
-    arm64) export JULIA_CPU_TARGET="generic;cortex-a57;thunderx2t99;carmel,clone_all;apple-m1,base(3);neoverse-512tvb,base(3)" ;; \
+    arm64) export JULIA_CPU_TARGET="generic;cortex-a57;thunderx2t99;carmel,clone_all;apple-m1,base(3);neoverse-512tvb,-rand,-fpac,base(3)" ;; \
     *) echo "Unknown target processor architecture '${dpkgArch}'" >&2; exit 1 ;; \
   esac \
   ## Install the Julia kernel for Jupyter
   && julia -e 'using Pkg; Pkg.add(["IJulia", "LanguageServer"]); Pkg.precompile()' \
   && mv /root/.local/share/jupyter/kernels/julia* /usr/local/share/jupyter/kernels/ \
   ## Make installed packages available system-wide
+  && find ${JULIA_DEPOT_PATH} -name CACHEDIR.TAG -exec rm {} \; \
+  && rm -rf ${JULIA_DEPOT_PATH}/packages/temp \
   && julia -e 'using Pkg; Pkg.add(readdir("$(ENV["JULIA_DEPOT_PATH"])/packages"))' \
   && rm -rf "$JULIA_DEPOT_PATH/registries"/* \
   && chmod -R ugo+rx "$JULIA_DEPOT_PATH" \
