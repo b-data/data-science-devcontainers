@@ -12,7 +12,7 @@
       "JUPYTERLAB_VERSION": "4.6.4",
       // "RSTUDIO_VERSION": "2026.09.0+174",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
-      "NODE_VERSION": "24.18.1",
+      "NODE_VERSION": "24.20.0",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
       "LANG": "en_US.UTF-8",
       "TZ": "Etc/UTC"
@@ -76,6 +76,11 @@
         "gitlens.showWelcomeOnInstall": false,
         "gitlens.showWhatsNewAfterUpgrades": false,
         "r.bracketedPaste": true,
+        "r.consolePath": "/usr/local/bin/radian",
+        "r.consoleArgs": [
+          "--no-save",
+          "--no-restore"
+        ],
         "r.plot.useHttpgd": true,
         "r.rterm.linux": "/usr/local/bin/R",
         "r.rterm.option": [
