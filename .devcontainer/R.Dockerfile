@@ -133,6 +133,7 @@ RUN if [ -n "${RSTUDIO_VERSION}" ]; then \
     if [ "$ID" = "ubuntu" ]; then \
       case "$VERSION_CODENAME" in \
         noble) UBUNTU_CODENAME="jammy" ;; \
+        resolute) UBUNTU_CODENAME="jammy" ;; \
         *) echo "error: Ubuntu $VERSION unsupported"; exit 1 ;; \
       esac; \
     fi; \
