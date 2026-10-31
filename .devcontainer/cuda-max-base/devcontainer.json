@@ -5,9 +5,9 @@
     "context": "..",
     "args": {
       "BUILD_ON_IMAGE": "glcr.b-data.ch/cuda/max/base",
-      "MAX_VERSION": "26.6.0",
+      "MAX_VERSION": "26.7.0",
       // "UNMINIMIZE": "unset-to-keep-minimized",
-      "JUPYTERLAB_VERSION": "4.6.4",
+      "JUPYTERLAB_VERSION": "4.6.5",
       // "INSTALL_DEVTOOLS": "unset-to-not-install",
       "NODE_VERSION": "24.22.1",
       "USE_ZSH_FOR_ROOT": "unset-to-use-bash",
