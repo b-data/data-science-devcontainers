@@ -33,16 +33,31 @@ if [ "$(id -un)" == "root" ]; then
 
   # Copy plugin 'Processing Saga NextGen Provider'
   if [ "$(command -v qgis)" ]; then
-    rm -rf /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen;
-    cp -R /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen \
-      /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen;
+    if [ -d /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen ]; then
+      rm -rf /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen;
+      cp -R /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen \
+        /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen;
+    fi
+    if [ -d /etc/skel/.local/share/QGIS/QGIS4/profiles/default/python/plugins/processing_saga_nextgen ]; then
+      rm -rf /root/.local/share/QGIS/QGIS4/profiles/default/python/plugins/processing_saga_nextgen;
+      cp -R /etc/skel/.local/share/QGIS/QGIS4/profiles/default/python/plugins/processing_saga_nextgen \
+        /root/.local/share/QGIS/QGIS4/profiles/default/python/plugins/processing_saga_nextgen;
+    fi
   fi
 
   # Copy plugin 'OrfeoToolbox Provider'
-  if [ "$(command -v qgis)" ] && [ ! -d /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider ]; then
-    if [ -d /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider ]; then
-      cp -R /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider \
-        /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider;
+  if [ "$(command -v qgis)" ]; then
+    if [ ! -d /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider ]; then
+      if [ -d /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider ]; then
+        cp -R /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider \
+          /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider;
+      fi
+    fi
+    if [ ! -d /root/.local/share/QGIS/QGIS4/profiles/default/python/plugins/orfeoToolbox_provider ]; then
+      if [ -d /etc/skel/.local/share/QGIS/QGIS4/profiles/default/python/plugins/orfeoToolbox_provider ]; then
+        cp -R /etc/skel/.local/share/QGIS/QGIS4/profiles/default/python/plugins/orfeoToolbox_provider \
+          /root/.local/share/QGIS/QGIS4/profiles/default/python/plugins/orfeoToolbox_provider;
+      fi
     fi
   fi
 else
@@ -53,18 +68,35 @@ else
 
   # Copy plugin 'Processing Saga NextGen Provider'
   if [ "$(command -v qgis)" ]; then
-    sudo rm -rf "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen";
-    sudo cp -R /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen \
-      "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen";
-    sudo chown -R "$(id -u)":"$(id -g)" "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen";
+    if [ -d /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen ]; then
+      sudo rm -rf "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen";
+      sudo cp -R /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen \
+        "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen";
+      sudo chown -R "$(id -u)":"$(id -g)" "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen";
+    fi
+    if [ -d /etc/skel/.local/share/QGIS/QGIS4/profiles/default/python/plugins/processing_saga_nextgen ]; then
+      sudo rm -rf "$HOME/.local/share/QGIS/QGIS4/profiles/default/python/plugins/processing_saga_nextgen";
+      sudo cp -R /etc/skel/.local/share/QGIS/QGIS4/profiles/default/python/plugins/processing_saga_nextgen \
+        "$HOME/.local/share/QGIS/QGIS4/profiles/default/python/plugins/processing_saga_nextgen";
+      sudo chown -R "$(id -u)":"$(id -g)" "$HOME/.local/share/QGIS/QGIS4/profiles/default/python/plugins/processing_saga_nextgen";
+    fi
   fi
 
   # Copy plugin 'OrfeoToolbox Provider'
-  if [ "$(command -v qgis)" ] && [ ! -d "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider" ]; then
-    if [ -d /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider ]; then
-      sudo cp -R /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider \
-        "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider";
-      sudo chown -R "$(id -u)":"$(id -g)" "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider";
+  if [ "$(command -v qgis)" ]; then
+    if [ ! -d "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider" ]; then
+      if [ -d /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider ]; then
+        sudo cp -R /etc/skel/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider \
+          "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider";
+        sudo chown -R "$(id -u)":"$(id -g)" "$HOME/.local/share/QGIS/QGIS3/profiles/default/python/plugins/orfeoToolbox_provider";
+      fi
+    fi
+    if [ ! -d "$HOME/.local/share/QGIS/QGIS4/profiles/default/python/plugins/orfeoToolbox_provider" ]; then
+      if [ -d /etc/skel/.local/share/QGIS/QGIS4/profiles/default/python/plugins/orfeoToolbox_provider ]; then
+        sudo cp -R /etc/skel/.local/share/QGIS/QGIS4/profiles/default/python/plugins/orfeoToolbox_provider \
+          "$HOME/.local/share/QGIS/QGIS4/profiles/default/python/plugins/orfeoToolbox_provider";
+        sudo chown -R "$(id -u)":"$(id -g)" "$HOME/.local/share/QGIS/QGIS4/profiles/default/python/plugins/orfeoToolbox_provider";
+      fi
     fi
   fi
 fi
